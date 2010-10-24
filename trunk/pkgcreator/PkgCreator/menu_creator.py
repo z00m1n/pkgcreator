@@ -1,9 +1,7 @@
 import os
+from PkgCreator.utils import camel_case
 
 #Forbid fields only_show_in and not_show_in simultanealy
-
-def camel_case(string):
-    return string.replace('_', ' ').title().replace(' ', '')
 
 APPS_ENTRY_PATH = 'usr/share/applications/%s.desktop'
 APP_REG_ENTRY_PATH = 'usr/share/application-registry/%s.applications'
@@ -33,7 +31,7 @@ class MenuCreator(object):
         #=============================================================================
         #Creating /usr/share/applications-registry/<<package_name>> applications
         #=============================================================================
-        print(' - Creating /usr/share/applications-registry entry...')
+        print(' - Preparing /usr/share/applications-registry entry...')
         path = APP_REG_ENTRY_PATH % general['package_name']
         content = general['package_name'] + "\n"
         content += "\t" + "command=" + menu['command'] + "\n"
@@ -55,7 +53,7 @@ class MenuCreator(object):
         #=============================================================================
         #Creating /usr/share/menu/<<package_name>>
         #=============================================================================
-        print(' - Creating /usr/share/menu entry...')
+        print(' - Preparing /usr/share/menu entry...')
         path = MENU_ENTRY_PATH % general['package_name']
         content = '?package(%s): \\\n' % general['package_name']
         content += "\t" + 'command="%s"' % menu['command'] + " \\\n"
@@ -71,7 +69,7 @@ class MenuCreator(object):
         #=============================================================================
         # Creating /usr/share/applications/<<package_name>>.desktop (Freedesktop)
         #=============================================================================
-        print (' - Creating /usr/share/applications entry ...')
+        print (' - Preparing /usr/share/applications entry ...')
         path = APPS_ENTRY_PATH % general['package_name']
         content = '[Desktop Entry]' + "\n"
         content += 'Type=Application' + "\n"

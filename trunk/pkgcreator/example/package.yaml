@@ -14,7 +14,7 @@ general:
   sections: [web, gnome, utils]
 menu:
     command: foobar
-    icon: example/files/foobar.svg
+    icon: example/files/foobar.png
     can_open_multiple_files: false
     expects_uris: false
     requires_terminal: false
@@ -26,4 +26,3 @@ depends:
 files:
   - {src: example/files/foobar, dst: /usr/bin/}
   - {src: example/files/foobar.gif, dst: /usr/share/foobar/}
-  - {src: example/files/datadir/*, dst: /usr/share/foobar/}

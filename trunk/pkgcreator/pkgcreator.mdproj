@@ -36,6 +36,8 @@
     <Compile Include="PkgCreator\__init__.py" />
     <Compile Include="PkgCreator\debian.py" />
     <Compile Include="PkgCreator\menu_creator.py" />
+    <Compile Include="PkgCreator\abstract_generator.py" />
+    <Compile Include="PkgCreator\utils.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PkgCreator\" />
@@ -45,5 +47,7 @@
   <ItemGroup>
     <None Include="example\package.yaml" />
     <None Include="example\files\foobar.svg" />
+    <None Include="example\files\foobar" />
+    <None Include="TODO" />
   </ItemGroup>
 </Project>

@@ -34,7 +34,7 @@
     <Compile Include="main.py" />
     <Compile Include="PkgCreator\icon_creator.py" />
     <Compile Include="PkgCreator\__init__.py" />
-    <Compile Include="PkgCreator\deb_creator.py" />
+    <Compile Include="PkgCreator\debian.py" />
     <Compile Include="PkgCreator\menu_creator.py" />
   </ItemGroup>
   <ItemGroup>

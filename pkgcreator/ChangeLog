@@ -1,0 +1,13 @@
+2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
+	* TODO:
+	* main.py:
+	* pkgcreator.mdproj:
+	* PkgCreator/utils.py:
+	* example/package.yaml:
+	* PkgCreator/debian.py:
+	* example/files/foobar:
+	* PkgCreator/menu_creator.py:
+	* PkgCreator/icon_creator.py:
+	* PkgCreator/abstract_generator.py: 
+

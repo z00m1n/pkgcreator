@@ -1,5 +1,6 @@
 import os
 import yaml
+from PkgCreator.console import extended_print
 from PkgCreator.menu_creator import MenuCreator
 from PkgCreator.icon_creator import IconCreator
 
@@ -22,3 +23,14 @@ class AbstractGenerator(object):
                 )
         else:
             self.menu_creator = self.icon_creator = None
+    def __title(self, msg):
+        extended_print(msg, flags='bold', fill_up='=', fill_down='=')
+    def msg_install(self):
+        self.__title('Copying install files')
+    def msg_menus(self):
+        self.__title('Generating menu entries')
+    def msg_icons(self):
+        self.__title('Generating icons')
+
+
+

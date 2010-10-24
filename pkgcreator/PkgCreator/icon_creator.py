@@ -16,11 +16,11 @@ class IconCreator(object):
     def create(self):
         icons = []
         self.icon = Image.open(self.path)
-        #Creating pixmap...
-        print(' - Creating pixmap icon...')
-        path = PIXMAP % self.package_name
-        img = self.icon.resize((32,32))
-        icons.append({'path': path, 'img': img})
+        """Creating pixmap... PIL doesn't support XPM creation
+        #print(' - Creating pixmap icon...')
+        #path = PIXMAP % self.package_name
+        #img = self.icon.resize((32,32))
+        icons.append({'path': path, 'img': img})"""
         #Creating PNGs
         for s in SIZES:
             path = PNG % (s, s, self.package_name)

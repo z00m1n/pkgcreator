@@ -38,6 +38,7 @@
     <Compile Include="PkgCreator\menu_creator.py" />
     <Compile Include="PkgCreator\abstract_generator.py" />
     <Compile Include="PkgCreator\utils.py" />
+    <Compile Include="PkgCreator\console.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PkgCreator\" />

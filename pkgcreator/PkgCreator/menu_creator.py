@@ -1,5 +1,6 @@
 import os
 from PkgCreator.utils import camel_case
+from PkgCreator.console import extended_print
 
 #Forbid fields only_show_in and not_show_in simultanealy
 
@@ -31,7 +32,8 @@ class MenuCreator(object):
         #=============================================================================
         #Creating /usr/share/applications-registry/<<package_name>> applications
         #=============================================================================
-        print(' - Preparing /usr/share/applications-registry entry...')
+        msg = '- Preparing /usr/share/applications-registry entry...'
+        extended_print(msg, indent=1)
         path = APP_REG_ENTRY_PATH % general['package_name']
         content = general['package_name'] + "\n"
         content += "\t" + "command=" + menu['command'] + "\n"
@@ -53,7 +55,8 @@ class MenuCreator(object):
         #=============================================================================
         #Creating /usr/share/menu/<<package_name>>
         #=============================================================================
-        print(' - Preparing /usr/share/menu entry...')
+        msg = '- Preparing /usr/share/menu entry...'
+        extended_print(msg, indent=1)
         path = MENU_ENTRY_PATH % general['package_name']
         content = '?package(%s): \\\n' % general['package_name']
         content += "\t" + 'command="%s"' % menu['command'] + " \\\n"
@@ -69,7 +72,8 @@ class MenuCreator(object):
         #=============================================================================
         # Creating /usr/share/applications/<<package_name>>.desktop (Freedesktop)
         #=============================================================================
-        print (' - Preparing /usr/share/applications entry ...')
+        msg = '- Preparing /usr/share/applications entry ...'
+        extended_print(msg, indent=1)
         path = APPS_ENTRY_PATH % general['package_name']
         content = '[Desktop Entry]' + "\n"
         content += 'Type=Application' + "\n"

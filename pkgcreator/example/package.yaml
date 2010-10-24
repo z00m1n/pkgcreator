@@ -1,0 +1,28 @@
+general:
+  package_name: foobar
+  name: FooBar
+  version: 0.1
+  architecture: amd64
+  icon:
+    path: example/files/foobar.svg
+  person:
+    name: Leandro Resende Mattioli
+    email: leandro.mattioli@gmail.com
+    types: [author, maintainer]
+  short_description: Gives a Bar to a Foo
+  long_description: |
+    This package consists of a set of functions of type foobar, blaaah.
+  priority: optional
+  sections: [web, gnome, utils]
+  known_menu_properties:
+    can_open_multiple_files: false
+    expect_uris: false
+    use_terminal: false
+depends:
+  - libgtk2.0-bin
+  - libwebkit
+  - libkeybinder
+files:
+  - {src: example/files/foobar, dst: /usr/bin/}
+  - {src: example/files/foobar.gif, dst: /usr/share/foobar/}
+  - {src: example/files/datadir/*, dst: /usr/share/foobar/}

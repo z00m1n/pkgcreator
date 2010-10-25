@@ -1,5 +1,12 @@
 2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
+	* TODO:
+	* PkgCreator/utils.py:
+	* PkgCreator/debian.py:
+	* PkgCreator/abstract_generator.py: 
+
+2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
 	* PkgCreator/utils.py:
 	* PkgCreator/debian.py: 
 

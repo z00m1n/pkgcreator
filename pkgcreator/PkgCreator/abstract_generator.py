@@ -4,6 +4,11 @@ from PkgCreator.console import extended_print
 from PkgCreator.menu_creator import MenuCreator
 from PkgCreator.icon_creator import IconCreator
 
+MSG_INSTALL = 'Copying install files'
+MSG_MENUS = 'Generating menu entries'
+MSG_ICONS = 'Generating icons'
+MSG_PACKAGING = 'Creating final package'
+
 class AbstractGenerator(object):
     def __init__(self, pkg_markup='package.yaml', outputdir='dist'):
         self.outputdir = outputdir
@@ -23,14 +28,8 @@ class AbstractGenerator(object):
                 )
         else:
             self.menu_creator = self.icon_creator = None
-    def __title(self, msg):
+    def title(self, msg):
         extended_print(msg, flags='bold', fill_up='=', fill_down='=')
-    def msg_install(self):
-        self.__title('Copying install files')
-    def msg_menus(self):
-        self.__title('Generating menu entries')
-    def msg_icons(self):
-        self.__title('Generating icons')
 
 
 

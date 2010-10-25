@@ -1,3 +1,5 @@
  * Add SVG support
  * Add wildcards (?, *) support to files section
- * Improve console messages readability
+ * Create debian package using pkgcreator
+ * Create GUI for editing package.yaml
+ * Create support for other types of packaging systems

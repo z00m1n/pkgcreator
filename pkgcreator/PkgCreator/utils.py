@@ -9,7 +9,6 @@ __all__ = [
     'calculate_md5sums', 'calculate_size'
 ]
 
-
 def camel_case(string):
     return string.replace('_', ' ').title().replace(' ', '')
 

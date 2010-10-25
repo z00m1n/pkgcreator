@@ -1,5 +1,8 @@
+ * Add package markup file validation (required fields check, valid values, ...)
+ * Add suport to prerm, preinst, postinst and postrm customized scripts
+   * create in general section the "tags" debian_scripts with dicts to the scripts
  * Add SVG support
  * Add wildcards (?, *) support to files section
- * Create debian package using pkgcreator
- * Create GUI for editing package.yaml
- * Create support for other types of packaging systems
+ * Create installer using pkgcreator
+ * Create support for other types of packages (RPM, tarballs, distutils, etc)
+ * Create GUI for editing package.yaml description

@@ -3,15 +3,18 @@ general:
   name: FooBar
   version: 0.1
   architecture: amd64
-  person:
+  maintainer:
     name: Leandro Resende Mattioli
     email: leandro.mattioli@gmail.com
-    types: [author, maintainer]
+  authors:
+    - {name: Leandro Resende Mattioli, email: leandro.mattioli@gmail.com}
   short_description: Gives a Bar to a Foo
   long_description: |
     This package consists of a set of functions of type foobar, blaaah.
+    .
+    Long descriptions are cool.
   priority: optional
-  sections: [web, gnome, utils]
+  section: utils
 menu:
     command: foobar
     icon: example/files/foobar.png
@@ -20,9 +23,9 @@ menu:
     requires_terminal: false
     section: Applications/Office
 depends:
-  - libgtk2.0-bin
-  - libwebkit
-  - libkeybinder
+  - {name: libgtk2.0-bin}
+  - {name: libwebkit}
+  - {name: libkeybinder}
 files:
   - {src: example/files/foobar, dst: /usr/bin/}
   - {src: example/files/foobar.gif, dst: /usr/share/foobar/}

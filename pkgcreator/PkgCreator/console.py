@@ -36,6 +36,10 @@ def extended_print(msg, indent=0, flags='', fill_up=None, fill_down=None,
             msg = Style.DIM + msg
         if 'red' in flags:
             msg = Fore.RED + msg
+        elif 'blue' in flags:
+            msg = Fore.BLUE + msg
+        elif 'green' in flags:
+            msg = Fore.GREEN + msg
         #@TODO: add other flags here
     print msg
 

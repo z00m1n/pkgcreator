@@ -1,9 +1,9 @@
  * Create installer using pkgcreator
+ * Create documentation
  * Improve schema file 
     * allow short_description OR long_description
     * verify valid architectures
     * verify valid sections
- * Add command line arguments support
  * Add suport to prerm, preinst, postinst and postrm customized scripts
    * create in general section the "tags" debian_scripts with dicts to the scripts
  * Add SVG support

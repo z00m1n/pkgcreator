@@ -2,31 +2,28 @@ general:
   package_name: foobar
   name: FooBar
   version: 0.1
-  architecture: amd64
+  architecture: all
   maintainer:
-    name: Leandro Resende Mattioli
-    email: leandro.mattioli@gmail.com
+    name: Anybody J.
+    email: anybody@company.com
   authors:
-    - {name: Leandro Resende Mattioli, email: leandro.mattioli@gmail.com}
+    - {name: Somebody Wrote It, email: somebody@company.com}
   short_description: Gives a Bar to a Foo
   long_description: |
     This package consists of a set of functions of type foobar, blaaah.
-    .
+     
     Long descriptions are cool.
   priority: optional
   section: utils
 menu:
     command: foobar
-    icon: example/files/foobar.png
+    icon: files/foobar.png
     can_open_multiple_files: false
     expects_uris: false
     requires_terminal: false
     section: Applications/Office
 depends:
-  - {name: libgtk2.0-bin}
-  - {name: libwebkit}
-  - {name: libkeybinder}
+  - {name: bash}
 files:
-  - {src: example/files/foobar, dst: /usr/bin/}
-  - {src: example/files/foobar.gif, dst: /usr/share/foobar/}
-  - {src: example/files/*, dst: /tmp/}
+  - {src: files/foobar.sh, dst: /usr/bin/foobar}
+  - {src: files/foobar.gif, dst: /usr/share/foobar/}

@@ -1,6 +1,6 @@
 import os
 
-DEBUG = True
+DEBUG = False
 
 SCHEMA_FILENAME = 'package_schema.yaml'
 if DEBUG:

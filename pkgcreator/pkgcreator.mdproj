@@ -50,10 +50,11 @@
   <ItemGroup>
     <None Include="example\package.yaml" />
     <None Include="example\files\foobar.svg" />
-    <None Include="example\files\foobar" />
     <None Include="TODO" />
     <None Include="data\package_schema.yaml" />
     <None Include="example\files\foobar.png" />
+    <None Include="pkgcreator.yaml" />
+    <None Include="example\files\foobar.sh" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

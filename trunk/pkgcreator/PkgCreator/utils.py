@@ -7,7 +7,7 @@ def camel_case(string):
 
 def create_path(path):
     try:
-        os.makedirs(os.path.dirname(path))
+        os.makedirs(path)
     except OSError:
         pass
 

@@ -1,6 +1,19 @@
 2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
 	* TODO:
+	* ChangeLog:
+	* pkgcreator.mdproj:
+	* PkgCreator/utils.py:
+	* example/package.yaml:
+	* PkgCreator/debian.py:
+	* PkgCreator/console.py:
+	* PkgCreator/validator.py:
+	* PkgCreator/menu_creator.py:
+	* PkgCreator/abstract_generator.py: 
+
+2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
+	* TODO:
 	* pkgcreator.mdproj:
 	* PkgCreator/utils.py:
 	* example/package.yaml:

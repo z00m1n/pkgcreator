@@ -2,6 +2,7 @@ import os
 from os import path
 import shutil
 import hashlib
+from glob import glob
 from PkgCreator.console import console as c
 
 __all__ = [
@@ -22,18 +23,17 @@ def create_path(dirpath):
 
 def copy_file(src, dst):
     create_path(path.dirname(dst))
-    if VERBOSE:
-        msg = '- Copying %s to %s ... ' % (src, dst)
-        c.eprint(msg, indent=1, end='')
-    try:
-        shutil.copy(src, dst)
+    for i in glob(src):
         if VERBOSE:
-            c.eprint('[OK]', flags='green,bold')
-        return True
-    except IOError:
-        if VERBOSE:
-            c.eprint('[FAIL]', flags='red,bold')
-        return False
+            msg = '- Copying %s to %s ... ' % (i, dst)
+            c.eprint(msg, indent=1, end='')
+        try:
+            shutil.copy(i, dst)
+            if VERBOSE:
+                c.eprint('[OK]', flags='green,bold')
+        except IOError:
+            if VERBOSE:
+                c.eprint('[FAIL]', flags='red,bold')
 
 def create_file(dirpath, content):
     create_path(path.dirname(dirpath))

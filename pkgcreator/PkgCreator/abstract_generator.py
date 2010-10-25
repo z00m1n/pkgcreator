@@ -1,8 +1,11 @@
+import sys
 import os
 import yaml
+from time import time
 from PkgCreator.console import console as c
 from PkgCreator.menu_creator import MenuCreator
 from PkgCreator.icon_creator import IconCreator
+from PkgCreator.resources import SCHEMA_PATH
 
 MSG_INSTALL = 'Copying install files'
 MSG_MENUS = 'Generating menu entries'
@@ -15,19 +18,40 @@ class AbstractGenerator(object):
         self.pkg_markup = pkg_markup
         self.has_icon = False
         self.info = {}
+    def validate(self, path):
+        if not os.path.isfile(path):
+            return False
+        else:
+            log = "/tmp/pkgcreator%s.log" % int(time()*100)
+            cmd = "kwalify -f %s %s > %s"
+            cmd = cmd % (SCHEMA_PATH, self.pkg_markup, log)
+            os.system(cmd)
+            os.system("cat %s" % log)
+            with open(log) as f:
+                contents = f.read()
+                if 'INVALID' in contents:
+                    return False
+                else:
+                    return True
     def parse_pkg_markup(self):
+        self.title('Validating package markup file...')
         with open(self.pkg_markup) as f:
             try:
                 self.info = yaml.load(f)
             except yaml.YAMLError, exc:
-                msg = 'YAML parser has found an error: '
-                c.eprint(msg, flags='red,bold')
-                msg = '- Context: ' + exc.context + '\n'
-                msg += '- Problem: ' + exc.problem + '\n'
-                msg += '- Where: ' + str(exc.problem_mark).strip()
-                c.eprint(msg, flags='bold', indent=1)
+                msg = '* YAML parser has found an error: '
+                c.eprint(msg, flags='red,bold', indent=1)
+                c.indent = 2
+                c.flags = 'bold'
+                c.eprint('- Context: ' + exc.context)
+                c.eprint('- Problem: ' + exc.problem)
+                c.eprint('- Where: ' + str(exc.problem_mark).strip())
+                c.reset()
                 self.quit_with_message(False)
-        #validate file here
+        if(self.validate(self.pkg_markup)):
+            c.eprint('* File successfully validated', indent=1, flags='green,bold')
+        else:
+            c.eprint('* Invalid or inexistent file!', indent=1, flags='red,bold')
         if 'menu' in self.info.keys():
             self.menu_creator = MenuCreator(self.info)
             if 'icon' in self.info['menu'].keys():
@@ -43,8 +67,10 @@ class AbstractGenerator(object):
         msg = 'End of execution'
         if success:
             c.eprint(msg, flags='blue,bold', center_width=80, center_char='*')
+            sys.exit(0)
         else:
             c.eprint(msg, flags='red,bold', center_width=80, center_char='*')
+            sys.exit(1)
 
 
 

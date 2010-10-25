@@ -1,0 +1,73 @@
+type: map
+mapping:
+  "general":
+    type: map
+    required: yes
+    mapping:
+      "package_name": {type: str, required: yes}
+      "name": {type: str, required: yes}
+      "version": {type: number, required: yes}
+      "architecture": {type: str, required: yes}
+      "short_description": {type: str, required: yes}
+      "long_description": {type: str, required: yes}
+      "priority": {type: str}
+      "section": {type: str}
+      "homepage": {type: str}
+      "essential": {type: str}
+      "maintainer":
+        type: map
+        required: yes
+        mapping:
+          "name": {type: str, required: yes}
+          "email": {type: str, required: yes}
+      "authors":
+        type: seq
+        sequence:
+          - type: map
+            mapping:
+              "name": {type: str, required: yes}
+              "email": {type: str, required: yes}
+  "menu":
+    type: map
+    mapping:
+      "command": {type: str, required: yes}
+      "icon": {type: str}
+      "can_open_multiple_files": {type: bool}
+      "expects_uris": {type: bool}
+      "requires_terminal": {type: bool}
+      "section": {type: str}
+  "depends":
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          "name": {type: str, required: yes, unique: yes}
+          "version": {type: str}
+  "recommends":
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          "name": {type: str, required: yes, unique: yes}
+          "version": {type: str}
+  "suggests":
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          "name": {type: str, required: yes, unique: yes}
+          "version": {type: str}
+  "pre_depends":
+    type: seq
+    sequence:
+        - type: map
+          mapping:
+            "name": {type: str, required: yes, unique: yes}
+            "version": {type: str}
+  "files":
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          "src": {type: str, required: yes}
+          "dst": {type: str, required: yes}

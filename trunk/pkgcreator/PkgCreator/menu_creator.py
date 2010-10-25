@@ -1,6 +1,6 @@
 import os
 from PkgCreator.utils import camel_case
-from PkgCreator.console import extended_print
+from PkgCreator.console import console as c
 
 #Forbid fields only_show_in and not_show_in simultanealy
 
@@ -33,7 +33,7 @@ class MenuCreator(object):
         #Creating /usr/share/applications-registry/<<package_name>> applications
         #=============================================================================
         msg = '- Preparing /usr/share/applications-registry entry...'
-        extended_print(msg, indent=1)
+        c.eprint(msg, indent=1)
         path = APP_REG_ENTRY_PATH % general['package_name']
         content = general['package_name'] + "\n"
         content += "\t" + "command=" + menu['command'] + "\n"
@@ -56,7 +56,7 @@ class MenuCreator(object):
         #Creating /usr/share/menu/<<package_name>>
         #=============================================================================
         msg = '- Preparing /usr/share/menu entry...'
-        extended_print(msg, indent=1)
+        c.eprint(msg, indent=1)
         path = MENU_ENTRY_PATH % general['package_name']
         content = '?package(%s): \\\n' % general['package_name']
         content += "\t" + 'command="%s"' % menu['command'] + " \\\n"
@@ -73,7 +73,7 @@ class MenuCreator(object):
         # Creating /usr/share/applications/<<package_name>>.desktop (Freedesktop)
         #=============================================================================
         msg = '- Preparing /usr/share/applications entry ...'
-        extended_print(msg, indent=1)
+        c.eprint(msg, indent=1)
         path = APPS_ENTRY_PATH % general['package_name']
         content = '[Desktop Entry]' + "\n"
         content += 'Type=Application' + "\n"

@@ -2,7 +2,7 @@ import os
 from os import path
 import shutil
 import md5
-from PkgCreator.console import extended_print
+from PkgCreator.console import console as c
 
 __all__ = [
     'camel_case', 'create_path', 'copy_file', 'create_file',
@@ -21,23 +21,23 @@ def create_path(dirpath):
 def copy_file(src, dst):
     create_path(path.dirname(dst))
     msg = '- Copying %s to %s ...' % (src, dst)
-    extended_print(msg, indent=1)
+    c.eprint(msg, indent=1)
     try:
         shutil.copy(src, dst)
     except IOError:
         msg = '* Error while copying %s!' % src
-        extended_print(msg, indent=2, flags='red,bold')
+        c.eprint(msg, indent=2, flags='red,bold')
 
 def create_file(dirpath, content):
     create_path(path.dirname(dirpath))
     msg = '- Creating %s ...' % dirpath
-    extended_print(msg, indent=1)
+    c.eprint(msg, indent=1)
     try:
         with open(dirpath, 'w') as f:
             f.write(content)
     except IOError:
         msg = '* Error while creating %s!' % dirpath
-        extended_print(msg, indent=2, flags='red,bold')
+        c.eprint(msg, indent=2, flags='red,bold')
 
 def calculate_md5sums(dirpath, ignore_list):
     content = ''

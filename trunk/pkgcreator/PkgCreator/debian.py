@@ -4,7 +4,7 @@
 import os
 from stat import S_IRWXU,  S_IXGRP, S_IRGRP, S_IXOTH, S_IROTH
 from PkgCreator import utils
-from PkgCreator.console import extended_print
+from PkgCreator.console import console as c
 from PkgCreator.abstract_generator import AbstractGenerator
 from PkgCreator.abstract_generator import MSG_INSTALL, MSG_MENUS, MSG_ICONS, MSG_PACKAGING
 from PkgCreator.menu_creator import POSTINST, POSTRM
@@ -50,13 +50,13 @@ class DebianGenerator(AbstractGenerator):
             icons = self.icon_creator.create()
             for i in icons:
                 path = os.path.join(self.outputdir, i['path'])
-                extended_print('- Creating icon %s ...' % path, indent=1)
+                c.eprint('- Creating icon %s ...' % path, indent=1)
                 utils.create_path(os.path.dirname(path))
                 i['img'].save(path)
         #Creating Debian-related files
         self.title('Generating Debian stuff')
         if 'menu' in self.info.keys():
-            extended_print('- Creating postinst and postrm scripts ...', indent=1)
+            c.eprint('- Creating postinst and postrm scripts ...', indent=1)
             postinst = os.path.join(self.debiandir, 'postinst')
             postrm = os.path.join(self.debiandir, 'postrm')
             utils.create_file(postinst, POSTINST)
@@ -66,14 +66,14 @@ class DebianGenerator(AbstractGenerator):
             os.chmod(postrm, mode)
         #MD5Sum and installed size
         ignore_list = ['.svn', 'DEBIAN']
-        extended_print('- Calculating md5sums ...', indent=1)
+        c.eprint('- Calculating md5sums ...', indent=1)
         md5sum_path = os.path.join(self.debiandir, 'md5sum')
         md5sum_values = utils.calculate_md5sums(self.outputdir, ignore_list)
         utils.create_file(md5sum_path, md5sum_values)
-        extended_print('- Calculating installed size ...', indent=1)
+        c.eprint('- Calculating installed size ...', indent=1)
         installed_size = utils.calculate_size(self.outputdir, ignore_list)
         installed_size = int ( round ( float (installed_size) / 1000 ) )
-        extended_print('- Generating Control file ...', indent=1)
+        c.eprint('- Generating Control file ...', indent=1)
         #Shortcut
         g = self.info['general']
         with open(os.path.join(self.debiandir, 'control'), 'w') as f:
@@ -110,19 +110,17 @@ class DebianGenerator(AbstractGenerator):
                 f.write(self.format_long_description(g['long_description']))
             f.write('\n')
         self.title(MSG_PACKAGING)
-        extended_print('- Running dpkg-deb -b ...', indent=1)
+        c.eprint('- Running dpkg-deb -b ...', indent=1)
         cmd = 'dpkg-deb -b %s %s.deb' % (
             self.outputdir, os.path.join(self.outputdir, g['package_name']))
         result = os.system(cmd)
+        c.indent = 2
         if not result:
-            extended_print(
-                '- dpkg-deb command has returned 0', indent=2, flags='green'
-            )
+            c.eprint('- dpkg-deb command has returned 0', flags='green')
         else:
-            extended_print(
-                '* Error while running dpkg-deb!', indent=2, flags='red,bold'
-            )
-        self.end_message(not result)
+            c.eprint('* Error while running dpkg-deb!', flags='red,bold')
+        c.reset()
+        self.quit_with_message(not result)
 
 if __name__ == '__main__':
     g = DebianGenerator()

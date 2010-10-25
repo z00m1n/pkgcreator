@@ -1,80 +1,8 @@
 2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
+	* glob wildcards support added.
+
+
+2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
 	* Validation added.
-	  
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* TODO:
-	* ChangeLog:
-	* pkgcreator.mdproj:
-	* PkgCreator/utils.py:
-	* example/package.yaml:
-	* PkgCreator/debian.py:
-	* PkgCreator/console.py:
-	* PkgCreator/validator.py:
-	* PkgCreator/menu_creator.py:
-	* PkgCreator/abstract_generator.py: 
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* TODO:
-	* pkgcreator.mdproj:
-	* PkgCreator/utils.py:
-	* example/package.yaml:
-	* PkgCreator/debian.py:
-	* PkgCreator/console.py:
-	* PkgCreator/validator.py:
-	* PkgCreator/menu_creator.py:
-	* PkgCreator/abstract_generator.py: 
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* TODO:
-	* PkgCreator/debian.py:
-	* PkgCreator/console.py:
-	* PkgCreator/abstract_generator.py: 
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* TODO:
-	* PkgCreator/utils.py:
-	* example/package.yaml:
-	* PkgCreator/debian.py: 
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* TODO:
-	* PkgCreator/utils.py:
-	* PkgCreator/debian.py:
-	* PkgCreator/abstract_generator.py: 
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* PkgCreator/utils.py:
-	* PkgCreator/debian.py: 
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* TODO:
-	* pkgcreator.mdproj:
-	* PkgCreator/utils.py:
-	* PkgCreator/debian.py:
-	* PkgCreator/console.py:
-	* PkgCreator/icon_creator.py:
-	* PkgCreator/menu_creator.py:
-	* PkgCreator/abstract_generator.py: 
-
-2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
-
-	* TODO:
-	* main.py:
-	* pkgcreator.mdproj:
-	* PkgCreator/utils.py:
-	* example/package.yaml:
-	* PkgCreator/debian.py:
-	* example/files/foobar:
-	* PkgCreator/menu_creator.py:
-	* PkgCreator/icon_creator.py:
-	* PkgCreator/abstract_generator.py: 
-

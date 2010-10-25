@@ -39,6 +39,7 @@
     <Compile Include="PkgCreator\abstract_generator.py" />
     <Compile Include="PkgCreator\utils.py" />
     <Compile Include="PkgCreator\console.py" />
+    <Compile Include="PkgCreator\validator.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PkgCreator\" />

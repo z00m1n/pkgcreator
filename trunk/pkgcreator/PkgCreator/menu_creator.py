@@ -24,6 +24,7 @@ class MenuCreator(object):
     def __init__(self, info):
         self.info = info
     def create(self):
+        c.flags = 'dim'
         entries = []
         #Some shortcuts...
         menu = self.info['menu']
@@ -91,4 +92,5 @@ class MenuCreator(object):
         if 'icon' in keys:
             content += "Icon=%s" % general['package_name']
         entries.append({'path': path, 'content': content})
+        c.reset()
         return entries

@@ -1,13 +1,15 @@
 import os
 from os import path
 import shutil
-import md5
+import hashlib
 from PkgCreator.console import console as c
 
 __all__ = [
     'camel_case', 'create_path', 'copy_file', 'create_file',
-    'calculate_md5sums', 'calculate_size'
+    'calculate_md5sums', 'calculate_size', 'VERBOSE'
 ]
+
+VERBOSE = True
 
 def camel_case(string):
     return string.replace('_', ' ').title().replace(' ', '')
@@ -20,24 +22,34 @@ def create_path(dirpath):
 
 def copy_file(src, dst):
     create_path(path.dirname(dst))
-    msg = '- Copying %s to %s ...' % (src, dst)
-    c.eprint(msg, indent=1)
+    if VERBOSE:
+        msg = '- Copying %s to %s ... ' % (src, dst)
+        c.eprint(msg, indent=1, end='')
     try:
         shutil.copy(src, dst)
+        if VERBOSE:
+            c.eprint('[OK]', flags='green,bold')
+        return True
     except IOError:
-        msg = '* Error while copying %s!' % src
-        c.eprint(msg, indent=2, flags='red,bold')
+        if VERBOSE:
+            c.eprint('[FAIL]', flags='red,bold')
+        return False
 
 def create_file(dirpath, content):
     create_path(path.dirname(dirpath))
-    msg = '- Creating %s ...' % dirpath
-    c.eprint(msg, indent=1)
+    if VERBOSE:
+        msg = '- Creating %s ...' % dirpath
+        c.eprint(msg, indent=1, end='')
     try:
         with open(dirpath, 'w') as f:
             f.write(content)
+        if VERBOSE:
+            c.eprint('[OK]', flags='green,bold')
+        return True
     except IOError:
-        msg = '* Error while creating %s!' % dirpath
-        c.eprint(msg, indent=2, flags='red,bold')
+        if VERBOSE:
+            c.eprint('[FAIL]', flags='red,bold')
+        return False
 
 def calculate_md5sums(dirpath, ignore_list):
     content = ''
@@ -49,7 +61,8 @@ def calculate_md5sums(dirpath, ignore_list):
             filepath = path.join(root, name)
             with open(filepath) as f:
                 filecontent = f.read()
-                filemd5 = md5.new(filecontent)
+                filemd5 = hashlib.md5()
+                filemd5.update(filecontent)
                 content += filemd5.hexdigest() + ' ' + filepath + "\n"
             content.strip()
     return content

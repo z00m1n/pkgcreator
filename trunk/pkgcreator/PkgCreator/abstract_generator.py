@@ -30,6 +30,12 @@ class AbstractGenerator(object):
             self.menu_creator = self.icon_creator = None
     def title(self, msg):
         extended_print(msg, flags='bold', fill_up='=', fill_down='=')
+    def end_message(self, success):
+        msg = 'End of execution'
+        if success:
+            extended_print(msg, flags='blue,bold', center_width=80, center_char='*')
+        else:
+            extended_print(msg, flags='red,bold', center_width=80, center_char='*')
 
 
 

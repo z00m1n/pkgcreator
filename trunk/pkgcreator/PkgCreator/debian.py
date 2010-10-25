@@ -2,7 +2,7 @@
 #@TODO: Validate file before
 
 import os
-from stat import S_IRWXU,  S_IXGRP, S_IRGRP
+from stat import S_IRWXU,  S_IXGRP, S_IRGRP, S_IXOTH, S_IROTH
 from PkgCreator import utils
 from PkgCreator.console import extended_print
 from PkgCreator.abstract_generator import AbstractGenerator
@@ -20,6 +20,7 @@ for i in ('section', 'priority', 'homepage', 'essential'):
 class DebianGenerator(AbstractGenerator):
     def __init__(self, pkg_markup, outputdir):
         AbstractGenerator.__init__(self, pkg_markup, outputdir)
+        self.distdir = self.outputdir
         self.outputdir = os.path.join(self.outputdir, 'deb')
         self.debiandir = os.path.join(self.outputdir, 'DEBIAN')
     def format_long_description(self, long_description):
@@ -60,7 +61,7 @@ class DebianGenerator(AbstractGenerator):
             postrm = os.path.join(self.debiandir, 'postrm')
             utils.create_file(postinst, POSTINST)
             utils.create_file(postrm, POSTRM)
-            mode = S_IRWXU | S_IXGRP | S_IRGRP
+            mode = S_IRWXU | S_IXGRP | S_IRGRP | S_IXOTH | S_IROTH
             os.chmod(postinst, mode)
             os.chmod(postrm, mode)
         #MD5Sum and installed size
@@ -107,9 +108,21 @@ class DebianGenerator(AbstractGenerator):
             if 'long_description' in g.keys():
                 #@TODO: Format long description acording to Debian rules
                 f.write(self.format_long_description(g['long_description']))
+            f.write('\n')
         self.title(MSG_PACKAGING)
-        extended_print('- Running dpkg-deb ...', indent=1)
-        #TODO
+        extended_print('- Running dpkg-deb -b ...', indent=1)
+        cmd = 'dpkg-deb -b %s %s.deb' % (
+            self.outputdir, os.path.join(self.outputdir, g['package_name']))
+        result = os.system(cmd)
+        if not result:
+            extended_print(
+                '- dpkg-deb command has returned 0', indent=2, flags='green'
+            )
+        else:
+            extended_print(
+                '* Error while running dpkg-deb!', indent=2, flags='red,bold'
+            )
+        self.end_message(not result)
 
 if __name__ == '__main__':
     g = DebianGenerator()

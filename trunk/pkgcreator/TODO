@@ -6,3 +6,4 @@
  * Create installer using pkgcreator
  * Create support for other types of packages (RPM, tarballs, distutils, etc)
  * Create GUI for editing package.yaml description
+ * Add simple markup support to console

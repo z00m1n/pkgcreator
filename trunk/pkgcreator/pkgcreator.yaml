@@ -1,0 +1,30 @@
+general:
+  package_name: pkgcreator
+  name: PkgCreator
+  version: 0.1
+  architecture: all
+  maintainer:
+    name: Leandro Resende Mattioli
+    email: leandro.mattioli@gmail.com
+  authors:
+    - {name: Leandro Resende Mattioli, email: leandro.mattioli@gmail.com}
+  short_description: Creates Debian binary packages
+  long_description: |
+    This tool features a .deb package generator that makes the creation
+    of menus, icons, DEBIAN control file and others easier, by using one simple
+    yaml file.
+    
+    It's a work in progress and currently not all the options and rules of the 
+    Debian package system are available.
+  priority: optional
+  section: devel
+  homepage: http://code.google.com/p/pkgcreator
+depends:
+  - {name: python-imaging}
+  - {name: python-yaml}
+  - {name: kwalify}
+  - {name: dpkg}
+files:
+  - {src: data/package_schema.yaml, dst: /usr/share/pkgcreator/}
+  - {src: PkgCreator/*.py*, dst: /usr/lib/python2.6/dist-packages/PkgCreator/}
+  - {src: main.py, dst: /usr/bin/pkgcreator}

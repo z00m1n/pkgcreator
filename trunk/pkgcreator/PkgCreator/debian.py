@@ -44,15 +44,15 @@ class DebianGenerator(AbstractGenerator):
             for m in menus:
                 path = os.path.join(self.outputdir, m['path'])
                 utils.create_file(path, m['content'])
-        #Icons
-        if 'icon' in self.info['menu'].keys():
-            self.title(MSG_ICONS)
-            icons = self.icon_creator.create()
-            for i in icons:
-                path = os.path.join(self.outputdir, i['path'])
-                c.eprint('- Creating icon %s ...' % path, indent=1)
-                utils.create_path(os.path.dirname(path))
-                i['img'].save(path)
+            #Icons
+            if 'icon' in self.info['menu'].keys():
+                self.title(MSG_ICONS)
+                icons = self.icon_creator.create()
+                for i in icons:
+                    path = os.path.join(self.outputdir, i['path'])
+                    c.eprint('- Creating icon %s ...' % path, indent=1)
+                    utils.create_path(os.path.dirname(path))
+                    i['img'].save(path)
         #Creating Debian-related files
         self.title('Generating Debian stuff')
         if 'menu' in self.info.keys():
@@ -111,8 +111,10 @@ class DebianGenerator(AbstractGenerator):
             f.write('\n')
         self.title(MSG_PACKAGING)
         c.eprint('- Running dpkg-deb -b ...', indent=1)
-        cmd = 'dpkg-deb -b %s %s.deb' % (
-            self.outputdir, os.path.join(self.outputdir, g['package_name']))
+        cmd = 'dpkg-deb -b %s %s-%s.deb' % (
+            self.outputdir, os.path.join(self.distdir, g['package_name']),
+            g['version']
+        )
         result = os.system(cmd)
         c.indent = 2
         if not result:

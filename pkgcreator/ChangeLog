@@ -1,3 +1,8 @@
+2010-10-26  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
+	* Script distutils criado.
+	  
+
 2010-10-25  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
 	* Added package markup for pkgcreator itself.

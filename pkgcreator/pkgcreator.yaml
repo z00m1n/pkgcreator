@@ -27,4 +27,4 @@ depends:
 files:
   - {src: data/package_schema.yaml, dst: /usr/share/pkgcreator/}
   - {src: PkgCreator/*.py*, dst: /usr/lib/python2.6/dist-packages/PkgCreator/}
-  - {src: main.py, dst: /usr/bin/pkgcreator}
+  - {src: pkgcreator.py, dst: /usr/bin/pkgcreator}

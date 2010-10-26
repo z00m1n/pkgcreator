@@ -26,4 +26,4 @@ depends:
   - {name: bash}
 files:
   - {src: files/foobar.sh, dst: /usr/bin/foobar}
-  - {src: files/foobar.gif, dst: /usr/share/foobar/}
+  - {src: files/foobar.svg, dst: /usr/share/foobar/}

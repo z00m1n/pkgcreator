@@ -69,6 +69,7 @@ class DebianGenerator(AbstractGenerator):
         c.eprint('- Calculating md5sums ...', indent=1)
         md5sum_path = os.path.join(self.debiandir, 'md5sum')
         md5sum_values = utils.calculate_md5sums(self.outputdir, ignore_list)
+        md5sum_values = md5sum_values.replace(self.outputdir, '')
         utils.create_file(md5sum_path, md5sum_values)
         c.eprint('- Calculating installed size ...', indent=1)
         installed_size = utils.calculate_size(self.outputdir, ignore_list)
@@ -91,7 +92,7 @@ class DebianGenerator(AbstractGenerator):
                     for d in self.info[r]:
                         items += d['name']
                         if 'version' in d.keys():
-                            items += d['version']
+                            items += '(' + d['version'] + ')'
                         items += ', '
                     items = items[:-2] #remove last ,<space>
                     f.write(RELATIONSHIPS[r] + ': ' + items + '\n')

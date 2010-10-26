@@ -1,5 +1,10 @@
 2010-10-26  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
+	* md5sum bug corrected.
+	  
+
+2010-10-26  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
 	* Script distutils criado.
 	  
 

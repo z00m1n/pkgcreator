@@ -1,4 +1,3 @@
- * Create installer using pkgcreator
  * Create documentation
  * Improve schema file 
     * allow short_description OR long_description

@@ -1,0 +1,5 @@
+2010-10-27  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
+	* Attempt to make a generic WebKitGUI:
+        Pointer to functions in a HashMap not yet supported by vala.
+

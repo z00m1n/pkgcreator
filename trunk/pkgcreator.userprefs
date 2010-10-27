@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="pkgcreator/TODO" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="guieditor-gtk/webkitgui_test.vala" ctype="Workbench">
     <Files>
       <File FileName="pkgcreator/data/package_schema.yaml" Line="29" Column="15" />
       <File FileName="pkgcreator/TODO" Line="1" Column="11" />
       <File FileName="pkgcreator/PkgCreator/debian.py" Line="72" Column="48" />
+      <File FileName="guieditor-gtk/WebKitGtkGUI.vala" Line="5" Column="10" />
       <File FileName="pkgcreator/PkgCreator/abstract_generator.py" Line="35" Column="32" />
       <File FileName="pkgcreator/PkgCreator/resources.py" Line="3" Column="14" />
       <File FileName="pkgcreator/PkgCreator/utils.py" Line="28" Column="16" />
@@ -13,6 +14,8 @@
       <File FileName="pkgcreator/example/package.yaml" Line="29" Column="53" />
       <File FileName="pkgcreator/PkgCreator/console.py" Line="1" Column="1" />
       <File FileName="pkgcreator/setup.py" Line="13" Column="30" />
+      <File FileName="guieditor-gtk/WebKitGUI.vala" Line="9" Column="10" />
+      <File FileName="guieditor-gtk/webkitgui_test.vala" Line="11" Column="16" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

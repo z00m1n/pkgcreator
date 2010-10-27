@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator", "pkgcreator\pkgcreator.mdproj", "{FCF246FD-05A3-45BE-8EA3-522923C5D71D}"
+EndProject
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator-doc", "pkgcreator-doc\pkgcreator-doc.mdproj", "{099D7AFD-739B-4887-96EC-976D7A2C54B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Default|Any CPU = Default|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Debug|Any CPU.ActiveCfg = Default|Any CPU
+		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Debug|Any CPU.Build.0 = Default|Any CPU
+		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Default|Any CPU.Build.0 = Default|Any CPU
+		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Release|Any CPU.ActiveCfg = Default|Any CPU
+		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Release|Any CPU.Build.0 = Default|Any CPU
+		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = pkgcreator\pkgcreator.mdproj
+		Policies = $0
+		$0.ChangeLogPolicy = $1
+		$1.UpdateMode = ProjectRoot
+		$1.MessageStyle = $2
+		$2.LineAlign = 0
+		$1.inheritsSet = Mono
+	EndGlobalSection
+EndGlobal

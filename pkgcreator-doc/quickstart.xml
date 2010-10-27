@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article version="5.0" xmlns="http://docbook.org/ns/docbook"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         xmlns:xi="http://www.w3.org/2001/XInclude"
+         xmlns:svg="http://www.w3.org/2000/svg"
+         xmlns:m="http://www.w3.org/1998/Math/MathML"
+         xmlns:html="http://www.w3.org/1999/xhtml"
+         xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <title><application>pkgcreator</application> Quick Start</title>
+
+    <author>
+      <personname><firstname>Leandro</firstname><surname>Mattioli</surname></personname>
+    </author>
+
+    <pubdate>26/10/2010</pubdate>
+  </info>
+
+  <section>
+    <title>About <application>pkgcreator</application></title>
+
+    <para><application>pkgcreator</application> is a command line tool for
+    operating systems based on <productname>Debian GNU/Linux</productname>
+    with the goal of automating some of the tasks of packaging binaries. The
+    idea behind the tool is to be able to do all the necessary steps of
+    creating the package based on information retrieved from a single markup
+    file . This file uses the <acronym>YAML</acronym> as its markup language,
+    which provides good readability for human beings yet being able to
+    represent almost any structured information. By processing this file,
+    <application>pkgcreator</application> can generate menus entries, icons
+    and Debian specific files automatically.</para>
+  </section>
+
+  <section>
+    <title>Installing</title>
+
+    <section>
+      <title>Pre-requisites</title>
+
+      <para>The following packages must be installed before trying to install
+      <application>pkgcreator</application>:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>python-imaging: used to generate icons</para>
+        </listitem>
+
+        <listitem>
+          <para>python-yaml: used to parse package markup files</para>
+        </listitem>
+
+        <listitem>
+          <para>dpkg: used to generate the final package</para>
+        </listitem>
+
+        <listitem>
+          <para>kwalify: used to verify if the package markup file is valid
+          (optional, but highly recommended)</para>
+        </listitem>
+      </itemizedlist>
+
+      <para>All these packages are available in recent versions of Ubuntu and
+      Debian.</para>
+
+      <para>Also, if the <application>Python</application> package
+      <application>colorama</application> is installed and the terminal
+      supports colors, pretty messages will be displayed. The colorama package
+      can be downloaded from the <link
+      xlink:href="http://pypi.python.org/pypi/colorama">project's
+      page</link>.</para>
+    </section>
+
+    <section>
+      <title>Instalation procedure</title>
+
+      <para>The easiest and recommended way to do this is to download the
+      package from the <link
+      xlink:href="http://code.google.com/p/pkgcreator">project's page</link>
+      and double-click it. In <productname>Ubuntu</productname> this action
+      will open the <application>Software Center</application>, shown
+      below:<screenshot>
+          <info>
+            <title>Software Center window after installing
+            <application>pkgcreator</application></title>
+          </info>
+
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/ubuntu_software_center.png"></imagedata>
+            </imageobject>
+          </mediaobject>
+        </screenshot></para>
+
+      <para>On Debian system other tool will handle the instalation. On
+      non-Debian systems the first step is to install dpkg (who is needed
+      anyway to work better with Debian packages). The instalation procedure
+      was <emphasis>tested only in Ubuntu 10.10</emphasis>. It should be work
+      well in other systems, though.</para>
+    </section>
+
+    <section>
+      <title>Verifying instalation</title>
+
+      <para>To verify if the package has been successfully installed, type the
+      command: <command>pkgcreator -h</command> in a console. It should
+      produce the following output:</para>
+
+      <para><screen>usage: pkgcreator [-h] [--outputdir OUTPUTDIR] yaml_file
+
+Creates binaries packages.
+
+positional arguments:
+  yaml_file             specifies the package markup file.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --outputdir OUTPUTDIR
+                        sets output dir for generated packages.
+
+Currently only Debian packages are generated.
+</screen></para>
+    </section>
+  </section>
+
+  <section>
+    <title>Creating your first package</title>
+
+    <section xml:id="prepare_file_tree">
+      <title>Preparing the file tree</title>
+
+      <para>Create the files listed below:</para>
+
+      <screenco>
+        <areaspec>
+          <area coords="1" xml:id="root"></area>
+
+          <area coords="2" xml:id="files_subdir"></area>
+
+          <area coords="3" xml:id="png_icon"></area>
+
+          <area coords="4" xml:id="main_script"></area>
+
+          <area coords="5" xml:id="svgfile"></area>
+
+          <area coords="6" xml:id="pkg_markup"></area>
+        </areaspec>
+
+        <screen>.
+├── files
+│   ├── foobar.png
+│   ├── foobar.sh
+│   └── foobar.svg
+└── package.yaml
+</screen>
+
+        <calloutlist>
+          <callout arearefs="root">
+            <para>This dot is used to indicate the root folder of our project
+            (yes, it's the relative path to the current directory)</para>
+          </callout>
+
+          <callout arearefs="files_subdir">
+            <para>This folder represents any of the project's folders. In real
+            projects, this could be an <filename>ui</filename>,
+            <filename>bin</filename> or <filename>src</filename> dir; it
+            doesn't matter. <application>pkgcreator</application> doesn't
+            impose any restriction related to the file tree of the
+            project.</para>
+          </callout>
+
+          <callout arearefs="png_icon">
+            <para>A good resolution image. Make sure its width and its height
+            are equal. This image will be used to create icons of different
+            dimensions (namely: 16x16, 22x22, 24x24, 32x32, 36x36, 48x48,
+            64x64, 72x72, 96x96, 128x128, 192x192).</para>
+          </callout>
+
+          <callout arearefs="main_script">
+            <para>A executable shell script. You can use the one below if you
+            don't have other in mind:</para>
+
+            <para><programlisting language="bash">#!/bin/bash
+
+echo "Hello, world!"
+</programlisting></para>
+          </callout>
+
+          <callout arearefs="svgfile">
+            <para>A file that will be installed in the
+            <filename>/usr/share/foobar</filename> folder. You can replace
+            this with other file if you want.</para>
+          </callout>
+
+          <callout arearefs="pkg_markup">
+            <para>The most important item in this list for the purpose of this
+            document. The contents will be used by
+            <application>pkgcreator</application> to create your
+            package.</para>
+          </callout>
+        </calloutlist>
+      </screenco>
+    </section>
+
+    <section>
+      <title>Creating the package markup file</title>
+
+      <para>The <filename>package.yaml</filename> mentioned in the section
+      <xref linkend="prepare_file_tree" />, for most of the desktop
+      applications, will look like the listing below. Although it's very easy
+      to find out the meaning of all these fields<footnote>
+          <para>Assuming that the reader has already a basic knowledge of the
+          <filename>DEBIAN/control</filename> file and the format of the menu
+          entries located at <filename>/usr/share/menu</filename>,
+          <filename>/usr/share/application-registry</filename> and
+          <filename>/usr/share/applications</filename></para>
+        </footnote>, we're going to describe the main regions of a package
+      markup file:</para>
+
+      <para><programlistingco>
+          <areaspec>
+            <area coords="1" xml:id="general"></area>
+
+            <area coords="18" xml:id="menu"></area>
+
+            <area coords="25" xml:id="depends"></area>
+
+            <area coords="27" xml:id="files"></area>
+          </areaspec>
+
+          <programlisting>general:
+  package_name: foobar
+  name: FooBar
+  version: 0.1
+  architecture: all
+  maintainer:
+    name: Anybody J.
+    email: anybody@company.com
+  authors:pr
+    - {name: Somebody Wrote It, email: somebody@company.com}
+  short_description: Gives a Bar to a Foo
+  long_description: |
+    This package consists of a set of functions of type foobar, blaaah.
+     
+    Long descriptions are cool.
+  priority: optional
+  section: utils
+menu:
+    command: foobar
+    icon: files/foobar.png
+    can_open_multiple_files: false
+    expects_uris: false
+    requires_terminal: false
+    section: Applications/Office
+depends:
+  - {name: bash}
+files:
+  - {src: files/foobar.sh, dst: /usr/bin/foobar}
+  - {src: files/foobar.svg, dst: /usr/share/foobar/}
+</programlisting>
+
+          <calloutlist>
+            <callout arearefs="general">
+              <para>The <literal>general</literal> region contains almost all
+              of the information necessary to create the
+              <filename>DEBIAN/control</filename> file. Actually, it even
+              looks a little bit like the file itself. The difference here is
+              some YAML specific syntax (namely the minus sign and the
+              brackets in the <literal>authors</literal> field, the | symbol,
+              the indentation and not needing to insert a dot at every line of
+              the long description). The document <link
+              xlink:href="http://www.debian.org/doc/debian-policy/ch-controlfields.html">Debian
+              Policy Manual - Control files and their fields</link> describes
+              better this section.</para>
+            </callout>
+
+            <callout arearefs="menu">
+              <para>The menu section is very intuitive. The main point here is
+              that the path informed in the <literal>icon</literal> field is
+              going to be used to generate many icons (not yet scalable SVG
+              icons, due to Python Imaging Libraries limitations).</para>
+            </callout>
+
+            <callout arearefs="depends">
+              <para>This is another section with informations for the control
+              files. Other relationships, such as
+              <literal>recommends</literal>, <literal>suggests</literal> and
+              <literal>pre_depends</literal> are already supported. The items
+              in this section must include the name of the package and
+              optionally a <literal>version</literal> field with a string that
+              will be used in front of the package name (complex restriction
+              such as mutual exclusion are not yet supported, but you can
+              always edit the generated DEBIAN/control file manually and still
+              save a little time by generating most of the boilerplate with
+              <application>pkgcreator</application>).</para>
+            </callout>
+
+            <callout arearefs="files">
+              <para>Each entry in this section describes a copy operation that
+              must be realized. It's required to insert a final slash (/) to
+              differentiate dirs from files. This is required even with
+              existing paths, like <filename>/usr/share/</filename>. The src
+              entries can use the wildcards <literal>*</literal> and
+              <literal>?</literal>.</para>
+            </callout>
+          </calloutlist>
+        </programlistingco></para>
+    </section>
+
+    <section>
+      <title>Running pkgcreator</title>
+
+      <para>Confirm that you're working on the project's top-level dir, cross
+      your fingers and run the command: <command>pkgcreator
+      package.yaml</command>. If everything has worked well, a new directory
+      (dist) will be created, with the following files:</para>
+
+      <para><screenco>
+          <areaspec>
+            <area coords="5" xml:id="md5sum"></area>
+
+            <area coords="6" xml:id="postinst"></area>
+
+            <area coords="7" xml:id="postrm"></area>
+
+            <area coords="35" xml:id="deb"></area>
+          </areaspec>
+
+          <screen>.
+├── deb
+│   ├── DEBIAN
+│   │   ├── control
+│   │   ├── md5sum
+│   │   ├── postinst
+│   │   └── postrm
+│   └── usr
+│       ├── bin
+│       │   └── foobar
+│       └── share
+│           ├── application-registry
+│           │   └── foobar.applications
+│           ├── applications
+│           │   └── foobar.desktop
+│           ├── foobar
+│           │   └── foobar.svg
+│           ├── icons
+│           │   └── hicolor
+│           │       ├── 128x128
+│           │       │   └── apps
+│           │       │       └── foobar.png
+│           │       ├── 16x16
+│           │       │   └── apps
+│           │       │       └── foobar.png
+        (...)
+│           │       ├── 72x72
+│           │       │   └── apps
+│           │       │       └── foobar.png
+│           │       └── 96x96
+│           │           └── apps
+│           │               └── foobar.png
+│           └── menu
+│               └── foobar
+└── foobar-0.1.deb
+</screen>
+
+          <calloutlist>
+            <callout arearefs="md5sum">
+              <para>The tool generates the md5sum file automatically,
+              considering all entries of the <literal>files</literal> section
+              of the package markup file</para>
+            </callout>
+
+            <callout arearefs="postinst postrm">
+              <para>Since the application has menu entries, these scripts are
+              generated to update the menus automatically after a install or a
+              removal</para>
+            </callout>
+
+            <callout arearefs="deb">
+              <para>If you're satisfied with the defaults, you have already
+              your <filename>.deb</filename> file!</para>
+            </callout>
+          </calloutlist>
+        </screenco></para>
+    </section>
+  </section>
+
+  <section>
+    <title>Contributing to this project</title>
+
+    <para>At this point, any help in testing or internationalizing the project
+    will be welcome. Feel free to make changes and send me the patches with
+    details in which features were added / fixed. </para>
+  </section>
+</article>

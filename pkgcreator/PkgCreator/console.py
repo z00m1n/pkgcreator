@@ -10,8 +10,6 @@ except ImportError:
 
 __all__ = ["console"]
 
-if colorama:
-    init(autoreset=True)
 
 class Console:
     def __init__(self):
@@ -19,6 +17,8 @@ class Console:
         self.color = False
     def set_color(self, color):
         self.color = color
+        if colorama and color:
+            init(autoreset=True)
     def reset(self):
         self.indent = 0
         self.flags = ''

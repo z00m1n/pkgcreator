@@ -1,5 +1,10 @@
 2010-11-10  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
+	* Colorama init function is called only if color output is set.
+	  
+
+2010-11-10  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
 	* Color output optional.
     * UTF-8 control files support.
 	  

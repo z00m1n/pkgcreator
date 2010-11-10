@@ -40,7 +40,6 @@
     <Compile Include="PkgCreator\console.py" />
     <Compile Include="pkgcreator.py" />
     <Compile Include="PkgCreator\resources.py" />
-    <Compile Include="setup.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PkgCreator\" />

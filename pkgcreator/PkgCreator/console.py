@@ -16,6 +16,9 @@ if colorama:
 class Console:
     def __init__(self):
         self.reset()
+        self.color = False
+    def set_color(self, color):
+        self.color = color
     def reset(self):
         self.indent = 0
         self.flags = ''
@@ -58,7 +61,7 @@ class Console:
         elif self.fill_down:
             title = "\n" + (self.fill_down * size)
             msg += title
-        if colorama:
+        if colorama and self.color:
             allflags = flags + self.flags
             if 'bold' in allflags:
                 msg = Style.BRIGHT + msg

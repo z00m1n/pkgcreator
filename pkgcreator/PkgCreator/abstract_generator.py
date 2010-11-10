@@ -13,11 +13,12 @@ MSG_ICONS = 'Generating icons'
 MSG_PACKAGING = 'Creating final package'
 
 class AbstractGenerator(object):
-    def __init__(self, pkg_markup='package.yaml', outputdir='dist'):
+    def __init__(self, pkg_markup='package.yaml', outputdir='dist', color=False):
         self.outputdir = outputdir
         self.pkg_markup = pkg_markup
         self.has_icon = False
         self.info = {}
+        c.set_color(color)
     def validate(self, path):
         if not os.path.isfile(path):
             return False
@@ -52,6 +53,7 @@ class AbstractGenerator(object):
             c.eprint('* File successfully validated', indent=1, flags='green,bold')
         else:
             c.eprint('* Invalid or inexistent file!', indent=1, flags='red,bold')
+            sys.exit(1)
         if 'menu' in self.info.keys():
             self.menu_creator = MenuCreator(self.info)
             if 'icon' in self.info['menu'].keys():

@@ -1,5 +1,10 @@
 2010-11-10  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
+	* PkgCreator/menu_creator.py:
+	  
+
+2010-11-10  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
 	* Colorama init function is called only if color output is set.
 	  
 

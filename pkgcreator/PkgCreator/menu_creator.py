@@ -7,7 +7,10 @@ from PkgCreator.console import console as c
 APPS_ENTRY_PATH = 'usr/share/applications/%s.desktop'
 APP_REG_ENTRY_PATH = 'usr/share/application-registry/%s.applications'
 MENU_ENTRY_PATH = 'usr/share/menu/%s'
-POSTINST = POSTRM = 'if test -x /usr/bin/update-menus; then update-menus; fi'
+POSTINST = POSTRM = '''
+#!/bin/bash
+if test -x /usr/bin/update-menus; then update-menus; fi
+echo OK'''
 FREEDESKTOP_BOOLEAN = {}
 for x in ('no_display', 'hidden', 'startup_notify'):
     FREEDESKTOP_BOOLEAN[x] = camel_case(x)

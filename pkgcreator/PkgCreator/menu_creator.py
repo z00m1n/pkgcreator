@@ -7,8 +7,7 @@ from PkgCreator.console import console as c
 APPS_ENTRY_PATH = 'usr/share/applications/%s.desktop'
 APP_REG_ENTRY_PATH = 'usr/share/application-registry/%s.applications'
 MENU_ENTRY_PATH = 'usr/share/menu/%s'
-POSTINST = POSTRM = '''
-#!/bin/bash
+POSTINST = POSTRM = '''#!/bin/bash
 if test -x /usr/bin/update-menus; then update-menus; fi
 echo OK'''
 FREEDESKTOP_BOOLEAN = {}

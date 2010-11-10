@@ -1,5 +1,10 @@
 2010-11-10  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
 
+	* POSTRM and POSTINST updated.
+	  
+
+2010-11-10  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+
 	* PkgCreator/menu_creator.py:
 	  
 

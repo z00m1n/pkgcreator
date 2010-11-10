@@ -26,5 +26,5 @@ depends:
   - {name: dpkg}
 files:
   - {src: data/package_schema.yaml, dst: /usr/share/pkgcreator/}
-  - {src: PkgCreator/*.py*, dst: /usr/share/pyshared/PkgCreator/}
+  - {src: PkgCreator/*.py*, dst: /usr/lib/python2.6/dist-packages/PkgCreator/}
   - {src: pkgcreator.py, dst: /usr/bin/pkgcreator}

@@ -2,6 +2,7 @@
 #@TODO: Validate file before
 
 import os
+import codecs
 from stat import S_IRWXU,  S_IXGRP, S_IRGRP, S_IXOTH, S_IROTH
 from PkgCreator import utils
 from PkgCreator.console import console as c
@@ -18,8 +19,8 @@ for i in ('section', 'priority', 'homepage', 'essential'):
     OTHER_FIELDS[i] = i.title()
 
 class DebianGenerator(AbstractGenerator):
-    def __init__(self, pkg_markup, outputdir):
-        AbstractGenerator.__init__(self, pkg_markup, outputdir)
+    def __init__(self, pkg_markup, outputdir, color):
+        AbstractGenerator.__init__(self, pkg_markup, outputdir, color)
         self.distdir = self.outputdir
         self.outputdir = os.path.join(self.outputdir, 'deb')
         self.debiandir = os.path.join(self.outputdir, 'DEBIAN')
@@ -77,7 +78,8 @@ class DebianGenerator(AbstractGenerator):
         c.eprint('- Generating Control file ...', indent=1)
         #Shortcut
         g = self.info['general']
-        with open(os.path.join(self.debiandir, 'control'), 'w') as f:
+        fpath = os.path.join(self.debiandir, 'control')
+        with codecs.open(fpath, 'wt', 'utf-8') as f:
             f.write('Package: ' + g['package_name'] + '\n')
             f.write('Version: ' + str(g['version']) + '\n')
             f.write('Architecture: ' + g['architecture'] + '\n')

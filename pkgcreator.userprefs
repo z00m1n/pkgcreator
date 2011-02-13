@@ -1,9 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../tv5dict/package.yaml" ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ctype="Workbench">
     <Files>
-      <File FileName="../tv5dict/package.yaml" Line="10" Column="26" />
-      <File FileName="pkgcreator/data/package_schema.yaml" Line="36" Column="19" />
+      <File FileName="../tv5dict/package.yaml" Line="20" Column="11" />
+      <File FileName="../tv5dict/prepare.py" Line="7" Column="9" />
+      <File FileName="pkgcreator/data/package_schema.yaml" Line="53" Column="14" />
+      <File FileName="pkgcreator/PkgCreator/menu_creator.py" Line="5" Column="3" />
+      <File FileName="pkgcreator/PkgCreator/debian.py" Line="63" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

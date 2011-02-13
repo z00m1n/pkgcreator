@@ -5,7 +5,7 @@ Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator", "pkgcreator\pk
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator-doc", "pkgcreator-doc\pkgcreator-doc.mdproj", "{099D7AFD-739B-4887-96EC-976D7A2C54B8}"
 EndProject
-Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "guieditor-gtk", "guieditor-gtk\guieditor-gtk.mdproj", "{873F0839-1426-4595-B5D2-F42A931D5F8F}"
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator-gtk", "guieditor-gtk\pkgcreator-gtk.mdproj", "{873F0839-1426-4595-B5D2-F42A931D5F8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,7 +32,7 @@ Global
 		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = guieditor-gtk\guieditor-gtk.mdproj
+		StartupItem = guieditor-gtk\pkgcreator-gtk.mdproj
 		Policies = $0
 		$0.ChangeLogPolicy = $1
 		$1.UpdateMode = ProjectRoot

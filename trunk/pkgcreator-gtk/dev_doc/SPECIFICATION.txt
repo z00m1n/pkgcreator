@@ -1,0 +1,18 @@
+Features
+========
+ * File creating, opening, saving and closing
+ * Undo and redo
+ * Tooltips for every user input widget
+ * Persistence with YAML
+ * Document validator
+ * PkgCreator integration
+   - launcher
+   - error display
+ * Status bar messages
+
+GTK Events
+==========
+ * value changed (for every user input)
+   - set document state to not saved
+ * validate command
+ * create package command

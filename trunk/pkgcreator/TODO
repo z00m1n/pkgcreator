@@ -1,3 +1,5 @@
+ * Require ROOT user to generate package (necessary)
+ * Use 'lintian' to validate final package file.
  * Create documentation
  * Improve schema file 
     * allow short_description OR long_description

@@ -20,11 +20,15 @@ general:
   section: devel
   homepage: http://code.google.com/p/pkgcreator
 depends:
+  - {name: python}
   - {name: python-imaging}
   - {name: python-yaml}
   - {name: kwalify}
-  - {name: dpkg}
 files:
   - {src: data/package_schema.yaml, dst: /usr/share/pkgcreator/}
-  - {src: PkgCreator/*.py*, dst: /usr/lib/python2.6/dist-packages/PkgCreator/}
+  - {src: PkgCreator/*.py, dst: /usr/lib/python2.6/dist-packages/PkgCreator/}
   - {src: pkgcreator.py, dst: /usr/bin/pkgcreator}
+  - {src: man/pkgcreator.1.gz, dst: /usr/share/man/man1/}
+  - {src: doc/copyright, dst: /usr/share/doc/pkgcreator/}
+  - {src: doc/changelog.Debian.gz, dst: /usr/share/doc/pkgcreator/}
+  - {src: doc/changelog.gz, dst: /usr/share/doc/pkgcreator/}

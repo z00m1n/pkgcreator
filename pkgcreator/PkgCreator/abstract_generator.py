@@ -2,10 +2,10 @@ import sys
 import os
 import yaml
 from time import time
-from PkgCreator.console import console as c
-from PkgCreator.menu_creator import MenuCreator
-from PkgCreator.icon_creator import IconCreator
-from PkgCreator.resources import SCHEMA_PATH
+from console import console as c
+from menu_creator import MenuCreator
+from icon_creator import IconCreator
+from resources import SCHEMA_PATH
 
 MSG_INSTALL = 'Copying install files'
 MSG_MENUS = 'Generating menu entries'
@@ -20,6 +20,7 @@ class AbstractGenerator(object):
         self.info = {}
         c.set_color(color)
     def validate(self, path):
+        #@todo: verify existence of kwalify
         if not os.path.isfile(path):
             return False
         else:
@@ -35,7 +36,7 @@ class AbstractGenerator(object):
                 else:
                     return True
     def parse_pkg_markup(self):
-        self.title('Validating package markup file...')
+        c.title('Validating package markup file...')
         with open(self.pkg_markup) as f:
             try:
                 self.info = yaml.load(f)
@@ -63,8 +64,6 @@ class AbstractGenerator(object):
                 )
         else:
             self.menu_creator = self.icon_creator = None
-    def title(self, msg):
-        c.eprint(msg, flags='bold', fill_up='=', fill_down='=')
     def quit_with_message(self, success):
         msg = 'End of execution'
         if success:

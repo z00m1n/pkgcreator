@@ -77,5 +77,12 @@ class Console:
         msg += end
         sys.stdout.write(msg)
         sys.stdout.flush()
+    def print_success(self, success):
+        if success:
+            self.eprint('[OK]', flags='green,bold')
+        else:
+            self.eprint('[FAIL]', flags='red,bold')
+    def title(self, msg):
+        self.eprint(msg, flags='bold', fill_up='=', fill_down='=')
 
 console = Console()

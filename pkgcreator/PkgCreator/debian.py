@@ -33,21 +33,21 @@ class DebianGenerator(AbstractGenerator):
         return "\n".join(lines)
     def create_package(self):
         #Install files
-        self.title(MSG_INSTALL)
+        c.title(MSG_INSTALL)
         for f in self.info['files']:
             src = f['src']
             dst = os.path.join(self.outputdir, f['dst'][1:])
             utils.copy_file(src, dst)
         #Menus
         if 'menu' in self.info.keys():
-            self.title(MSG_MENUS)
+            c.title(MSG_MENUS)
             menus = self.menu_creator.create()
             for m in menus:
                 path = os.path.join(self.outputdir, m['path'])
                 utils.create_file(path, m['content'])
             #Icons
             if 'icon' in self.info['menu'].keys():
-                self.title(MSG_ICONS)
+                c.title(MSG_ICONS)
                 icons = self.icon_creator.create()
                 for i in icons:
                     path = os.path.join(self.outputdir, i['path'])
@@ -55,7 +55,7 @@ class DebianGenerator(AbstractGenerator):
                     utils.create_path(os.path.dirname(path))
                     i['img'].save(path)
         #Creating Debian-related files
-        self.title('Generating Debian stuff')
+        c.title('Generating Debian stuff')
         if 'menu' in self.info.keys():
             c.eprint('- Creating postinst and postrm scripts ...', indent=1)
             postinst = os.path.join(self.debiandir, 'postinst')
@@ -67,15 +67,17 @@ class DebianGenerator(AbstractGenerator):
             os.chmod(postrm, mode)
         #MD5Sum and installed size
         ignore_list = ['.svn', 'DEBIAN']
-        c.eprint('- Calculating md5sums ...', indent=1)
-        md5sum_path = os.path.join(self.debiandir, 'md5sum')
+        c.eprint('- Calculating md5sums ...', indent=1, end='')
+        md5sum_path = os.path.join(self.debiandir, 'md5sums')
         md5sum_values = utils.calculate_md5sums(self.outputdir, ignore_list)
-        md5sum_values = md5sum_values.replace(self.outputdir, '')
+        md5sum_values = md5sum_values.replace(self.outputdir + '/', '')
+        c.print_success(md5sum_values)
         utils.create_file(md5sum_path, md5sum_values)
-        c.eprint('- Calculating installed size ...', indent=1)
+        c.eprint('- Calculating installed size ...', indent=1, end='')
         installed_size = utils.calculate_size(self.outputdir, ignore_list)
         installed_size = int ( round ( float (installed_size) / 1000 ) )
-        c.eprint('- Generating Control file ...', indent=1)
+        c.print_success(installed_size)
+        c.eprint('- Generating Control file ...', indent=1, end='')
         #Shortcut
         g = self.info['general']
         fpath = os.path.join(self.debiandir, 'control')
@@ -89,7 +91,7 @@ class DebianGenerator(AbstractGenerator):
             f.write('Maintainer: ' + maintainer + '\n')
             #Related packages
             for r in RELATIONSHIPS.keys():
-                if r in g.keys():
+                if r in self.info:
                     items = ''
                     for d in self.info[r]:
                         items += d['name']
@@ -112,18 +114,16 @@ class DebianGenerator(AbstractGenerator):
                 #@TODO: Format long description acording to Debian rules
                 f.write(self.format_long_description(g['long_description']))
             f.write('\n')
-        self.title(MSG_PACKAGING)
-        c.eprint('- Running dpkg-deb -b ...', indent=1)
+        c.print_success(True)
+        c.title(MSG_PACKAGING)
+        c.eprint('- Running dpkg: ', indent=1, end='')
         cmd = 'dpkg-deb -b %s %s-%s.deb' % (
             self.outputdir, os.path.join(self.distdir, g['package_name']),
             g['version']
         )
         result = os.system(cmd)
-        c.indent = 2
-        if not result:
-            c.eprint('- dpkg-deb command has returned 0', flags='green')
-        else:
-            c.eprint('* Error while running dpkg-deb!', flags='red,bold')
+        c.eprint('- Final package: ', indent=1, end='')
+        c.print_success(not result)
         c.reset()
         self.quit_with_message(not result)
 

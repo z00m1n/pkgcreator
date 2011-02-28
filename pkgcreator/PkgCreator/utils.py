@@ -43,6 +43,7 @@ def create_file(dirpath, content):
     try:
         with open(dirpath, 'w') as f:
             f.write(content)
+        os.chown(dirpath, 0, 0)
         if VERBOSE:
             c.eprint('[OK]', flags='green,bold')
         return True

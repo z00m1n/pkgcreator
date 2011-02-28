@@ -1,0 +1,27 @@
+.TH PKGCREATOR 1 "28/02/2011"
+.SH NAME
+pkgcreator \- generates Debian packages from pkgcreators YAML files
+.SH SYNOPSIS
+.B pkgcreator [options] <file>
+.SH AVAILABILITY
+Debian-based GNU/Linux distributions
+.SH DESCRIPTION
+.B pkgcreator
+allows the easy creation of Debian packages by parsing information provided in a YAML file.
+.PP
+It also generates menu files (including freedesktop.org entries) and icon files (if a path to an icon is provided in the YAML file). For further documentation and examples of pkgcreator's YAML files, refer to the project's website.
+.SH OPTIONS
+.TP 15
+\-c,\-\-color
+color output (needs Colorama package)
+.TP
+\-\-outputdir
+changes target directory (default value = dist)
+.SH FILES
+A single input YAML file should be given as an argument.
+.SH AUTHOR
+.B pkgcreator
+and its manual page were written by
+Leandro Resende Mattioli <leandro.mattioli@gmail.com>
+.SH "SEE ALSO"
+pkgcreator Website: http://code.google.com/p/pkgcreator

@@ -40,6 +40,7 @@
     <Compile Include="PkgCreator\console.py" />
     <Compile Include="pkgcreator.py" />
     <Compile Include="PkgCreator\resources.py" />
+    <Compile Include="PkgCreator\constants.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="PkgCreator\" />
@@ -55,6 +56,8 @@
     <None Include="example\files\foobar.png" />
     <None Include="pkgcreator.yaml" />
     <None Include="example\files\foobar.sh" />
+    <None Include="data\architectures.txt" />
+    <None Include="data\sections.txt" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

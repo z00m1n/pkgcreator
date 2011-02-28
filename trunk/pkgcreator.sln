@@ -5,7 +5,7 @@ Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator", "pkgcreator\pk
 EndProject
 Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator-doc", "pkgcreator-doc\pkgcreator-doc.mdproj", "{099D7AFD-739B-4887-96EC-976D7A2C54B8}"
 EndProject
-Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator-gtk", "guieditor-gtk\pkgcreator-gtk.mdproj", "{873F0839-1426-4595-B5D2-F42A931D5F8F}"
+Project("{9344bdbb-3e7f-41fc-a0dd-8665d75ee146}") = "pkgcreator-gtk", "pkgcreator-gtk\pkgcreator-gtk.mdproj", "{30067469-77E9-4DC8-ADC5-D5AC8C77C3CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,19 +20,19 @@ Global
 		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Default|Any CPU.Build.0 = Default|Any CPU
 		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Release|Any CPU.ActiveCfg = Default|Any CPU
 		{099D7AFD-739B-4887-96EC-976D7A2C54B8}.Release|Any CPU.Build.0 = Default|Any CPU
-		{873F0839-1426-4595-B5D2-F42A931D5F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{873F0839-1426-4595-B5D2-F42A931D5F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{873F0839-1426-4595-B5D2-F42A931D5F8F}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{873F0839-1426-4595-B5D2-F42A931D5F8F}.Default|Any CPU.Build.0 = Debug|Any CPU
-		{873F0839-1426-4595-B5D2-F42A931D5F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{873F0839-1426-4595-B5D2-F42A931D5F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30067469-77E9-4DC8-ADC5-D5AC8C77C3CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30067469-77E9-4DC8-ADC5-D5AC8C77C3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30067469-77E9-4DC8-ADC5-D5AC8C77C3CF}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{30067469-77E9-4DC8-ADC5-D5AC8C77C3CF}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{30067469-77E9-4DC8-ADC5-D5AC8C77C3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30067469-77E9-4DC8-ADC5-D5AC8C77C3CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCF246FD-05A3-45BE-8EA3-522923C5D71D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = guieditor-gtk\pkgcreator-gtk.mdproj
+		StartupItem = pkgcreator\pkgcreator.mdproj
 		Policies = $0
 		$0.ChangeLogPolicy = $1
 		$1.UpdateMode = ProjectRoot

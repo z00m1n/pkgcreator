@@ -1,12 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" ctype="Workspace" />
-  <MonoDevelop.Ide.Workbench ctype="Workbench">
+  <MonoDevelop.Ide.Workbench ActiveDocument="pkgcreator-gtk/PkgCreatorGtk/documentform.py" ctype="Workbench">
     <Files>
-      <File FileName="../tv5dict/package.yaml" Line="20" Column="11" />
-      <File FileName="../tv5dict/prepare.py" Line="7" Column="9" />
-      <File FileName="pkgcreator/data/package_schema.yaml" Line="53" Column="14" />
-      <File FileName="pkgcreator/PkgCreator/menu_creator.py" Line="5" Column="3" />
-      <File FileName="pkgcreator/PkgCreator/debian.py" Line="63" Column="33" />
+      <File FileName="pkgcreator-gtk/main.py" Line="2" Column="16" />
+      <File FileName="pkgcreator-gtk/PkgCreatorGtk/gui.py" Line="28" Column="75" />
+      <File FileName="pkgcreator-gtk/PkgCreatorGtk/documentform.py" Line="7" Column="9" />
+      <File FileName="pkgcreator-gtk/PkgCreatorGtk/resources.py" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

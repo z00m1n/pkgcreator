@@ -1,11 +1,10 @@
-import gtk
+#!/usr/bin/env python
+from PkgCreatorGtk.gui import GUI
 
 def main():
-    win = gtk.Window()
-    win.props.title = 'pkgcreator-gtk'
-    win.connect('delete-event', lambda *_: gtk.main_quit())
-    win.show()
-    gtk.main()
+    #TODO: Get command line argument to eventually open a file
+    gui = GUI()
+    gui.show()
 
 if __name__ == '__main__':
     main()

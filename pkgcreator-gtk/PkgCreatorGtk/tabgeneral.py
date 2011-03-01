@@ -44,10 +44,10 @@ class TabGeneral:
         self.__config_sections()
 
     def from_dict(self, dict):
+        self.clear_all()
         self.errors = []
         #Simple entries
         for widget, yamlkey in self.entryRecipes.iteritems():
-            print yamlkey
             if yamlkey in dict.keys():
                 widget.set_text(str(dict[yamlkey]))
         #Maintainer entries
@@ -80,6 +80,7 @@ class TabGeneral:
         if dict.has_key('authors'):
             for a in dict['authors']:
                 self.authors.get_model().append((a['name'], a['email']))
+            self.actionremove.set_sensitive(True)
         return self.errors
 
 

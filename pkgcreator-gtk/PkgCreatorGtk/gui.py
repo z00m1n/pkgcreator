@@ -3,6 +3,7 @@ import gtk
 import yaml
 import resources
 from tabgeneral import TabGeneral
+from tabfiles import TabFiles
 
 class GUI:
     def __init__(self):
@@ -14,7 +15,7 @@ class GUI:
         self.window.connect("destroy", gtk.main_quit)
         #Tabs GUI content responsible
         self.tabgeneral = TabGeneral(self.builder)
-        #self.tabfiles = TabFiles(self.builder)
+        self.tabfiles = TabFiles(self.builder)
         
         #Dialogs
         self.about = self.builder.get_object("aboutdialog1")
@@ -31,7 +32,7 @@ class GUI:
         #Config procedure
         self.__config_file_choosing()
         self.tabgeneral.config()
-        #self.tabfiles.config()
+        self.tabfiles.config()
         self.__config_actions()
 
     def show(self):
@@ -54,6 +55,7 @@ class GUI:
             self.__update_title()
             self.dict = {}
             self.tabgeneral.clear_all()
+            self.tabfiles.clear_all()
             self.actionsSave.set_sensitive(False)
             self.actionsPrjOpened.set_sensitive(False)
             #clear output
@@ -69,6 +71,7 @@ class GUI:
                         try:
                             self.dict = yaml.load(f)
                             self.tabgeneral.from_dict(self.dict['general'])
+                            self.tabfiles.from_list(self.dict['files'])
                             self.actionsSave.set_sensitive(False)
                             self.actionsPrjOpened.set_sensitive(True)
                             self.filename = filename
@@ -84,6 +87,7 @@ class GUI:
     def save(self, widget=None, *event):
         if self.filename:
             self.dict['general'] = self.tabgeneral.to_dict()
+            self.dict['files'] = self.tabfiles.to_list()
             with open(self.filename, 'w') as f:
                 yaml.dump(self.dict, f)
             self.actionsSave.set_sensitive(False)
@@ -104,7 +108,6 @@ class GUI:
                 self.msgdiagErrorFile.hide()
 
     def data_changed(self, widget, *event):
-        print "Data changed!"
         self.actionsSave.set_sensitive(True)
 
     #History related
@@ -129,7 +132,7 @@ class GUI:
         self.actionsSave.set_sensitive(True)
 
     #Files tab
-    '''
+    
     def add_install_file(self, widget, *event):
         self.tabfiles.add_install_file()
         
@@ -139,7 +142,7 @@ class GUI:
     
     def install_file_edited(self, widget, path, text):
         self.tabfiles.install_file_edited(widget, path, text)
-        self.actionsSave.set_sensitive(True)'''
+        self.actionsSave.set_sensitive(True)
     
     #PkgCreator, kwalify and lintian related
     

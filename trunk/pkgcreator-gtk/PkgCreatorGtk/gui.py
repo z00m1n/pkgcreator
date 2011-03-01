@@ -1,9 +1,10 @@
+import os
 import subprocess
 import gtk
+import yaml
 import resources
-from documentform import DocumentForm
-from PkgCreator.constants import DEBIAN_SECTIONS
-
+#from PkgCreator.constants import DEBIAN_SECTIONS
+from tabgeneral import TabGeneral
 
 class GUI:
     def __init__(self):
@@ -13,6 +14,9 @@ class GUI:
         self.builder.connect_signals(self)
         self.window = self.builder.get_object("window1")
         self.window.connect("destroy", gtk.main_quit)
+        #Tabs responsibles
+        self.tabgeneral = TabGeneral(self.builder)
+        
         #Dialogs
         self.about = self.builder.get_object("aboutdialog1")
         self.msgdiagSaveChanges = self.builder.get_object("msgdiagSaveChanges")
@@ -28,7 +32,7 @@ class GUI:
         self.listStoreSection = self.builder.get_object("liststoreSections")
         #Other properties
         self.filename = None
-        self.documentForm = DocumentForm(self.builder)
+        self.dict = {}
         #Config procedure
         self.__config_file_choosing()
         self.__config_architectures()
@@ -58,16 +62,28 @@ class GUI:
             if response == 2:
                 filename = self.fileDiagOpen.get_filename()
                 if filename and filename.endswith(".yaml"):
-                    self.documentform.load(filename)
-                    self.actionsPrjOpened.set_sensitive(True)
+                    with open(filename) as f:
+                        try:
+                            self.dict = yaml.load(f)
+                            self.tabgeneral.from_dict(self.dict['general'])
+                            self.actionsSave.set_sensitive(False)
+                            self.actionsPrjOpened.set_sensitive(True)
+                            self.filename = filename
+                        except:
+                            #@todo: Put a msg box here
+                            print "INVALID FILE!"
+                        finally:
+                            self.__update_title()
                 else:
                     self.msgdiagErrorFile.run()
                     self.msgdiagErrorFile.hide()
 
     def save(self, widget=None, *event):
         if self.filename:
-            #Save me!
-            pass
+            self.dict['general'] = self.tabgeneral.to_dict()
+            with open(self.filename, 'w') as f:
+                yaml.dump(self.dict, f)
+            self.actionsSave.set_sensitive(False)
         else:
             self.save_as()
 
@@ -78,8 +94,8 @@ class GUI:
             filename = self.fileDiagSave.get_filename()
             if filename and filename.endswith(".yaml"):
                 self.filename = filename
-                self.documentform.save(filename)
-                self.actionsSave.set_sensitive(False)
+                self.save()
+                self.__update_title()
             else:
                 self.msgdiagErrorFile.run()
                 self.msgdiagErrorFile.hide()
@@ -107,6 +123,13 @@ class GUI:
         """if file exists, save it and run
         else, warn user that he must save the file before creating the pkg"""
 
+    def __update_title(self):
+        title = 'pkgcreator-gtk :: '
+        if self.filename:
+            self.window.set_title(title + os.path.basename(self.filename))
+        else:
+            self.window.set_title(title + '<untitled project>')
+    
     def __warn_user(self):
         if self.actionsSave.get_sensitive():    #or if document.has_changes()
             response = self.msgdiagSaveChanges.run()
@@ -125,14 +148,18 @@ class GUI:
 
     def __config_architectures(self):
         #@attention: Wildcards 'all' and 'any' added in Glade
-        architectures = subprocess.check_output(["dpkg-architecture", "-L"]).split()
-        architectures.sort()
-        for a in architectures:
-            self.listStoreArchitectures.append((a,))
+        try:
+            architectures = subprocess.check_output(["dpkg-architecture", "-L"]).split()
+            architectures.sort()
+            for a in architectures:
+                self.listStoreArchitectures.append((a,))
+        except:
+            print "dpkg not installed..."
 
     def __config_sections(self):
-        for s in DEBIAN_SECTIONS:
-            self.listStoreSections.append((s,))
+        pass
+        #for s in DEBIAN_SECTIONS:
+        #    self.listStoreSections.append((s,))
 
     def __config_actions(self):
         self.actionsSave = gtk.ActionGroup("SaveCommands")

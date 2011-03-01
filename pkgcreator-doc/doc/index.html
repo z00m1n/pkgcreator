@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>pkgcreator Quick Start</title><link rel="stylesheet" href="style.css" type="text/css" /><meta name="generator" content="DocBook XSL Stylesheets V1.75.2" /><link rel="home" href="index.html" title="pkgcreator Quick Start" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center"><span class="application">pkgcreator</span> Quick Start</th></tr></table><hr /></div><div class="article" title="pkgcreator Quick Start"><div class="titlepage"><div><div><h2 class="title"><a id="id1330289"></a><span class="application">pkgcreator</span> Quick Start</h2></div><div><div class="author"><h3 class="author"><span class="firstname">Leandro</span> <span class="surname">Mattioli</span></h3></div></div><div><p class="pubdate">26/10/2010</p></div></div><hr /></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="index.html#id1330370">About <span class="application">pkgcreator</span></a></span></dt><dt><span class="section"><a href="index.html#id1330362">Installing</a></span></dt><dd><dl><dt><span class="section"><a href="index.html#id1330250">Pre-requisites</a></span></dt><dt><span class="section"><a href="index.html#id1330497">Instalation procedure</a></span></dt><dt><span class="section"><a href="index.html#id1330555">Verifying instalation</a></span></dt></dl></dd><dt><span class="section"><a href="index.html#id1330576">Creating your first package</a></span></dt><dd><dl><dt><span class="section"><a href="index.html#prepare_file_tree">Preparing the file tree</a></span></dt><dt><span class="section"><a href="index.html#id1330752">Creating the package markup file</a></span></dt><dt><span class="section"><a href="index.html#id1330951">Running pkgcreator</a></span></dt></dl></dd><dt><span class="section"><a href="index.html#id1331063">Contributing to this project</a></span></dt></dl></div>
+  
+
+  <div class="section" title="About pkgcreator"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id1330370"></a>About <span class="application">pkgcreator</span></h2></div></div></div>
+    
+
+    <p><span class="application">pkgcreator</span> is a command line tool for
+    operating systems based on <span class="productname">Debian GNU/Linux</span>
+    with the goal of automating some of the tasks of packaging binaries. The
+    idea behind the tool is to be able to do all the necessary steps of
+    creating the package based on information retrieved from a single markup
+    file . This file uses the <acronym class="acronym">YAML</acronym> as its markup language,
+    which provides good readability for human beings yet being able to
+    represent almost any structured information. By processing this file,
+    <span class="application">pkgcreator</span> can generate menus entries, icons
+    and Debian specific files automatically.</p>
+  </div>
+
+  <div class="section" title="Installing"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id1330362"></a>Installing</h2></div></div></div>
+    
+
+    <div class="section" title="Pre-requisites"><div class="titlepage"><div><div><h3 class="title"><a id="id1330250"></a>Pre-requisites</h3></div></div></div>
+      
+
+      <p>The following packages must be installed before trying to install
+      <span class="application">pkgcreator</span>:</p>
+
+      <div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem">
+          <p>python-imaging: used to generate icons</p>
+        </li><li class="listitem">
+          <p>python-yaml: used to parse package markup files</p>
+        </li><li class="listitem">
+          <p>dpkg: used to generate the final package</p>
+        </li><li class="listitem">
+          <p>kwalify: used to verify if the package markup file is valid
+          (optional, but highly recommended)</p>
+        </li></ul></div>
+
+      <p>All these packages are available in recent versions of Ubuntu and
+      Debian.</p>
+
+      <p>Also, if the <span class="application">Python</span> package
+      <span class="application">colorama</span> is installed and the terminal
+      supports colors, pretty messages will be displayed. The colorama package
+      can be downloaded from the <a class="ulink" href="http://pypi.python.org/pypi/colorama" target="_top">project's
+      page</a>.</p>
+    </div>
+
+    <div class="section" title="Instalation procedure"><div class="titlepage"><div><div><h3 class="title"><a id="id1330497"></a>Instalation procedure</h3></div></div></div>
+      
+
+      <p>The easiest and recommended way to do this is to download the
+      package from the <a class="ulink" href="http://code.google.com/p/pkgcreator" target="_top">project's page</a>
+      and double-click it. In <span class="productname">Ubuntu</span> this action
+      will open the <span class="application">Software Center</span>, shown
+      below:</p><div class="screenshot">
+          <span style="color: red">&lt;title&gt;Software Center window after installing
+            <span class="application">pkgcreator</span>&lt;/title&gt;</span>
+
+          <div class="mediaobject"><img src="images/ubuntu_software_center.png" /></div>
+        </div>
+
+      <p>On Debian system other tool will handle the instalation. On
+      non-Debian systems the first step is to install dpkg (who is needed
+      anyway to work better with Debian packages). The instalation procedure
+      was <span class="emphasis"><em>tested only in Ubuntu 10.10</em></span>. It should be work
+      well in other systems, though.</p>
+    </div>
+
+    <div class="section" title="Verifying instalation"><div class="titlepage"><div><div><h3 class="title"><a id="id1330555"></a>Verifying instalation</h3></div></div></div>
+      
+
+      <p>To verify if the package has been successfully installed, type the
+      command: <span class="command"><strong>pkgcreator -h</strong></span> in a console. It should
+      produce the following output:</p>
+
+      <pre class="screen">usage: pkgcreator [-h] [--outputdir OUTPUTDIR] yaml_file
+
+Creates binaries packages.
+
+positional arguments:
+  yaml_file             specifies the package markup file.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --outputdir OUTPUTDIR
+                        sets output dir for generated packages.
+
+Currently only Debian packages are generated.
+</pre>
+    </div>
+  </div>
+
+  <div class="section" title="Creating your first package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id1330576"></a>Creating your first package</h2></div></div></div>
+    
+
+    <div class="section" title="Preparing the file tree"><div class="titlepage"><div><div><h3 class="title"><a id="prepare_file_tree"></a>Preparing the file tree</h3></div></div></div>
+      
+
+      <p>Create the files listed below:</p>
+
+      <div class="screenco">
+        
+
+        <pre class="screen">.
+├── files
+│   ├── foobar.png
+│   ├── foobar.sh
+│   └── foobar.svg
+└── package.yaml
+</pre>
+
+        <div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0" /></p></td><td valign="top" align="left">
+            <p>This dot is used to indicate the root folder of our project
+            (yes, it's the relative path to the current directory)</p>
+          </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0" /></p></td><td valign="top" align="left">
+            <p>This folder represents any of the project's folders. In real
+            projects, this could be an <code class="filename">ui</code>,
+            <code class="filename">bin</code> or <code class="filename">src</code> dir; it
+            doesn't matter. <span class="application">pkgcreator</span> doesn't
+            impose any restriction related to the file tree of the
+            project.</p>
+          </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/3.png" alt="3" border="0" /></p></td><td valign="top" align="left">
+            <p>A good resolution image. Make sure its width and its height
+            are equal. This image will be used to create icons of different
+            dimensions (namely: 16x16, 22x22, 24x24, 32x32, 36x36, 48x48,
+            64x64, 72x72, 96x96, 128x128, 192x192).</p>
+          </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/4.png" alt="4" border="0" /></p></td><td valign="top" align="left">
+            <p>A executable shell script. You can use the one below if you
+            don't have other in mind:</p>
+
+            <pre class="programlisting">#!/bin/bash
+
+echo "Hello, world!"
+</pre>
+          </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/5.png" alt="5" border="0" /></p></td><td valign="top" align="left">
+            <p>A file that will be installed in the
+            <code class="filename">/usr/share/foobar</code> folder. You can replace
+            this with other file if you want.</p>
+          </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/6.png" alt="6" border="0" /></p></td><td valign="top" align="left">
+            <p>The most important item in this list for the purpose of this
+            document. The contents will be used by
+            <span class="application">pkgcreator</span> to create your
+            package.</p>
+          </td></tr></table></div>
+      </div>
+    </div>
+
+    <div class="section" title="Creating the package markup file"><div class="titlepage"><div><div><h3 class="title"><a id="id1330752"></a>Creating the package markup file</h3></div></div></div>
+      
+
+      <p>The <code class="filename">package.yaml</code> mentioned in the section
+      <a class="xref" href="index.html#prepare_file_tree" title="Preparing the file tree">the section called “Preparing the file tree”</a>, for most of the desktop
+      applications, will look like the listing below. Although it's very easy
+      to find out the meaning of all these fields<sup>[<a id="id1330769" href="#ftn.id1330769" class="footnote">1</a>]</sup>, we're going to describe the main regions of a package
+      markup file:</p>
+
+      <div class="programlistingco">
+          
+
+          <pre class="programlisting">general:
+  package_name: foobar
+  name: FooBar
+  version: 0.1
+  architecture: all
+  maintainer:
+    name: Anybody J.
+    email: anybody@company.com
+  authors:pr
+    - {name: Somebody Wrote It, email: somebody@company.com}
+  short_description: Gives a Bar to a Foo
+  long_description: |
+    This package consists of a set of functions of type foobar, blaaah.
+     
+    Long descriptions are cool.
+  priority: optional
+  section: utils
+menu:
+    command: foobar
+    icon: files/foobar.png
+    can_open_multiple_files: false
+    expects_uris: false
+    requires_terminal: false
+    section: Applications/Office
+depends:
+  - {name: bash}
+files:
+  - {src: files/foobar.sh, dst: /usr/bin/foobar}
+  - {src: files/foobar.svg, dst: /usr/share/foobar/}
+</pre>
+
+          <div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0" /></p></td><td valign="top" align="left">
+              <p>The <code class="literal">general</code> region contains almost all
+              of the information necessary to create the
+              <code class="filename">DEBIAN/control</code> file. Actually, it even
+              looks a little bit like the file itself. The difference here is
+              some YAML specific syntax (namely the minus sign and the
+              brackets in the <code class="literal">authors</code> field, the | symbol,
+              the indentation and not needing to insert a dot at every line of
+              the long description). The document <a class="ulink" href="http://www.debian.org/doc/debian-policy/ch-controlfields.html" target="_top">Debian
+              Policy Manual - Control files and their fields</a> describes
+              better this section.</p>
+            </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0" /></p></td><td valign="top" align="left">
+              <p>The menu section is very intuitive. The main point here is
+              that the path informed in the <code class="literal">icon</code> field is
+              going to be used to generate many icons (not yet scalable SVG
+              icons, due to Python Imaging Libraries limitations).</p>
+            </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/3.png" alt="3" border="0" /></p></td><td valign="top" align="left">
+              <p>This is another section with informations for the control
+              files. Other relationships, such as
+              <code class="literal">recommends</code>, <code class="literal">suggests</code> and
+              <code class="literal">pre_depends</code> are already supported. The items
+              in this section must include the name of the package and
+              optionally a <code class="literal">version</code> field with a string that
+              will be used in front of the package name (complex restriction
+              such as mutual exclusion are not yet supported, but you can
+              always edit the generated DEBIAN/control file manually and still
+              save a little time by generating most of the boilerplate with
+              <span class="application">pkgcreator</span>).</p>
+            </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/4.png" alt="4" border="0" /></p></td><td valign="top" align="left">
+              <p>Each entry in this section describes a copy operation that
+              must be realized. It's required to insert a final slash (/) to
+              differentiate dirs from files. This is required even with
+              existing paths, like <code class="filename">/usr/share/</code>. The src
+              entries can use the wildcards <code class="literal">*</code> and
+              <code class="literal">?</code>.</p>
+            </td></tr></table></div>
+        </div>
+    </div>
+
+    <div class="section" title="Running pkgcreator"><div class="titlepage"><div><div><h3 class="title"><a id="id1330951"></a>Running pkgcreator</h3></div></div></div>
+      
+
+      <p>Confirm that you're working on the project's top-level dir, cross
+      your fingers and run the command: <span class="command"><strong>pkgcreator
+      package.yaml</strong></span>. If everything has worked well, a new directory
+      (dist) will be created, with the following files:</p>
+
+      <div class="screenco">
+          
+
+          <pre class="screen">.
+├── deb
+│   ├── DEBIAN
+│   │   ├── control
+│   │   ├── md5sum
+│   │   ├── postinst
+│   │   └── postrm
+│   └── usr
+│       ├── bin
+│       │   └── foobar
+│       └── share
+│           ├── application-registry
+│           │   └── foobar.applications
+│           ├── applications
+│           │   └── foobar.desktop
+│           ├── foobar
+│           │   └── foobar.svg
+│           ├── icons
+│           │   └── hicolor
+│           │       ├── 128x128
+│           │       │   └── apps
+│           │       │       └── foobar.png
+│           │       ├── 16x16
+│           │       │   └── apps
+│           │       │       └── foobar.png
+        (...)
+│           │       ├── 72x72
+│           │       │   └── apps
+│           │       │       └── foobar.png
+│           │       └── 96x96
+│           │           └── apps
+│           │               └── foobar.png
+│           └── menu
+│               └── foobar
+└── foobar-0.1.deb
+</pre>
+
+          <div class="calloutlist"><table border="0" summary="Callout list"><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/1.png" alt="1" border="0" /></p></td><td valign="top" align="left">
+              <p>The tool generates the md5sum file automatically,
+              considering all entries of the <code class="literal">files</code> section
+              of the package markup file</p>
+            </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/2.png" alt="2" border="0" /><img src="images/callouts/3.png" alt="3" border="0" /></p></td><td valign="top" align="left">
+              <p>Since the application has menu entries, these scripts are
+              generated to update the menus automatically after a install or a
+              removal</p>
+            </td></tr><tr><td width="5%" valign="top" align="left"><p><img src="images/callouts/4.png" alt="4" border="0" /></p></td><td valign="top" align="left">
+              <p>If you're satisfied with the defaults, you have already
+              your <code class="filename">.deb</code> file!</p>
+            </td></tr></table></div>
+        </div>
+    </div>
+  </div>
+
+  <div class="section" title="Contributing to this project"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id1331063"></a>Contributing to this project</h2></div></div></div>
+    
+
+    <p>At this point, any help in testing or internationalizing the project
+    will be welcome. Feel free to make changes and send me the patches with
+    details in which features were added / fixed. </p>
+  </div>
+<div class="footnotes"><br /><hr width="100" align="left" /><div class="footnote">
+          <p><sup>[<a id="ftn.id1330769" href="#id1330769" class="para">1</a>] </sup>Assuming that the reader has already a basic knowledge of the
+          <code class="filename">DEBIAN/control</code> file and the format of the menu
+          entries located at <code class="filename">/usr/share/menu</code>,
+          <code class="filename">/usr/share/application-registry</code> and
+          <code class="filename">/usr/share/applications</code></p>
+        </div></div></div><div class="navfooter"><hr /></div></body></html>

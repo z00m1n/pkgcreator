@@ -1,2 +1,9 @@
 * Double-clicking in file selection dialogs
 * TAB for treeviews
+
+Design
+======
+
+Use observers for "open" file and "new" file
+  -> Tab handlers may automatically fill the fields or clear
+     them.

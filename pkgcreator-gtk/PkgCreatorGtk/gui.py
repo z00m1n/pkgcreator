@@ -1,9 +1,7 @@
 import os
-import subprocess
 import gtk
 import yaml
 import resources
-#from PkgCreator.constants import DEBIAN_SECTIONS
 from tabgeneral import TabGeneral
 
 class GUI:
@@ -14,8 +12,9 @@ class GUI:
         self.builder.connect_signals(self)
         self.window = self.builder.get_object("window1")
         self.window.connect("destroy", gtk.main_quit)
-        #Tabs responsibles
+        #Tabs GUI content responsible
         self.tabgeneral = TabGeneral(self.builder)
+        #self.tabfiles = TabFiles(self.builder)
         
         #Dialogs
         self.about = self.builder.get_object("aboutdialog1")
@@ -26,17 +25,13 @@ class GUI:
         self.fileDiagSave = self.builder.get_object("filechooserSave")
         self.buttonDiagSave = self.builder.get_object("buttonDiagSave")
         self.buttonDiagOpen = self.builder.get_object("buttonDiagOpen")
-        #Combo boxes and list stores
-        self.listStoreArchitectures = self.builder.get_object("liststoreArchitectures")
-        self.comboBoxArchitectures = self.builder.get_object("comboboxArchitectures")
-        self.listStoreSection = self.builder.get_object("liststoreSections")
         #Other properties
         self.filename = None
         self.dict = {}
         #Config procedure
         self.__config_file_choosing()
-        self.__config_architectures()
-        self.__config_sections()
+        self.tabgeneral.config()
+        #self.tabfiles.config()
         self.__config_actions()
 
     def show(self):
@@ -50,10 +45,18 @@ class GUI:
     def show_about(self, widget, *event):
         self.about.run()
         self.about.hide()
+    
+    #File related
 
     def new(self, widget, *event):
         if(self.__warn_user()):
-            print "Create new file..."
+            self.filename = None
+            self.__update_title()
+            self.dict = {}
+            self.tabgeneral.clear_all()
+            self.actionsSave.set_sensitive(False)
+            self.actionsPrjOpened.set_sensitive(False)
+            #clear output
 
     def open(self, widget, *event):
         if(self.__warn_user()):
@@ -100,28 +103,52 @@ class GUI:
                 self.msgdiagErrorFile.run()
                 self.msgdiagErrorFile.hide()
 
+    def data_changed(self, widget, *event):
+        print "Data changed!"
+        self.actionsSave.set_sensitive(True)
+
+    #History related
+
     def undo(self, widget, *event):
         print "Undo"
 
     def redo(self, widget, *event):
         print "Redo"
 
-    def data_changed(self, widget, *event):
-        print "Data changed!"
-        self.actionsSave.set_sensitive(True)
+    #General tab
 
     def add_author(self, widget, *event):
-        print "Add author"
-        self.actionsSave.set_sensitive(True)
+        self.tabgeneral.add_author()
 
     def remove_author(self, widget, *event):
-        print "Remove author"
+        self.tabgeneral.remove_author()
+        self.actionsSave.set_sensitive(True)
+    
+    def author_changed(self, widget, path, text):
+        self.tabgeneral.author_changed(widget, path, text)
         self.actionsSave.set_sensitive(True)
 
+    #Files tab
+    '''
+    def add_install_file(self, widget, *event):
+        self.tabfiles.add_install_file()
+        
+    def remove_install_file(self, widget, *event):
+        self.tabfiles.remove_install_file()
+        self.actionsSave.set_sensitive(True)
+    
+    def install_file_edited(self, widget, path, text):
+        self.tabfiles.install_file_edited(widget, path, text)
+        self.actionsSave.set_sensitive(True)'''
+    
+    #PkgCreator, kwalify and lintian related
+    
     def run_pkgcreator(self, widget, *event):
         print "Run pkgcreator"
         """if file exists, save it and run
         else, warn user that he must save the file before creating the pkg"""
+
+    #Private methods
 
     def __update_title(self):
         title = 'pkgcreator-gtk :: '
@@ -145,21 +172,6 @@ class GUI:
     def __config_file_choosing(self):
         filefilter = self.builder.get_object("filefilterYAML")
         filefilter.add_mime_type('application/x-yaml')
-
-    def __config_architectures(self):
-        #@attention: Wildcards 'all' and 'any' added in Glade
-        try:
-            architectures = subprocess.check_output(["dpkg-architecture", "-L"]).split()
-            architectures.sort()
-            for a in architectures:
-                self.listStoreArchitectures.append((a,))
-        except:
-            print "dpkg not installed..."
-
-    def __config_sections(self):
-        pass
-        #for s in DEBIAN_SECTIONS:
-        #    self.listStoreSections.append((s,))
 
     def __config_actions(self):
         self.actionsSave = gtk.ActionGroup("SaveCommands")

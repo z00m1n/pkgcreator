@@ -1,9 +1,11 @@
 import subprocess
 from PkgCreator.constants import DEBIAN_SECTIONS
+from editabletreeview import EditableTreeView
 
 class TabGeneral:
-    def __init__(self, builder):
+    def __init__(self, builder, gui):
         self.builder = builder
+        self.gui = gui
         g = self.builder.get_object
         #Widgets related to the "general" section
         self.pkgname = g("entryPkgName")
@@ -19,11 +21,9 @@ class TabGeneral:
         self.section = g("comboboxSections")
         self.essential = g("comboboxEssential")
         #Authors
-        self.authors = g("treeviewAuthors")
-        self.cellauthorname = g("cellauthorname")
-        self.cellauthoremail = g("cellauthoremail")
-        self.columnauthorname = g("tvcolumnAuthorName")
-        self.actionremove = g("actionRemoveAuthor")
+        alignment = g("alignmentAuthors")
+        self.authors = EditableTreeView("Authors", ['Name', 'Email'], gui)
+        alignment.add(self.authors.get_main_widget())
         #Recipes
         self.entryRecipes = {
             self.pkgname: 'package_name',
@@ -43,7 +43,10 @@ class TabGeneral:
         self.__config_architectures()
         self.__config_sections()
 
-    def from_dict(self, dict):
+    def from_dict(self, maindict):
+        if not maindict.has_key('general'):
+            return
+        dict = maindict['general']
         self.clear_all()
         self.errors = []
         #Simple entries
@@ -79,12 +82,11 @@ class TabGeneral:
         #Authors
         if dict.has_key('authors'):
             for a in dict['authors']:
-                self.authors.get_model().append((a['name'], a['email']))
-            self.actionremove.set_sensitive(True)
+                self.authors.append((a['name'], a['email']))
         return self.errors
 
 
-    def to_dict(self):
+    def populate_dict(self, maindict):
         dict = {}
         #Entries
         for widget, yamlkey in self.entryRecipes.iteritems():
@@ -114,7 +116,7 @@ class TabGeneral:
                 {'name': name, 'email': email}
             )
             iter = self.authors.get_model().iter_next(iter)
-        return dict
+        maindict['general'] = dict
     
     def validate(self):
         pass
@@ -132,31 +134,6 @@ class TabGeneral:
             c.set_active(0)
         #Authors
         self.authors.get_model().clear()
-    
-    def add_author(self):
-        self.authors.get_model().append()
-        elements = self.authors.get_model().iter_n_children(None)
-        self.authors.set_cursor_on_cell(
-            elements - 1, 
-            focus_column = self.columnauthorname,
-            focus_cell= self.cellauthorname,
-            start_editing=True)
-        self.actionremove.set_sensitive(True)
-    
-    def remove_author(self):
-        rows = self.authors.get_selection().get_selected_rows()[1]
-        for r in rows:
-            iter = self.authors.get_model().get_iter(r)
-            self.authors.get_model().remove(iter)
-        if self.authors.get_model().get_iter_first() == '0':
-            self.actionremove.set_sensitive(False)
-
-    def author_changed(self, widget, path, text):
-        iter = self.authors.get_model().get_iter(path)
-        if widget == self.cellauthorname:
-            self.authors.get_model().set_value(iter, 0, text)
-        elif widget == self.cellauthoremail:
-            self.authors.get_model().set_value(iter, 1, text)
     
     def __config_architectures(self):
         #@attention: Wildcards 'all' and 'any' added in Glade

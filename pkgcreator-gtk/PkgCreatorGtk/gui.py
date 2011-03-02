@@ -4,6 +4,7 @@ import yaml
 import resources
 from tabgeneral import TabGeneral
 from tabfiles import TabFiles
+from tabrelationships import TabRelationships
 
 class GUI:
     def __init__(self):
@@ -14,8 +15,9 @@ class GUI:
         self.window = self.builder.get_object("window1")
         self.window.connect("destroy", gtk.main_quit)
         #Tabs GUI content responsible
-        self.tabgeneral = TabGeneral(self.builder)
-        self.tabfiles = TabFiles(self.builder)
+        self.tabgeneral = TabGeneral(self.builder, self)
+        self.tabrelationships = TabRelationships(self.builder, self)
+        self.tabfiles = TabFiles(self.builder, self)
         
         #Dialogs
         self.about = self.builder.get_object("aboutdialog1")
@@ -32,7 +34,6 @@ class GUI:
         #Config procedure
         self.__config_file_choosing()
         self.tabgeneral.config()
-        self.tabfiles.config()
         self.__config_actions()
 
     def show(self):
@@ -56,6 +57,7 @@ class GUI:
             self.dict = {}
             self.tabgeneral.clear_all()
             self.tabfiles.clear_all()
+            self.tabrelationships.clear_all()
             self.actionsSave.set_sensitive(False)
             self.actionsPrjOpened.set_sensitive(False)
             #clear output
@@ -64,20 +66,22 @@ class GUI:
         if(self.__warn_user()):
             response = self.fileDiagOpen.run()
             self.fileDiagOpen.hide()
-            if response == 2:
+            if response == gtk.RESPONSE_OK:
                 filename = self.fileDiagOpen.get_filename()
                 if filename and filename.endswith(".yaml"):
                     with open(filename) as f:
                         try:
                             self.dict = yaml.load(f)
-                            self.tabgeneral.from_dict(self.dict['general'])
-                            self.tabfiles.from_list(self.dict['files'])
+                            self.tabgeneral.from_dict(self.dict)
+                            self.tabfiles.from_dict(self.dict)
+                            self.tabrelationships.from_dict(self.dict)
                             self.actionsSave.set_sensitive(False)
                             self.actionsPrjOpened.set_sensitive(True)
                             self.filename = filename
-                        except:
+                        except Exception as e:
                             #@todo: Put a msg box here
                             print "INVALID FILE!"
+                            print e
                         finally:
                             self.__update_title()
                 else:
@@ -86,8 +90,10 @@ class GUI:
 
     def save(self, widget=None, *event):
         if self.filename:
-            self.dict['general'] = self.tabgeneral.to_dict()
-            self.dict['files'] = self.tabfiles.to_list()
+            self.dict = {}
+            self.tabgeneral.populate_dict(self.dict)
+            self.tabfiles.populate_dict(self.dict)
+            self.tabrelationships.populate_dict(self.dict)
             with open(self.filename, 'w') as f:
                 yaml.dump(self.dict, f)
             self.actionsSave.set_sensitive(False)
@@ -97,7 +103,7 @@ class GUI:
     def save_as(self, widget=None, *event):
         response = self.fileDiagSave.run()
         self.fileDiagSave.hide()
-        if response == 2:
+        if response == gtk.RESPONSE_OK:
             filename = self.fileDiagSave.get_filename()
             if filename and filename.endswith(".yaml"):
                 self.filename = filename
@@ -118,32 +124,6 @@ class GUI:
     def redo(self, widget, *event):
         print "Redo"
 
-    #General tab
-
-    def add_author(self, widget, *event):
-        self.tabgeneral.add_author()
-
-    def remove_author(self, widget, *event):
-        self.tabgeneral.remove_author()
-        self.actionsSave.set_sensitive(True)
-    
-    def author_changed(self, widget, path, text):
-        self.tabgeneral.author_changed(widget, path, text)
-        self.actionsSave.set_sensitive(True)
-
-    #Files tab
-    
-    def add_install_file(self, widget, *event):
-        self.tabfiles.add_install_file()
-        
-    def remove_install_file(self, widget, *event):
-        self.tabfiles.remove_install_file()
-        self.actionsSave.set_sensitive(True)
-    
-    def install_file_edited(self, widget, path, text):
-        self.tabfiles.install_file_edited(widget, path, text)
-        self.actionsSave.set_sensitive(True)
-    
     #PkgCreator, kwalify and lintian related
     
     def run_pkgcreator(self, widget, *event):
@@ -164,9 +144,9 @@ class GUI:
         if self.actionsSave.get_sensitive():    #or if document.has_changes()
             response = self.msgdiagSaveChanges.run()
             self.msgdiagSaveChanges.hide()
-            if response == 1: return True       #proceed without saving
-            elif response == 2: return False    #cancel operation
-            elif response == 3:                 #save and proceed
+            if response == gtk.RESPONSE_NO: return True         #proceed without saving
+            elif response == gtk.RESPONSE_CANCEL: return False  #cancel operation
+            elif response == gtk.RESPONSE_YES:                  #save and proceed
                 self.save()
                 return True
         else:                                   #proceed

@@ -1,5 +1,7 @@
 * Double-clicking in file selection dialogs
+   -DONE: Use RESPONSE_OK for buttons and setting CAN/HAS DEFAULT to TRUE
 * TAB for treeviews
+* Use Arrow expanders in Relationships section
 
 Design
 ======
@@ -7,3 +9,4 @@ Design
 Use observers for "open" file and "new" file
   -> Tab handlers may automatically fill the fields or clear
      them.
+  -> Add generic treeview handler

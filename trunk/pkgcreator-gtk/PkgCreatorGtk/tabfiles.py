@@ -1,70 +1,42 @@
 import subprocess
 from PkgCreator.constants import DEBIAN_SECTIONS
+from editabletreeview import EditableTreeView
 
 class TabFiles:
-    def __init__(self, builder):
+    def __init__(self, builder, gui):
         self.builder = builder
-        g = self.builder.get_object
-        self.tree = g("treeviewFiles")
-        self.model = self.tree.get_model()
-        self.cellsourcepath = g("cellsourcepath")
-        self.celltargetpath = g("celltargetpath")
-        self.columnsourcepath = g("tvcolumnSource")
-        self.actionremove = g("actionRemoveInstallFile")
+        self.gui = gui
+        vbox = self.builder.get_object("vboxFiles")
+        columns = ["Source path", "Target path"]
+        self.editable = EditableTreeView("Install Files", columns, gui)
+        vbox.pack_start(self.editable.get_main_widget())
 
     def config(self):
         pass
 
-    def from_list(self, list):
+    def from_dict(self, maindict):
         self.clear_all()
-        if list:
-            for f in list:
-                self.model.append((f['src'], f['dst']))
-            self.actionremove.set_sensitive(True)
+        if maindict.has_key('files'):
+            for f in maindict['files']:
+                self.editable.append((f['src'], f['dst']))
         return []
 
-    def to_list(self):
+    def populate_dict(self, maindict):
         list = []
-        iter = self.model.get_iter_first()
+        model = self.editable.get_model()
+        iter = model.get_iter_first()
         while iter:
-            src = self.model.get_value(iter, 0)
-            dst = self.model.get_value(iter, 1)
+            src = model.get_value(iter, 0)
+            dst = model.get_value(iter, 1)
             list.append(
                 {'src': src, 'dst': dst}
             )
-            iter = self.model.iter_next(iter)
-        return list
+            iter = model.iter_next(iter)
+        maindict['files'] = list
     
     def validate(self):
         pass
     
     def clear_all(self):
-        self.model.clear()
-    
-    def add_install_file(self):
-        self.model.append()
-        elements = self.model.iter_n_children(None)
-        self.tree.set_cursor_on_cell(
-            elements - 1, 
-            focus_column = self.columnsourcepath,
-            focus_cell= self.cellsourcepath,
-            start_editing=True)
-        self.actionremove.set_sensitive(True)
-    
-    def remove_install_file(self):
-        rows = self.tree.get_selection().get_selected_rows()[1]
-        for r in rows:
-            iter = self.model.get_iter(r)
-            self.model.remove(iter)
-        if self.model.get_iter_first() == '0':
-            self.actionremove.set_sensitive(False)
-
-    def install_file_edited(self, widget, path, text):
-        iter = self.model.get_iter(path)
-        if widget == self.cellsourcepath:
-            self.model.set_value(iter, 0, text)
-        elif widget == self.celltargetpath:
-            self.model.set_value(iter, 1, text)
-        else:
-            print text
+        self.editable.get_model().clear()
     

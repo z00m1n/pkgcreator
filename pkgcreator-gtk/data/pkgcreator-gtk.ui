@@ -76,6 +76,43 @@
       </object>
     </child>
   </object>
+  <object class="GtkDialog" id="dialogRunning">
+    <property name="can_focus">False</property>
+    <property name="border_width">5</property>
+    <property name="type_hint">dialog</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox12">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area12">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkFileChooserDialog" id="filechooserOpen">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
@@ -236,6 +273,7 @@
       <action-widget response="-5">buttonDiagSave</action-widget>
     </action-widgets>
   </object>
+  <object class="GtkFileFilter" id="filefilterImages"/>
   <object class="GtkFileFilter" id="filefilterYAML"/>
   <object class="GtkImage" id="iconProceedWithoutSaving">
     <property name="visible">True</property>
@@ -1309,7 +1347,7 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkTable" id="table4">
+                          <object class="GtkTable" id="tableMenu">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="n_rows">3</property>
@@ -1333,7 +1371,7 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="xalign">1</property>
-                                <property name="label" translatable="yes">Section:</property>
+                                <property name="label" translatable="yes">Sections:</property>
                               </object>
                               <packing>
                                 <property name="top_attach">1</property>
@@ -1361,6 +1399,7 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="invisible_char">●</property>
+                                <signal name="changed" handler="data_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -1369,30 +1408,21 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkComboBox" id="comboboxMenuSection">
+                              <object class="GtkEntry" id="entryMenuSections">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">•</property>
+                                <signal name="changed" handler="data_changed" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
                                 <property name="right_attach">2</property>
                                 <property name="top_attach">1</property>
                                 <property name="bottom_attach">2</property>
-                                <property name="y_options">GTK_FILL</property>
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkFileChooserButton" id="filechooserbuttonIcon">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                              </object>
-                              <packing>
-                                <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
-                                <property name="top_attach">2</property>
-                                <property name="bottom_attach">3</property>
-                                <property name="y_options">GTK_FILL</property>
-                              </packing>
+                              <placeholder/>
                             </child>
                           </object>
                           <packing>

@@ -1,9 +1,9 @@
 Features
 ========
  * File creating, opening, saving and closing
- * Undo and redo
- * Tooltips for every user input widget
- * Persistence with YAML
+ * Undo and redo (ignored for the moment)
+ * Tooltips for every user input widget (todo)
+ * Persistence with YAML (done)
  * Document validator
  * PkgCreator integration
    - launcher

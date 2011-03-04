@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os.path
 import argparse
 import sys
 from PkgCreator.debian import DebianGenerator
@@ -14,9 +15,13 @@ def main():
     parser.add_argument('-c', '--color', action='store_true', help='color output.')
     parser.add_argument('yaml_file', help='specifies the package markup file.')
     args = parser.parse_args()
-    d = DebianGenerator(args.yaml_file, args.outputdir, args.color)
+    original_dir = os.path.abspath(os.path.curdir)
+    os.chdir(os.path.abspath(os.path.dirname(args.yamlfile)))
+    filename = os.path.basename(args.yaml_file)
+    d = DebianGenerator(filename, args.outputdir, args.color)
     d.parse_pkg_markup()
     d.create_package()
+    os.chdir(original_dir)
     sys.exit(0)
 
 if __name__ == '__main__':

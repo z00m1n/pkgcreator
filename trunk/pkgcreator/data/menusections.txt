@@ -1,0 +1,256 @@
+Applications
+    Normal applications
+    Accessibility
+        Tools to aid people with disabilities or for machines lacking usual input devices.
+        Examples: gok, yasr, dasher.
+    Amateur Radio
+        Anything relating to HAM radio.
+        Examples: baken, hamsoft, twlog
+    Data Management
+        Interactive database programs, collection managers, address books, bibliography tools, etc.
+        gaby, alexandria, mdbtools
+    Editors
+        Editors, other than office word processors, for text-based information.
+        Examples: ksubtile, nano, hexedit
+    Education
+        Educational and training softwares.
+        Examples: gtypist, gcompris, quiz
+    Emulators
+        Software that allows you to run non-native software or more than one OS at a time.
+        Examples: wine, dosemu, qemu
+    File Management
+        Tools for file management, archiving, searching, CD/DVD burning, backup, etc.
+        Examples: file-roller, mc, baobab
+    Graphics
+        2D and 3D graphics manipulation software.
+        Examples: gimp, inkscape, imagemagick
+    Mobile Devices
+        Software that allows you to interface with mobile devices (phones, PDAs, etc.).
+        Examples: kandy, gnokii, gnome-pilot
+    Network
+        Network related software. This is a three-level section, do not put entries directly here.
+        Communication
+            Mail, USENET news, chat, instant messaging, IP telephony, video conferencing software, etc.
+            Examples: xchat, gaim, mutt
+        File Transfer
+            File transfer software such as download managers, FTP clients, P2P clients, etc.
+            Examples: amule, gftp, d4x
+        Monitoring
+            Network monitoring software
+            Examples: gip, ettercap, iptstate
+        Web Browsing
+            Web browsers, tools for offline browsing, etc.
+            Examples: elinks, epiphany-browser, webhttrack
+        Web News
+            Web feed (RSS, Atom, etc.) and podcast aggregators.
+            Examples: akregator, kitty, liferea
+    Office
+        Office suites, word processors, spreadsheets, CRM, ERP, financial sofware, etc.
+        Examples: openoffice.org, tinyerp-client, gnucash
+    Programming
+        IDEs, debuggers, etc.
+        Examples: anjuta, gdb, eclipse
+    Project Management
+        Timetable managers, group task trackers, bug tracking software, etc.
+        Examples: planner, bugzilla, gnotime
+    Science
+        Scientific and engineering-related software.
+        Astronomy
+            Astronomy-related software.
+            Examples: celestia, spacechart, stellarium
+        Biology
+            Biology-related software.
+            Examples: arb, ncbi-tools-x11, seaview
+        Chemistry
+            Chemistry-related software.
+            Examples: chemtool, kalzium, xdrawchem
+        Data Analysis
+            Software designed for processing, extracting, and presenting generic scientific data.
+            Examples: fityk, ygraph, mn-fit
+        Electronics
+            Circuit design tools, simulators and assemblers for microprocessors, etc
+            Examples: geda, gnucap, tkgate
+        Engineering
+            CAD, UML tools, diagram-drawing and other engineering-related software.
+            Examples: tcm, dia, qcad
+        Geoscience
+            Geoscience-related software.
+            Examples: earth3d, qgis, therion
+        Mathematics
+            Mathematics-related software.
+            Examples: gcalctool, snappea, xeukleides
+        Medicine
+            Medicine-related software.
+            Examples: mssstest, gnumed-client, xmedcon
+        Physics
+            Physics-related software.
+            Examples: kxterm, ifrit, paw
+        Social
+            Social sciences-related software.
+            Examples: gnomesword, hanzim, bibletime
+    Shells
+        Various shells to be used inside a terminal emulator.
+        Examples: bash, ksh, zsh
+    Sound
+        Sound players, editors, and rippers/recorders.
+        Examples: beep-media-player, grip, audacity
+    System
+        System related software.
+        Administration
+            Administrative and system configuration utilities, also tools for personal user settings.
+            Examples: gnome-control-center, configure-debian, gksu
+        Hardware
+            Tools for manipulating specific hardware, especially non-standard laptop hardware.
+            Examples: toshutils, nvclock-gtk, nvtv
+        Language Environment
+            This section is reserved for language-env as a special case.
+        Monitoring
+            System information and monitoring tools, log viewers, etc.
+            Examples: top, hal-device-manager, gtkdiskfree
+        Package Management
+            Package managers and related tools.
+            Examples: aptitude, deborphan, smartpm
+        Security
+            Security, cryptography and privacy related software, antiviruses, tools to track and report bugs, tc.
+            Examples: gpgkeys, bastille, avscan
+
+    Terminal Emulators
+
+        Graphical terminal emulators.
+
+        Examples: xterm, gnome-terminal, rxvt
+
+    Text
+
+        Text oriented tools like dictionaries, OCR, translation, text analysis software, etc.
+
+        Examples: kdrill, stardict, turkey
+
+    TV and Radio
+
+        TV-in, TV-out, FM radio, teletext browsers, etc.
+
+        Examples: gradio, gatos, alevt
+
+    Viewers
+
+        Software for viewing images, documents and other (non-video) media.
+
+        Examples: gqview, evince, gthumb
+
+    Video
+
+        Video players, editors, and rippers/recorders.
+
+        Examples: istanbul, totem, kino
+
+    Web Development
+
+        Software for web site editing, web programming, and site administration.
+
+        Examples: bluefish, screem, gphpedit
+
+Games
+
+    Games and recreations
+
+    Action
+
+        Games that involve a lot of action and require fast reflexes.
+
+        Examples: xsoldier, supertux, xmoto
+
+    Adventure
+
+        Role playing and adventure games, interactive movies and stories, etc.
+
+        Examples: beneath-a-steel-sky, egoboo, kq
+
+    Blocks
+
+        Tetris-like games involving falling blocks.
+
+        Examples: crack-attack, frozen-bubble, netris
+
+    Board
+
+        Games played on a board.
+
+        Examples: phalanx, xshogi, xboard
+
+    Card
+
+        Games involving a deck of cards.
+
+        Examples: pysol, ace-of-penguins, xpat2
+
+    Puzzles
+
+        Tests of ingenuity and logic.
+
+        Examples: xmpuzzles, sgt-puzzles, enigma
+
+    Simulation
+
+        Simulations of the real world in all detail and complexity.
+
+        Examples: flightgear, torcs
+
+    Strategy
+
+        Games involving long-term strategic thinking.
+
+        Examples: wesnoth, widelands, netpanzer
+
+    Tools
+
+        Server browsers, configurators, editors, and other game-related tools that are not games themselves.
+
+        Examples: xqf, crystalspace
+
+    Toys
+
+        Amusements, eye-candy, entertaining demos, screen hacks (screensavers), etc.
+
+        Examples: xdesktopwaves, xphoon, xpenguins
+
+Help
+
+    programs that provide user documentation
+
+    Examples: debian-reference, apt-howto, dhelp
+
+Screen
+
+    Programs that affect the whole screen.
+
+    Saving
+
+        Tools for blanking the screen. Entries of screen hacks and configuration GUIs should go to other appropriate sections.
+
+        Examples: xscreensaver, xlockmore
+
+    Locking
+
+        Tools for locking the screen.
+
+        Examples: xscreensaver, xlockmore
+
+Window Managers
+
+    X window managers.
+
+    Examples: fluxbox, metacity, waimea
+
+FVWM Modules
+
+    FVWM-based window manager modules. As only modules related to the running window-manager are displayed, do not create subsections for specific window-managers.
+
+    Examples: fvwm, fvwm-gnome, fvwm95
+
+Window Maker
+
+    This section is reserved for wmaker as a special case.
+
+    All wmaker specific entries must go here.
+

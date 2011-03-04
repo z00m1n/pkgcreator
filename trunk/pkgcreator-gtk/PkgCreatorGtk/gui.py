@@ -1,10 +1,14 @@
+import sys
 import os
+import subprocess
 import gtk
+import gksu2
 import yaml
 import resources
 from tabgeneral import TabGeneral
 from tabfiles import TabFiles
 from tabrelationships import TabRelationships
+from tabmenu import TabMenu
 
 class GUI:
     def __init__(self):
@@ -18,6 +22,7 @@ class GUI:
         self.tabgeneral = TabGeneral(self.builder, self)
         self.tabrelationships = TabRelationships(self.builder, self)
         self.tabfiles = TabFiles(self.builder, self)
+        self.tabmenu = TabMenu(self.builder, self)
         
         #Dialogs
         self.about = self.builder.get_object("aboutdialog1")
@@ -58,6 +63,7 @@ class GUI:
             self.tabgeneral.clear_all()
             self.tabfiles.clear_all()
             self.tabrelationships.clear_all()
+            self.tabmenu.clear_all()
             self.actionsSave.set_sensitive(False)
             self.actionsPrjOpened.set_sensitive(False)
             #clear output
@@ -75,6 +81,7 @@ class GUI:
                             self.tabgeneral.from_dict(self.dict)
                             self.tabfiles.from_dict(self.dict)
                             self.tabrelationships.from_dict(self.dict)
+                            self.tabmenu.from_dict(self.dict)
                             self.actionsSave.set_sensitive(False)
                             self.actionsPrjOpened.set_sensitive(True)
                             self.filename = filename
@@ -94,6 +101,7 @@ class GUI:
             self.tabgeneral.populate_dict(self.dict)
             self.tabfiles.populate_dict(self.dict)
             self.tabrelationships.populate_dict(self.dict)
+            self.tabmenu.populate_dict(self.dict)
             with open(self.filename, 'w') as f:
                 yaml.dump(self.dict, f)
             self.actionsSave.set_sensitive(False)
@@ -127,9 +135,9 @@ class GUI:
     #PkgCreator, kwalify and lintian related
     
     def run_pkgcreator(self, widget, *event):
-        print "Run pkgcreator"
-        """if file exists, save it and run
-        else, warn user that he must save the file before creating the pkg"""
+        
+        gksu2.sudo('pkgcreator ' + self.filename)
+        
 
     #Private methods
 

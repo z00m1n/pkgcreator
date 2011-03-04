@@ -2,6 +2,8 @@
    -DONE: Use RESPONSE_OK for buttons and setting CAN/HAS DEFAULT to TRUE
 * TAB for treeviews
 * Use Arrow expanders in Relationships section
+* For the menu section entry, use checkboxes with recommended items
+  http://alioth.debian.org/docman/view.php/30046/2/menu-one-file.html#s3.5
 
 Design
 ======

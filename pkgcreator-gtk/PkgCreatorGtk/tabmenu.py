@@ -54,6 +54,7 @@ class TabMenu:
         maindict['menu']['requires_terminal'] = self.requiresTerminal.get_active()
         maindict['menu']['can_open_multiple_files'] = self.openMultipleFiles.get_active()
         maindict['menu']['expects_uris'] = self.expectsURIs.get_active()
+        maindict['menu']['needs'] = 'X11' #@todo: add this option in GUI
     
     def validate(self):
         pass

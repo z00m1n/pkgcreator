@@ -1,0 +1,41 @@
+depends:
+- {name: python, version: ''}
+- {name: python-yaml, version: ''}
+- {name: python-gtk2, version: ''}
+- {name: python-vte, version: ''}
+- {name: pkgcreator, version: null}
+files:
+- {dst: /usr/bin/pkgcreator-gtk, src: main.py}
+- {dst: /usr/share/pkgcreator-gtk/, src: data/*}
+- {dst: /usr/lib/python2.6/dist-packages/PkgCreatorGtk/, src: PkgCreatorGtk/*.py}
+- {dst: /usr/share/doc/pkgcreator-gtk/, src: doc/copyright}
+- {dst: /usr/share/doc/pkgcreator-gtk/, src: doc/changelog.Debian.gz}
+- {dst: /usr/share/doc/pkgcreator-gtk/, src: doc/changelog.gz}
+- {dst: /usr/share/man/man1/, src: man/pkgcreator-gtk.1.gz}
+- {dst: /usr/lib/python2.7/dist-packages/PkgCreatorGtk/, src: PkgCreatorGtk/*.py}
+general:
+  architecture: all
+  authors:
+  - {email: leandro.mattioli@gmail.com, name: Leandro Resende Mattioli}
+  homepage: http://code.google.com/p/pkgcreator
+  long_description: 'This tool features a .deb package generator that makes the creation
+
+    of menus, icons, DEBIAN control file and others easier, by using one
+
+    simple yaml file.
+
+    .
+
+    This package contains a GTK+ pkgcreator''s YAML files editor.'
+  maintainer: {email: leandro.mattioli@gmail.com, name: Leandro Resende Mattioli}
+  name: PkgCreator GTK Editor
+  package_name: pkgcreator-gtk
+  priority: optional
+  section: devel
+  short_description: GTK+ front-end for the pkgcreator utility
+  version: '0.1'
+menu: {can_open_multiple_files: false, command: pkgcreator-gtk, expects_uris: false,
+  icon: '', needs: X11, requires_terminal: false, section: Applications/Programming}
+predepends: []
+recommends: []
+suggests: []

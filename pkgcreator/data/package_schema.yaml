@@ -6,7 +6,7 @@ mapping:
     mapping:
       "package_name": {type: str, required: yes}
       "name": {type: str, required: yes}
-      "version": {type: number, required: yes}
+      "version": {type: str, required: yes}
       "architecture": {type: str, required: yes}
       "short_description": {type: str, required: yes}
       "long_description": {type: str, required: yes}
@@ -35,7 +35,8 @@ mapping:
       "can_open_multiple_files": {type: bool}
       "expects_uris": {type: bool}
       "requires_terminal": {type: bool}
-      "section": {type: str}
+      "section": {type: str, required: yes}
+      "needs": {type: str, required: yes}
   "depends":
     type: seq
     sequence:
@@ -57,7 +58,7 @@ mapping:
         mapping:
           "name": {type: str, required: yes, unique: yes}
           "version": {type: str}
-  "pre_depends":
+  "predepends":
     type: seq
     sequence:
         - type: map

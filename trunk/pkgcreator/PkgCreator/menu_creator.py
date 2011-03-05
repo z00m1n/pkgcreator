@@ -8,7 +8,7 @@ APPS_ENTRY_PATH = 'usr/share/applications/%s.desktop'
 APP_REG_ENTRY_PATH = 'usr/share/application-registry/%s.applications'
 MENU_ENTRY_PATH = 'usr/share/menu/%s'
 POSTINST = POSTRM = '''#!/bin/bash
-if test -x /usr/bin/update-menus; then update-menus; fi
+set -e; if test -x /usr/bin/update-menus; then update-menus; fi
 echo OK'''
 FREEDESKTOP_BOOLEAN = {}
 for x in ('no_display', 'hidden', 'startup_notify'):
@@ -65,12 +65,12 @@ class MenuCreator(object):
         content += "\t" + 'command="%s"' % menu['command'] + " \\\n"
         content += "\t" + 'title="%s"' % general['name'] + " \\\n"
         content += "\t" + 'longtitle="%s"' % general['short_description'] + " \\\n"
-        optional = ('needs', 'section', 'hints')
-        for o in optional:
-            if o in keys:
-                content += "\t" + o + '="%s"' % menu[o] + " \\\n"
-        if 'icon' in keys:
+        content += "\t" + 'needs="%s"' % menu['needs'] + " \\\n"
+        if 'hints' in keys:
+            content += "\t" + 'hints="%s"' % menu['hints'] + " \\\n"
+        if 'icon' in keys and menu['icon']:
             content += "\t" + 'icon="/usr/share/pixmaps/%s.xpm"' % general['package_name']
+        content += "\t" + 'section="%s"' % menu['section']
         entries.append({'path': path, 'content': content})
         #=============================================================================
         # Creating /usr/share/applications/<<package_name>>.desktop (Freedesktop)
@@ -91,7 +91,7 @@ class MenuCreator(object):
             if o in keys:
                 content += FREEDESKTOP_OTHER[o] + "=" + str(menu[b]).lower() + "\n"
         #Icon
-        if 'icon' in keys:
+        if 'icon' in keys and menu['icon']:
             content += "Icon=%s" % general['package_name']
         entries.append({'path': path, 'content': content})
         c.reset()

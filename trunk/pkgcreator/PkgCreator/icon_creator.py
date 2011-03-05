@@ -14,6 +14,8 @@ class IconCreator(object):
         self.path = iconpath
         self.package_name = package_name
     def create(self):
+        if not self.path:
+            return
         icons = []
         self.icon = Image.open(self.path)
         """Creating pixmap... PIL doesn't support XPM creation

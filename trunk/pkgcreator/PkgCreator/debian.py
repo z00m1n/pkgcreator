@@ -49,11 +49,12 @@ class DebianGenerator(AbstractGenerator):
             if 'icon' in self.info['menu'].keys():
                 c.title(MSG_ICONS)
                 icons = self.icon_creator.create()
-                for i in icons:
-                    path = os.path.join(self.outputdir, i['path'])
-                    c.eprint('- Creating icon %s ...' % path, indent=1)
-                    utils.create_path(os.path.dirname(path))
-                    i['img'].save(path)
+                if icons:
+                    for i in icons:
+                        path = os.path.join(self.outputdir, i['path'])
+                        c.eprint('- Creating icon %s ...' % path, indent=1)
+                        utils.create_path(os.path.dirname(path))
+                        i['img'].save(path)
         #Creating Debian-related files
         c.title('Generating Debian stuff')
         if 'menu' in self.info.keys():
@@ -95,7 +96,7 @@ class DebianGenerator(AbstractGenerator):
                     items = ''
                     for d in self.info[r]:
                         items += d['name']
-                        if 'version' in d.keys():
+                        if 'version' in d.keys() and d['version']:
                             items += '(' + d['version'] + ')'
                         items += ', '
                     items = items[:-2] #remove last ,<space>

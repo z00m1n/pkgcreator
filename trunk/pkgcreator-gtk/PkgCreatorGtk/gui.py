@@ -12,6 +12,8 @@ from tabmenu import TabMenu
 
 PKGCREATOR_MSG = 'In order to create proper Debian packages root privileges ' \
                  'are needed.'
+CONFIRM_MSG1 = 'Save changes to project %s before proceeding?'
+CONFIRM_MSG2 = 'Save changes before proceeding?'
 
 class GUI:
     def __init__(self):
@@ -73,8 +75,9 @@ class GUI:
             self.tabfiles.clear_all()
             self.tabrelationships.clear_all()
             self.tabmenu.clear_all()
-            self.actionsSave.set_sensitive(False)
-            self.actionsPrjOpened.set_sensitive(False)
+            self.actionSave.set_sensitive(False)
+            self.actionSaveAs.set_sensitive(False)
+            self.actionRunPkgCreator.set_sensitive(False)
             #clear output
 
     def open(self, widget, *event):
@@ -91,8 +94,9 @@ class GUI:
                             self.tabfiles.from_dict(self.dict)
                             self.tabrelationships.from_dict(self.dict)
                             self.tabmenu.from_dict(self.dict)
-                            self.actionsSave.set_sensitive(False)
-                            self.actionsPrjOpened.set_sensitive(True)
+                            self.actionSave.set_sensitive(False)
+                            self.actionRunPkgCreator.set_sensitive(True)
+                            self.actionSaveAs.set_sensitive(True)
                             self.filename = filename
                         except Exception as e:
                             #@todo: Put a msg box here
@@ -113,7 +117,7 @@ class GUI:
             self.tabmenu.populate_dict(self.dict)
             with open(self.filename, 'w') as f:
                 yaml.dump(self.dict, f)
-            self.actionsSave.set_sensitive(False)
+            self.actionSave.set_sensitive(False)
         else:
             self.save_as()
 
@@ -131,7 +135,8 @@ class GUI:
                 self.msgdiagErrorFile.hide()
 
     def data_changed(self, widget, *event):
-        self.actionsSave.set_sensitive(True)
+        self.actionSave.set_sensitive(True)
+        self.actionSaveAs.set_sensitive(True)
         
     def expander_activated(self, widget, *event):
         self.tabrelationships.expander_activated(widget)
@@ -169,7 +174,11 @@ class GUI:
             self.window.set_title(title + '<untitled project>')
     
     def __warn_user(self):
-        if self.actionsSave.get_sensitive():    #or if document.has_changes()
+        if self.filename:
+            self.msgdiagSaveChanges.set_markup(CONFIRM_MSG1 % os.path.basename(self.filename))
+        else:
+            self.msgdiagSaveChanges.set_markup(CONFIRM_MSG2)
+        if self.actionSave.get_sensitive():                     #or if document.has_changes()
             response = self.msgdiagSaveChanges.run()
             self.msgdiagSaveChanges.hide()
             if response == gtk.RESPONSE_NO: return True         #proceed without saving
@@ -185,11 +194,9 @@ class GUI:
         filefilter.add_mime_type('application/x-yaml')
 
     def __config_actions(self):
-        self.actionsSave = gtk.ActionGroup("SaveCommands")
-        self.actionsSave.add_action(self.builder.get_object("actionSave"))
-        self.actionsSave.add_action(self.builder.get_object("actionSaveAs"))
-        self.actionsSave.set_sensitive(False)
-        #With a project opened: Run pkgcreator, validate document, run lintian, etc...
-        self.actionsPrjOpened = gtk.ActionGroup("ProjectOpened")
-        self.actionsPrjOpened.add_action(self.builder.get_object("actionRunPkgCreator"))
-        self.actionsPrjOpened.set_sensitive(False)
+        self.actionSave = self.builder.get_object("actionSave")
+        self.actionSaveAs = self.builder.get_object("actionSaveAs")
+        self.actionRunPkgCreator = self.builder.get_object("actionRunPkgCreator")
+        self.actionSave.set_sensitive(False)
+        self.actionSaveAs.set_sensitive(False)
+        self.actionRunPkgCreator.set_sensitive(False)

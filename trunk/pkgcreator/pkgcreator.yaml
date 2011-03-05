@@ -1,34 +1,35 @@
+depends:
+- {name: python, version: ''}
+- {name: python-imaging, version: ''}
+- {name: python-yaml, version: ''}
+- {name: kwalify, version: ''}
+files:
+- {dst: /usr/share/pkgcreator/, src: data/package_schema.yaml}
+- {dst: /usr/lib/python2.6/dist-packages/PkgCreator/, src: PkgCreator/*.py}
+- {dst: /usr/bin/pkgcreator, src: pkgcreator.py}
+- {dst: /usr/share/man/man1/, src: man/pkgcreator.1.gz}
+- {dst: /usr/share/doc/pkgcreator/, src: doc/copyright}
+- {dst: /usr/share/doc/pkgcreator/, src: doc/changelog.Debian.gz}
+- {dst: /usr/share/doc/pkgcreator/, src: doc/changelog.gz}
+- {dst: /usr/lib/python2.7/dist-packages/PkgCreator/, src: PkgCreator/*.py}
 general:
-  package_name: pkgcreator
-  name: PkgCreator
-  version: 0.1
   architecture: all
-  maintainer:
-    name: Leandro Resende Mattioli
-    email: leandro.mattioli@gmail.com
   authors:
-    - {name: Leandro Resende Mattioli, email: leandro.mattioli@gmail.com}
-  short_description: Creates Debian binary packages
-  long_description: |
-    This tool features a .deb package generator that makes the creation
-    of menus, icons, DEBIAN control file and others easier, by using one simple
-    yaml file.
-    
-    It's a work in progress and currently not all the options and rules of the 
-    Debian package system are available.
+  - {email: leandro.mattioli@gmail.com, name: Leandro Resende Mattioli}
+  homepage: http://code.google.com/p/pkgcreator
+  long_description: "This tool features a .deb package generator that makes the creation\n\
+    of menus, icons, DEBIAN control file and others easier, by using one simple\n\
+    yaml file.\n\nIt's a work in progress and currently not all the options and rules\
+    \ of the \nDebian package system are available.\n"
+  maintainer: {email: leandro.mattioli@gmail.com, name: Leandro Resende Mattioli}
+  name: PkgCreator
+  package_name: pkgcreator
   priority: optional
   section: devel
-  homepage: http://code.google.com/p/pkgcreator
-depends:
-  - {name: python}
-  - {name: python-imaging}
-  - {name: python-yaml}
-  - {name: kwalify}
-files:
-  - {src: data/package_schema.yaml, dst: /usr/share/pkgcreator/}
-  - {src: PkgCreator/*.py, dst: /usr/lib/python2.6/dist-packages/PkgCreator/}
-  - {src: pkgcreator.py, dst: /usr/bin/pkgcreator}
-  - {src: man/pkgcreator.1.gz, dst: /usr/share/man/man1/}
-  - {src: doc/copyright, dst: /usr/share/doc/pkgcreator/}
-  - {src: doc/changelog.Debian.gz, dst: /usr/share/doc/pkgcreator/}
-  - {src: doc/changelog.gz, dst: /usr/share/doc/pkgcreator/}
+  short_description: Creates Debian binary packages
+  version: '0.1'
+menu: {can_open_multiple_files: false, command: '', expects_uris: false, icon: '',
+  needs: X11, requires_terminal: false, section: ''}
+predepends: []
+recommends: []
+suggests: []

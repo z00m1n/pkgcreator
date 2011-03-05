@@ -16,7 +16,7 @@ def main():
     parser.add_argument('yaml_file', help='specifies the package markup file.')
     args = parser.parse_args()
     original_dir = os.path.abspath(os.path.curdir)
-    os.chdir(os.path.abspath(os.path.dirname(args.yamlfile)))
+    os.chdir(os.path.abspath(os.path.dirname(args.yaml_file)))
     filename = os.path.basename(args.yaml_file)
     d = DebianGenerator(filename, args.outputdir, args.color)
     d.parse_pkg_markup()

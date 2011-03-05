@@ -1,9 +1,18 @@
-* Double-clicking in file selection dialogs
-   -DONE: Use RESPONSE_OK for buttons and setting CAN/HAS DEFAULT to TRUE
-* TAB for treeviews
-* Use Arrow expanders in Relationships section
-* For the menu section entry, use checkboxes with recommended items
+Planned changes
+===============
+
+1) TAB for navigating treeviews fields
+2) pkgcreator launcher user feedback:
+    * spinner "Launching pkgcreator"
+    * process (as root) and get real time output
+    * add for pkgcreator an option --with-gui for integration purposes
+[DONE] 3) Use expanders in Relationships section
+    * control "expand" property in activate events (SLOW!)
+4) For the menu section entry, use checkboxes with recommended items
   http://alioth.debian.org/docman/view.php/30046/2/menu-one-file.html#s3.5
+[DONE] 5) Double-clicking in file selection dialogs
+    * use RESPONSE_OK for buttons and setting CAN/HAS DEFAULT to TRUE
+6) Add icons in tabs and obrigatory fields
 
 Design
 ======
@@ -11,4 +20,3 @@ Design
 Use observers for "open" file and "new" file
   -> Tab handlers may automatically fill the fields or clear
      them.
-  -> Add generic treeview handler

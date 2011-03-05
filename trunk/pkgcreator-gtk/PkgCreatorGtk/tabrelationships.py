@@ -1,4 +1,5 @@
 import subprocess
+import gtk
 from PkgCreator.constants import DEBIAN_SECTIONS
 from editabletreeview import EditableTreeView
 
@@ -7,12 +8,19 @@ class TabRelationships:
         self.builder = builder
         self.gui = gui
         g = self.builder.get_object
+        self.main_widget = g("vboxRelationships")
         columns = ['Name', 'Version']
         self.__maskedvars = {}
         self.regions = ['Depends', 'Recommends', 'Suggests', 'PreDepends']
         for r in self.regions:
             self[r.lower()] = EditableTreeView(r, columns, gui)
-            g("alignment" + r).add(self[r.lower()].get_main_widget())
+            g("expander" + r).add(self[r.lower()].get_main_widget())
+
+    def expander_activated(self, widget):
+        self.main_widget.set_child_packing(
+              widget, expand=not widget.get_expanded(), fill=True, 
+              padding=0, pack_type=gtk.PACK_START
+        )
 
     def config(self):
         pass
@@ -46,6 +54,7 @@ class TabRelationships:
     def clear_all(self):
         for r in self.regions:
             self[r.lower()].get_model().clear()
+    
     
     def __setitem__(self, key, value):
         self.__maskedvars[key] = value

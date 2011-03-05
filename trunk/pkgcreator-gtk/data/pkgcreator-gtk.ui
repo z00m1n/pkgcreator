@@ -79,9 +79,13 @@
   <object class="GtkDialog" id="dialogRunning">
     <property name="can_focus">False</property>
     <property name="border_width">5</property>
+    <property name="title" translatable="yes">Running external application...</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
+    <property name="deletable">False</property>
     <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox12">
+      <object class="GtkVBox" id="dialog-vbox3">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="spacing">2</property>
@@ -91,10 +95,20 @@
             <property name="can_focus">False</property>
             <property name="layout_style">end</property>
             <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
+              <object class="GtkButton" id="buttonRunningDiagClose">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="sensitive">False</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <property name="use_stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -105,13 +119,26 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkLabel" id="label11">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="label" translatable="yes">Running pkgcreator...</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">2</property>
+            <property name="position">1</property>
+          </packing>
         </child>
         <child>
           <placeholder/>
         </child>
       </object>
     </child>
+    <action-widgets>
+      <action-widget response="-7">buttonRunningDiagClose</action-widget>
+    </action-widgets>
   </object>
   <object class="GtkFileChooserDialog" id="filechooserOpen">
     <property name="can_focus">False</property>
@@ -520,6 +547,7 @@
   <object class="GtkTextBuffer" id="textbufferLongDescription">
     <signal name="changed" handler="data_changed" swapped="no"/>
   </object>
+  <object class="GtkTextBuffer" id="textbufferOutput"/>
   <object class="GtkWindow" id="window1">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">pkgcreator-gtk</property>
@@ -1517,31 +1545,24 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                     <property name="left_padding">5</property>
                     <property name="right_padding">5</property>
                     <child>
-                      <object class="GtkVBox" id="vbox6">
+                      <object class="GtkVBox" id="vboxRelationships">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">5</property>
                         <child>
-                          <object class="GtkFrame" id="frame4">
+                          <object class="GtkExpander" id="expanderDepends">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label_xalign">0</property>
+                            <property name="can_focus">True</property>
+                            <property name="expanded">True</property>
+                            <signal name="activate" handler="expander_activated" swapped="no"/>
                             <child>
-                              <object class="GtkAlignment" id="alignmentDepends">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="left_padding">12</property>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                              </object>
+                              <placeholder/>
                             </child>
                             <child type="label">
-                              <object class="GtkLabel" id="label9">
+                              <object class="GtkLabel" id="label1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Depends&lt;/b&gt;</property>
-                                <property name="use_markup">True</property>
+                                <property name="label" translatable="yes">Depends</property>
                               </object>
                             </child>
                           </object>
@@ -1552,91 +1573,67 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkFrame" id="frame5">
+                          <object class="GtkExpander" id="expanderRecommends">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label_xalign">0</property>
+                            <property name="can_focus">True</property>
+                            <signal name="activate" handler="expander_activated" swapped="no"/>
                             <child>
-                              <object class="GtkAlignment" id="alignmentRecommends">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="left_padding">12</property>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                              </object>
+                              <placeholder/>
                             </child>
                             <child type="label">
-                              <object class="GtkLabel" id="label10">
+                              <object class="GtkLabel" id="label7">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Recommends&lt;/b&gt;</property>
-                                <property name="use_markup">True</property>
+                                <property name="label" translatable="yes">Recommends</property>
                               </object>
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
+                            <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkFrame" id="frame6">
+                          <object class="GtkExpander" id="expanderSuggests">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label_xalign">0</property>
+                            <property name="can_focus">True</property>
+                            <signal name="activate" handler="expander_activated" swapped="no"/>
                             <child>
-                              <object class="GtkAlignment" id="alignmentSuggests">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="left_padding">12</property>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                              </object>
+                              <placeholder/>
                             </child>
                             <child type="label">
-                              <object class="GtkLabel" id="label11">
+                              <object class="GtkLabel" id="label9">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Suggests&lt;/b&gt;</property>
-                                <property name="use_markup">True</property>
+                                <property name="label" translatable="yes">Suggests</property>
                               </object>
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
+                            <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">2</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkFrame" id="frame7">
+                          <object class="GtkExpander" id="expanderPreDepends">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="label_xalign">0</property>
+                            <property name="can_focus">True</property>
+                            <signal name="activate" handler="expander_activated" swapped="no"/>
                             <child>
-                              <object class="GtkAlignment" id="alignmentPreDepends">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="left_padding">12</property>
-                                <child>
-                                  <placeholder/>
-                                </child>
-                              </object>
+                              <placeholder/>
                             </child>
                             <child type="label">
-                              <object class="GtkLabel" id="label12">
+                              <object class="GtkLabel" id="label10">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Pre-Depends&lt;/b&gt;</property>
-                                <property name="use_markup">True</property>
+                                <property name="label" translatable="yes">Pre-Depends</property>
                               </object>
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
+                            <property name="expand">False</property>
                             <property name="fill">True</property>
                             <property name="position">3</property>
                           </packing>

@@ -2,13 +2,16 @@ import sys
 import os
 import subprocess
 import gtk
-import gksu2
+import vte
 import yaml
 import resources
 from tabgeneral import TabGeneral
 from tabfiles import TabFiles
 from tabrelationships import TabRelationships
 from tabmenu import TabMenu
+
+PKGCREATOR_MSG = 'In order to create proper Debian packages root privileges ' \
+                 'are needed.'
 
 class GUI:
     def __init__(self):
@@ -26,6 +29,7 @@ class GUI:
         
         #Dialogs
         self.about = self.builder.get_object("aboutdialog1")
+        self.diagRunning = self.builder.get_object("dialogRunning")
         self.msgdiagSaveChanges = self.builder.get_object("msgdiagSaveChanges")
         self.msgdiagErrorFile = self.builder.get_object("msgdiagErrorFile")
         #File dialogs related
@@ -33,10 +37,15 @@ class GUI:
         self.fileDiagSave = self.builder.get_object("filechooserSave")
         self.buttonDiagSave = self.builder.get_object("buttonDiagSave")
         self.buttonDiagOpen = self.builder.get_object("buttonDiagOpen")
+        #Other widgets
+        self.buttonRunningDiagClose = self.builder.get_object("buttonRunningDiagClose")
+        self.terminal = vte.Terminal()
+        self.terminal.connect("child-exited", self.pkgcreator_ended)
+        self.terminal.show()
+        self.diagRunning.get_content_area().pack_start(self.terminal)
         #Other properties
         self.filename = None
         self.dict = {}
-        #Config procedure
         self.__config_file_choosing()
         self.tabgeneral.config()
         self.__config_actions()
@@ -123,6 +132,9 @@ class GUI:
 
     def data_changed(self, widget, *event):
         self.actionsSave.set_sensitive(True)
+        
+    def expander_activated(self, widget, *event):
+        self.tabrelationships.expander_activated(widget)
 
     #History related
 
@@ -135,9 +147,17 @@ class GUI:
     #PkgCreator, kwalify and lintian related
     
     def run_pkgcreator(self, widget, *event):
+        self.terminal.reset(True, True)
+        self.buttonRunningDiagClose.set_sensitive(False)
+        self.terminal.fork_command()
+        args = (PKGCREATOR_MSG, self.filename)
+        cmd = "gksu -m '%s' 'pkgcreator -c %s';exit\n" % args
+        self.terminal.feed_child(cmd) 
+        self.diagRunning.run()
+        self.diagRunning.hide()
         
-        gksu2.sudo('pkgcreator ' + self.filename)
-        
+    def pkgcreator_ended(self, widget, *event):
+        self.buttonRunningDiagClose.set_sensitive(True)
 
     #Private methods
 

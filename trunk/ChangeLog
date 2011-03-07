@@ -1,9 +1,258 @@
-2010-11-10  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+2011-02-28 23:26  leandro.mattioli
 
-	* pkgcreator.userprefs: 
+	* pkgcreator-doc/copyright, pkgcreator-doc/generate.sh,
+	  pkgcreator-doc/generate_man.sh,
+	  pkgcreator-doc/generate_quickstart.sh,
+	  pkgcreator-doc/pkgcreator-doc.pidb,
+	  pkgcreator-doc/pkgcreator_nroff.1, pkgcreator-gtk/PkgCreatorGtk,
+	  pkgcreator-gtk/PkgCreatorGtk/__init__.py,
+	  pkgcreator-gtk/PkgCreatorGtk/documentform.py,
+	  pkgcreator-gtk/PkgCreatorGtk/gui.py,
+	  pkgcreator-gtk/PkgCreatorGtk/resources.py,
+	  pkgcreator-gtk/data/pkgcreator-gtk.ui,
+	  pkgcreator-gtk/document.py, pkgcreator-gtk/gui.py,
+	  pkgcreator-gtk/main.py, pkgcreator-gtk/pkgcreator-gtk.mdproj,
+	  pkgcreator-gtk/pkgcreator-gtk.pidb, pkgcreator.sln,
+	  pkgcreator.userprefs, pkgcreator/PkgCreator/constants.py,
+	  pkgcreator/data/architectures.txt, pkgcreator/data/sections.txt,
+	  pkgcreator/pkgcreator.mdproj, pkgcreator/pkgcreator.pidb:
+	  Interface improved.
 
-2010-10-27  Leandro Resende Mattioli  <leandro.mattioli@gmail.com>
+2011-02-28 17:55  leandro.mattioli
 
-	* Attempt to make a generic WebKitGUI:
-        Pointer to functions in a HashMap not yet supported by vala.
+	* pkgcreator/doc, pkgcreator/doc/changelog.Debian.gz,
+	  pkgcreator/doc/changelog.gz, pkgcreator/doc/copyright:
+	  Changelog/copyright files added.
+
+2011-02-28 17:54  leandro.mattioli
+
+	* pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/console.py,
+	  pkgcreator/PkgCreator/debian.py, pkgcreator/PkgCreator/utils.py,
+	  pkgcreator/TODO, pkgcreator/man, pkgcreator/man/pkgcreator.1.gz,
+	  pkgcreator/pkgcreator.pidb, pkgcreator/pkgcreator.yaml: Package
+	  validated by lintian utility.
+
+2011-02-17 23:08  leandro.mattioli
+
+	* pkgcreator-gtk, pkgcreator-gtk/data,
+	  pkgcreator-gtk/data/pkgcreator-gtk.ui, pkgcreator-gtk/dev_doc,
+	  pkgcreator-gtk/dev_doc/SPECIFICATION.txt,
+	  pkgcreator-gtk/document.py, pkgcreator-gtk/gui.py,
+	  pkgcreator-gtk/main.py, pkgcreator-gtk/pkgcreator-gtk.mdproj,
+	  pkgcreator-gtk/pkgcreator-gtk.pidb: GUI prototype added.
+
+2011-02-13 16:54  leandro.mattioli
+
+	* guieditor-gtk, pkgcreator.sln, pkgcreator.userprefs,
+	  pkgcreator/pkgcreator.pidb: Old GUI editor project removed.
+
+2010-11-10 10:07  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/PkgCreator/menu_creator.py,
+	  pkgcreator/pkgcreator.yaml: POSTRM and POSTINST updated.
+
+2010-11-10 09:52  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/PkgCreator/menu_creator.py: *
+	  PkgCreator/menu_creator.py: POSTINST and POSTRM updated
+
+2010-11-10 09:41  leandro.mattioli
+
+	* ChangeLog, pkgcreator.userprefs, pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/console.py, pkgcreator/pkgcreator.pidb:
+	  Colorama init function is called only if color output is set.
+
+2010-11-10 09:31  leandro.mattioli
+
+	* pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/console.py,
+	  pkgcreator/PkgCreator/debian.py, pkgcreator/pkgcreator.mdproj,
+	  pkgcreator/pkgcreator.py, pkgcreator/setup.py: Color output
+	  optional.
+	  UTF-8 control files support.
+
+2010-10-27 17:50  leandro.mattioli
+
+	* guieditor-gtk/ChangeLog, guieditor-gtk/Utils.vala,
+	  guieditor-gtk/WebKitGUI.vala, guieditor-gtk/WebKitGtkGUI.vala,
+	  guieditor-gtk/example, guieditor-gtk/example/gui.css,
+	  guieditor-gtk/example/gui.html, guieditor-gtk/example/gui.js,
+	  guieditor-gtk/guieditor-gtk.mdproj, guieditor-gtk/webkitgui,
+	  guieditor-gtk/webkitgui/WebKitGUI.vala,
+	  guieditor-gtk/webkitgui/WebKitGtkGUI.vala,
+	  guieditor-gtk/webkitgui/webkitgui_test.vala,
+	  guieditor-gtk/webkitgui_test.vala: GUI Editor project added to
+	  the repository.
+
+2010-10-27 16:24  leandro.mattioli
+
+	* ChangeLog, guieditor-gtk, guieditor-gtk/ChangeLog,
+	  guieditor-gtk/WebKitGUI.vala, guieditor-gtk/WebKitGtkGUI.vala,
+	  guieditor-gtk/guieditor-gtk.mdproj,
+	  guieditor-gtk/webkitgui_test.vala, pkgcreator-doc/ChangeLog,
+	  pkgcreator-doc/pkgcreator-doc.mdproj, pkgcreator.sln,
+	  pkgcreator.userprefs: Attempt to make a generic WebKitGUI.
+	  Pointer to functions in a HashMap not yet supported by vala.
+
+2010-10-27 13:35  leandro.mattioli
+
+	* pkgcreator-doc, pkgcreator-doc/doc, pkgcreator-doc/doc/images,
+	  pkgcreator-doc/doc/images/callouts,
+	  pkgcreator-doc/doc/images/callouts/1.png,
+	  pkgcreator-doc/doc/images/callouts/2.png,
+	  pkgcreator-doc/doc/images/callouts/3.png,
+	  pkgcreator-doc/doc/images/callouts/4.png,
+	  pkgcreator-doc/doc/images/callouts/5.png,
+	  pkgcreator-doc/doc/images/callouts/6.png,
+	  pkgcreator-doc/doc/images/callouts/7.png,
+	  pkgcreator-doc/doc/images/ubuntu_software_center.png,
+	  pkgcreator-doc/doc/style.css, pkgcreator-doc/generate.sh,
+	  pkgcreator-doc/pkgcreator-doc.mdproj,
+	  pkgcreator-doc/pkgcreator-doc.pidb,
+	  pkgcreator-doc/quickstart.xml, pkgcreator-doc/style.xsl,
+	  pkgcreator-doc/xml2wiki.pl: Docbook documentation project added
+	  to repository
+
+2010-10-27 13:31  leandro.mattioli
+
+	* pkgcreator.sln, pkgcreator.userprefs: Trying to add entire
+	  solution to repository
+
+2010-10-26 03:48  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/example/package.yaml, pkgcreator/pkgcreator.yaml:
+	  md5sum bug corrected.
+
+2010-10-26 01:04  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/TODO, pkgcreator/main.py,
+	  pkgcreator/pkgcreator.mdproj, pkgcreator/pkgcreator.py,
+	  pkgcreator/pkgcreator.yaml, pkgcreator/setup.py: Script distutils
+	  criado.
+
+2010-10-25 18:10  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/PkgCreator/resources.py, pkgcreator/TODO,
+	  pkgcreator/example/files/foobar.sh,
+	  pkgcreator/example/package.yaml, pkgcreator/main.py,
+	  pkgcreator/pkgcreator.mdproj, pkgcreator/pkgcreator.yaml: Added
+	  package markup for pkgcreator itself.
+	  Improving example.
+
+2010-10-25 16:33  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/PkgCreator/utils.py,
+	  pkgcreator/TODO, pkgcreator/example/files/foobar.png,
+	  pkgcreator/example/package.yaml, pkgcreator/pkgcreator.mdproj:
+	  glob wildcards support added.
+
+2010-10-25 16:14  leandro.mattioli
+
+	* pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/console.py,
+	  pkgcreator/PkgCreator/menu_creator.py,
+	  pkgcreator/PkgCreator/resources.py,
+	  pkgcreator/PkgCreator/utils.py,
+	  pkgcreator/PkgCreator/validator.py, pkgcreator/TODO,
+	  pkgcreator/data, pkgcreator/data/package_schema.yaml,
+	  pkgcreator/example/package.yaml, pkgcreator/pkgcreator.mdproj:
+	  Validation added.
+
+2010-10-25 13:48  leandro.mattioli
+
+	* pkgcreator/ChangeLog: Console transformed into a singleton class.
+
+2010-10-25 13:47  leandro.mattioli
+
+	* pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/console.py,
+	  pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/PkgCreator/menu_creator.py,
+	  pkgcreator/PkgCreator/utils.py,
+	  pkgcreator/PkgCreator/validator.py, pkgcreator/TODO,
+	  pkgcreator/example/package.yaml, pkgcreator/pkgcreator.mdproj:
+	  Change console to singleton class.
+
+2010-10-25 03:00  leandro.mattioli
+
+	* pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/console.py,
+	  pkgcreator/PkgCreator/debian.py, pkgcreator/TODO: Example Debian
+	  package successfully created.
+
+2010-10-25 02:34  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/PkgCreator/utils.py, pkgcreator/TODO,
+	  pkgcreator/example/package.yaml: Control file generation added.
+
+2010-10-25 01:18  leandro.mattioli
+
+	* pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/debian.py, pkgcreator/PkgCreator/utils.py,
+	  pkgcreator/TODO: md5sum and installed size calculations added
+
+2010-10-25 00:13  leandro.mattioli
+
+	* pkgcreator/ChangeLog, pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/PkgCreator/utils.py: Add postinst and postrm commands
+	  to update menus.
+
+2010-10-24 23:50  leandro.mattioli
+
+	* pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/console.py,
+	  pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/PkgCreator/icon_creator.py,
+	  pkgcreator/PkgCreator/menu_creator.py,
+	  pkgcreator/PkgCreator/utils.py, pkgcreator/TODO,
+	  pkgcreator/pkgcreator.mdproj: Console messages improved.
+
+2010-10-24 22:41  leandro.mattioli
+
+	* pkgcreator/ChangeLog,
+	  pkgcreator/PkgCreator/abstract_generator.py,
+	  pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/PkgCreator/icon_creator.py,
+	  pkgcreator/PkgCreator/menu_creator.py,
+	  pkgcreator/PkgCreator/utils.py, pkgcreator/TODO,
+	  pkgcreator/example/files/foobar, pkgcreator/example/package.yaml,
+	  pkgcreator/main.py, pkgcreator/pkgcreator.mdproj: Icons support
+	  added.
+
+2010-10-24 19:05  leandro.mattioli
+
+	* pkgcreator/PkgCreator/deb_creator.py,
+	  pkgcreator/PkgCreator/debian.py,
+	  pkgcreator/PkgCreator/icon_creator.py,
+	  pkgcreator/PkgCreator/menu_creator.py,
+	  pkgcreator/example/package.yaml, pkgcreator/main.py,
+	  pkgcreator/pkgcreator.mdproj: Menu creator added.
+
+2010-10-24 13:10  leandro.mattioli
+
+	* pkgcreator/PkgCreator, pkgcreator/PkgCreator/__init__.py,
+	  pkgcreator/PkgCreator/deb_creator.py,
+	  pkgcreator/PkgCreator/icon_creator.py,
+	  pkgcreator/PkgCreator/menu_creator.py, pkgcreator/example,
+	  pkgcreator/example/files, pkgcreator/example/files/foobar.svg,
+	  pkgcreator/example/package.yaml, pkgcreator/main.py,
+	  pkgcreator/pkgcreator.mdproj: Transfer to Google Code.
+
+2010-10-24 13:10  leandro.mattioli
+
+	* pkgcreator: Transfer to Google Code.
+
+2010-10-24 13:08  
+
+	* .: Initial directory structure.
 

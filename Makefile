@@ -10,6 +10,9 @@ doc:
 man:
 	cd pkgcreator-doc/man && ./generate_man.sh
 
+changelog:
+	svn2cl
+
 build_dir:
 	mkdir -p build/
 

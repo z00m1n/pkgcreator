@@ -4,6 +4,7 @@ import subprocess
 import gtk
 import vte
 import yaml
+import copy
 import resources
 from tabgeneral import TabGeneral
 from tabfiles import TabFiles
@@ -51,6 +52,7 @@ class GUI:
         self.__config_file_choosing()
         self.tabgeneral.config()
         self.__config_actions()
+        self.__update_title()
 
     def show(self):
         self.window.show_all()
@@ -86,27 +88,10 @@ class GUI:
             self.fileDiagOpen.hide()
             if response == gtk.RESPONSE_OK:
                 filename = self.fileDiagOpen.get_filename()
-                if filename and filename.endswith(".yaml"):
-                    with open(filename) as f:
-                        try:
-                            self.dict = yaml.load(f)
-                            self.tabgeneral.from_dict(self.dict)
-                            self.tabfiles.from_dict(self.dict)
-                            self.tabrelationships.from_dict(self.dict)
-                            self.tabmenu.from_dict(self.dict)
-                            self.actionSave.set_sensitive(False)
-                            self.actionRunPkgCreator.set_sensitive(True)
-                            self.actionSaveAs.set_sensitive(True)
-                            self.filename = filename
-                        except Exception as e:
-                            #@todo: Put a msg box here
-                            print "INVALID FILE!"
-                            print e
-                        finally:
-                            self.__update_title()
-                else:
-                    self.msgdiagErrorFile.run()
-                    self.msgdiagErrorFile.hide()
+                self.load_file(filename)
+            else:
+                self.msgdiagErrorFile.run()
+                self.msgdiagErrorFile.hide()
 
     def save(self, widget=None, *event):
         if self.filename:
@@ -115,6 +100,7 @@ class GUI:
             self.tabfiles.populate_dict(self.dict)
             self.tabrelationships.populate_dict(self.dict)
             self.tabmenu.populate_dict(self.dict)
+            self.dict = self.__remove_blank_entries(self.dict)
             with open(self.filename, 'w') as f:
                 yaml.dump(self.dict, f)
             self.actionSave.set_sensitive(False)
@@ -137,6 +123,7 @@ class GUI:
     def data_changed(self, widget, *event):
         self.actionSave.set_sensitive(True)
         self.actionSaveAs.set_sensitive(True)
+        self.__update_title(False)
         
     def expander_activated(self, widget, *event):
         self.tabrelationships.expander_activated(widget)
@@ -164,10 +151,53 @@ class GUI:
     def pkgcreator_ended(self, widget, *event):
         self.buttonRunningDiagClose.set_sensitive(True)
 
-    #Private methods
+    #Services for cmd
 
-    def __update_title(self):
+    def load_file(self, filename):
+        if filename and filename.endswith(".yaml"):
+            with open(filename) as f:
+                try:
+                    self.dict = yaml.load(f)
+                    self.tabgeneral.from_dict(self.dict)
+                    self.tabfiles.from_dict(self.dict)
+                    self.tabrelationships.from_dict(self.dict)
+                    self.tabmenu.from_dict(self.dict)
+                    self.actionSave.set_sensitive(False)
+                    self.actionRunPkgCreator.set_sensitive(True)
+                    self.actionSaveAs.set_sensitive(True)
+                    self.filename = filename
+                except Exception as e:
+                    #@todo: Put a msg box here
+                    print "INVALID FILE!"
+                    print e
+                finally:
+                    self.__update_title()
+        else:
+            #@todo: Put a msg box here
+            print "Invalid file..."
+
+    #Private methods
+    
+
+    def __remove_blank_entries(self, mixed):
+        #Recursive method for removing blank entries
+        #High memory consumption
+        newmixed = copy.copy(mixed)
+        if type(newmixed) == dict:
+            items = mixed.keys()
+        elif type(newmixed) == list:
+            items = range(len(newmixed))
+        for i in items:
+            if not newmixed[i]:
+                del newmixed[i]
+            elif type(newmixed[i]) in [dict, list]:
+                newmixed[i] = self.__remove_blank_entries(newmixed[i])
+        return newmixed
+
+    def __update_title(self, saved=True):
         title = 'pkgcreator-gtk :: '
+        if not saved:
+            title += '* '
         if self.filename:
             self.window.set_title(title + os.path.basename(self.filename))
         else:

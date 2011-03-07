@@ -1,9 +1,9 @@
 depends:
-- {name: python, version: ''}
-- {name: python-yaml, version: ''}
-- {name: python-gtk2, version: ''}
-- {name: python-vte, version: ''}
-- {name: pkgcreator, version: null}
+- {name: python}
+- {name: python-yaml}
+- {name: python-gtk2}
+- {name: python-vte}
+- {name: pkgcreator}
 files:
 - {dst: /usr/bin/pkgcreator-gtk, src: main.py}
 - {dst: /usr/share/pkgcreator-gtk/, src: data/*}

@@ -1,23 +1,37 @@
 Planned changes
 ===============
 
-1) TAB for navigating treeviews fields
-[DONE USING 2.1] 2) pkgcreator launcher user feedback:
-    2.1 process (as root) and get real time output
-    2.2 add for pkgcreator an option --with-gui for integration purposes
-[DONE] 3) Use expanders in Relationships section
-    * control "expand" property in activate events (SLOW!)
-4) For the menu section entry, use treeview to show items and a select button
-  http://alioth.debian.org/docman/view.php/30046/2/menu-one-file.html#s3.5
-[DONE] 5) Double-clicking in file selection dialogs
-    * use RESPONSE_OK for buttons and setting CAN/HAS DEFAULT to TRUE
-6) Add icons in tabs and required fields
-7) Eliminate generation of blank entries on the dictionnary
-8) File selection dialogs for "source"
-9) Icon previewer inside Icon selection dialog and inside Menu tab
-10) Support RPM files
-11) Add command line argument for opening a project.
-12) * in window title when file not saved...  :)
-13) Use a splash screen
-14) Add "Move Up" and "Move Down" functionality to Treeviews.
-15) Create icon for application.
+Treeview editor
+ * TAB for navigating treeviews fields
+ * Add "Move Up" and "Move Down" functionality to Treeviews.
+
+Menu section
+ * For the menu section entry, use treeview to show items and a select button
+   http://alioth.debian.org/docman/view.php/30046/2/menu-one-file.html#s3.5
+ * Icon previewer inside Icon selection dialog and inside Menu tab
+
+Files
+ * File selection dialogs for "source"
+
+General
+ * Create icon for application.
+ * Add icons in tabs and required fields
+ * Support RPM files
+ * Use a splash screen
+
+
+[DONE USING A] * pkgcreator launcher user feedback:
+    OPTION A: process (as root) and get real time output
+    OPTION B: add for pkgcreator an option --with-gui for integration purposes
+
+[DONE] * Add command line argument for opening a project.
+
+[DONE] * Eliminate generation of blank entries on the dictionnary
+
+[DONE] * Update title when file not saved (add *)
+
+[DONE] * Double-clicking in file selection dialogs
+         use RESPONSE_OK for buttons and setting CAN/HAS DEFAULT to TRUE
+
+[DONE] * Use expanders in Relationships section
+    control "expand" property in activate events is a little slow

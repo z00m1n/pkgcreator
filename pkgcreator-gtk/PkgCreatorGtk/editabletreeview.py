@@ -9,20 +9,23 @@ class EditableTreeView:
         self.model = gtk.ListStore(*args)
         self.columns = []
         self.cells = []
+        self.__allow_cursor_changes = False
         index = 0
         for i in columns:
             cell = gtk.CellRendererText()
             cell.set_property('editable', True)
             cell.connect("edited", self.editing_done, index)
-            #map cell into model
+            cell.connect("editing-started", self.__editing_started, index)
+            cell.connect("editing-canceled", self.__editing_canceled)
             self.cells.append(cell)
-            column = gtk.TreeViewColumn(i, cell, text = index)
+            column = gtk.TreeViewColumn(i, cell, text = index) #map cell to model
             column.set_sizing(gtk.TREE_VIEW_COLUMN_AUTOSIZE)
             column.set_expand(True)
             self.columns.append(column)
             index += 1
         self.treeview = gtk.TreeView(model=self.model)
         self.treeview.set_headers_visible(True)
+        self.model.connect("row-changed", self.__row_changed)
         for c in self.columns:
             self.treeview.append_column(c)
         #Scrolled Window
@@ -69,13 +72,14 @@ class EditableTreeView:
 
     def add_event(self, widget):
         self.model.append()
-        elements = self.model.iter_n_children(None)
+        elements = self.length()
         self.treeview.set_cursor_on_cell(
             elements - 1, 
             focus_column = self.columns[0],
             focus_cell= self.cells[0],
             start_editing=True)
         self.action_remove.set_sensitive(True)
+        return True
 
     def remove_event(self, widget):
         rows = self.treeview.get_selection().get_selected_rows()[1]
@@ -90,10 +94,58 @@ class EditableTreeView:
         self.model.set_value(iter, index, text)
         if self.observer:
             self.observer.data_changed(self)
+        return True
     
     def append(self, row):
         self.model.append(row)
         self.action_remove.set_sensitive(True)
+    
+    def length(self):
+        return self.model.iter_n_children(None)
+
+    def __editing_started(self, cell, celleditable, path, num_col):
+        celleditable.connect("key-press-event", self.__keypressed_editablecell, 
+                             cell, path, num_col)
+        return True
+    
+    def __editing_canceled(self, cell):
+        path_last = self.length() - 1
+        iter = self.model.get_iter(path_last)
+        self.__row_changed(None, path_last, iter)
+    
+    def __row_changed(self, model, path, iter):
+        #Checking if the last line is empty
+        for index in range(len(self.columns)):
+            if self.model.get_value(iter, index) not in [None, '']:
+                return False
+        if self.__line_is_blank(path):
+            self.model.remove(iter)
+        if self.length() == 0:
+            self.action_remove.set_sensitive(False)
+        return False
+
+    def __line_is_blank(self, path):
+        iter = self.model.get_iter(path)
+        for index in range(len(self.columns)):
+            if self.model.get_value(iter, index) not in [None, '']:
+                return False
+        return True
+
+    def __keypressed_editablecell(self, widget, event, cell, path, num_col):
+        if (event.keyval == gtk.keysyms.Tab):
+            return self.__tabpressed(cell, path, widget.get_text(), num_col)
+        else:
+            return False
+
+    def __tabpressed(self, cell, path, new_text, num_col):
+         self.editing_done(cell, path, new_text, num_col)
+         num_col += 1
+         if (num_col < len(self.columns)):
+             viewcolumn = self.treeview.get_column(num_col)
+             self.treeview.set_cursor(path, viewcolumn, True)
+         else:
+             self.add_event(None)
+         return False
 
 if __name__ == "__main__":
     win = gtk.Window()

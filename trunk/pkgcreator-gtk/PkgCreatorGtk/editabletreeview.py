@@ -25,6 +25,7 @@ class EditableTreeView:
             index += 1
         self.treeview = gtk.TreeView(model=self.model)
         self.treeview.set_headers_visible(True)
+        self.treeview.set_reorderable(True)
         self.model.connect("row-changed", self.__row_changed)
         for c in self.columns:
             self.treeview.append_column(c)

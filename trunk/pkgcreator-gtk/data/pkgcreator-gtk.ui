@@ -1542,6 +1542,19 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">5</property>
                         <child>
+                          <object class="GtkLabel" id="label12">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="label" translatable="yes">Please provide all related Debian packages.</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="padding">5</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
                           <object class="GtkExpander" id="expanderDepends">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -1561,7 +1574,7 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                           <packing>
                             <property name="expand">True</property>
                             <property name="fill">True</property>
-                            <property name="position">0</property>
+                            <property name="position">1</property>
                           </packing>
                         </child>
                         <child>
@@ -1583,7 +1596,7 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">1</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                         <child>
@@ -1605,7 +1618,7 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">2</property>
+                            <property name="position">3</property>
                           </packing>
                         </child>
                         <child>
@@ -1627,7 +1640,7 @@ Freedesktop.org entries will be generated, as well as icon files.</property>
                           <packing>
                             <property name="expand">False</property>
                             <property name="fill">True</property>
-                            <property name="position">3</property>
+                            <property name="position">4</property>
                           </packing>
                         </child>
                       </object>

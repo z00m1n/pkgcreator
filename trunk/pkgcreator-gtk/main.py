@@ -12,7 +12,7 @@ def main():
     gui = GUI()
     if args.yaml_file:
         gui.load_file(args.yaml_file)
-    gui.show()
+    gui.start(splash=True)
 
 if __name__ == '__main__':
     main()

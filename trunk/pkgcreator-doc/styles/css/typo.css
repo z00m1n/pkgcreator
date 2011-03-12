@@ -1,0 +1,23 @@
+div.titlepage h2 {
+    margin: 2em 1em 1em 1em;
+}
+
+div.titlepage h3 {
+    margin: 1.5em 1em 1em 1.5em;
+}
+
+p {
+    text-align: justify
+    padding: 0;
+    margin: 0.5em 3em;
+}
+
+a { 
+    text-decoration: none;
+    border-bottom: 1px dotted #000; 
+}
+
+a:hover {
+    background-color: #777;
+    color: #fff; 
+}

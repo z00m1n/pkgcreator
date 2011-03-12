@@ -1,0 +1,663 @@
+<?xml version="1.0"?>
+<sections>
+  <dl>
+    <dt>Applications</dt>
+
+    <dd>
+      <p>Normal applications</p>
+
+      <dl>
+        <dt>Accessibility</dt>
+
+        <dd>
+          <p>Tools to aid people with disabilities or for machines
+          lacking usual input devices.</p>
+
+          <p>Examples: gok, yasr, dasher.</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Amateur Radio</dt>
+
+        <dd>
+          <p>Anything relating to HAM radio.</p>
+
+          <p>Examples: baken, hamsoft, twlog</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Data Management</dt>
+
+        <dd>
+          <p>Interactive database programs, collection managers,
+          address books, bibliography tools, etc.</p>
+
+          <p>gaby, alexandria, mdbtools</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Editors</dt>
+
+        <dd>
+          <p>Editors, other than office word processors, for
+          text-based information.</p>
+
+          <p>Examples: ksubtile, nano, hexedit</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Education</dt>
+
+        <dd>
+          <p>Educational and training softwares.</p>
+
+          <p>Examples: gtypist, gcompris, quiz</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Emulators</dt>
+
+        <dd>
+          <p>Software that allows you to run non-native software or
+          more than one OS at a time.</p>
+
+          <p>Examples: wine, dosemu, qemu</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>File Management</dt>
+
+        <dd>
+          <p>Tools for file management, archiving, searching,
+          CD/DVD burning, backup, etc.</p>
+
+          <p>Examples: file-roller, mc, baobab</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Graphics</dt>
+
+        <dd>
+          <p>2D and 3D graphics manipulation software.</p>
+
+          <p>Examples: gimp, inkscape, imagemagick</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Mobile Devices</dt>
+
+        <dd>
+          <p>Software that allows you to interface with mobile
+          devices (phones, PDAs, etc.).</p>
+
+          <p>Examples: kandy, gnokii, gnome-pilot</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Network</dt>
+
+        <dd>
+          <p>Network related software. This is a three-level
+          section, do not put entries directly here.</p>
+
+          <dl>
+            <dt>Communication</dt>
+
+            <dd>
+              <p>Mail, USENET news, chat, instant messaging, IP
+              telephony, video conferencing software, etc.</p>
+
+              <p>Examples: xchat, gaim, mutt</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>File Transfer</dt>
+
+            <dd>
+              <p>File transfer software such as download managers,
+              FTP clients, P2P clients, etc.</p>
+
+              <p>Examples: amule, gftp, d4x</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Monitoring</dt>
+
+            <dd>
+              <p>Network monitoring software</p>
+
+              <p>Examples: gip, ettercap, iptstate</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Web Browsing</dt>
+
+            <dd>
+              <p>Web browsers, tools for offline browsing, etc.</p>
+
+              <p>Examples: elinks, epiphany-browser, webhttrack</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Web News</dt>
+
+            <dd>
+              <p>Web feed (RSS, Atom, etc.) and podcast
+              aggregators.</p>
+
+              <p>Examples: akregator, kitty, liferea</p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Office</dt>
+
+        <dd>
+          <p>Office suites, word processors, spreadsheets, CRM,
+          ERP, financial sofware, etc.</p>
+
+          <p>Examples: openoffice.org, tinyerp-client, gnucash</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Programming</dt>
+
+        <dd>
+          <p>IDEs, debuggers, etc.</p>
+
+          <p>Examples: anjuta, gdb, eclipse</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Project Management</dt>
+
+        <dd>
+          <p>Timetable managers, group task trackers, bug tracking
+          software, etc.</p>
+
+          <p>Examples: planner, bugzilla, gnotime</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Science</dt>
+
+        <dd>
+          <p>Scientific and engineering-related software.</p>
+
+          <dl>
+            <dt>Astronomy</dt>
+
+            <dd>
+              <p>Astronomy-related software.</p>
+
+              <p>Examples: celestia, spacechart, stellarium</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Biology</dt>
+
+            <dd>
+              <p>Biology-related software.</p>
+
+              <p>Examples: arb, ncbi-tools-x11, seaview</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Chemistry</dt>
+
+            <dd>
+              <p>Chemistry-related software.</p>
+
+              <p>Examples: chemtool, kalzium, xdrawchem</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Data Analysis</dt>
+
+            <dd>
+              <p>Software designed for processing, extracting, and
+              presenting generic scientific data.</p>
+
+              <p>Examples: fityk, ygraph, mn-fit</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Electronics</dt>
+
+            <dd>
+              <p>Circuit design tools, simulators and assemblers
+              for microprocessors, etc</p>
+
+              <p>Examples: geda, gnucap, tkgate</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Engineering</dt>
+
+            <dd>
+              <p>CAD, UML tools, diagram-drawing and other
+              engineering-related software.</p>
+
+              <p>Examples: tcm, dia, qcad</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Geoscience</dt>
+
+            <dd>
+              <p>Geoscience-related software.</p>
+
+              <p>Examples: earth3d, qgis, therion</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Mathematics</dt>
+
+            <dd>
+              <p>Mathematics-related software.</p>
+
+              <p>Examples: gcalctool, snappea, xeukleides</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Medicine</dt>
+
+            <dd>
+              <p>Medicine-related software.</p>
+
+              <p>Examples: mssstest, gnumed-client, xmedcon</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Physics</dt>
+
+            <dd>
+              <p>Physics-related software.</p>
+
+              <p>Examples: kxterm, ifrit, paw</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Social</dt>
+
+            <dd>
+              <p>Social sciences-related software.</p>
+
+              <p>Examples: gnomesword, hanzim, bibletime</p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Shells</dt>
+
+        <dd>
+          <p>Various shells to be used inside a terminal
+          emulator.</p>
+
+          <p>Examples: bash, ksh, zsh</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Sound</dt>
+
+        <dd>
+          <p>Sound players, editors, and rippers/recorders.</p>
+
+          <p>Examples: beep-media-player, grip, audacity</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>System</dt>
+
+        <dd>
+          <p>System related software.</p>
+
+          <dl>
+            <dt>Administration</dt>
+
+            <dd>
+              <p>Administrative and system configuration utilities,
+              also tools for personal user settings.</p>
+
+              <p>Examples: gnome-control-center, configure-debian,
+              gksu</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Hardware</dt>
+
+            <dd>
+              <p>Tools for manipulating specific hardware,
+              especially non-standard laptop hardware.</p>
+
+              <p>Examples: toshutils, nvclock-gtk, nvtv</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Language Environment</dt>
+
+            <dd>
+              <p>This section is reserved for language-env as a
+              special case.</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Monitoring</dt>
+
+            <dd>
+              <p>System information and monitoring tools, log
+              viewers, etc.</p>
+
+              <p>Examples: top, hal-device-manager, gtkdiskfree</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Package Management</dt>
+
+            <dd>
+              <p>Package managers and related tools.</p>
+
+              <p>Examples: aptitude, deborphan, smartpm</p>
+            </dd>
+          </dl>
+
+          <dl>
+            <dt>Security</dt>
+
+            <dd>
+              <p>Security, cryptography and privacy related
+              software, antiviruses, tools to track and report
+              bugs, etc.</p>
+
+              <p>Examples: gpgkeys, bastille, avscan</p>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Terminal Emulators</dt>
+
+        <dd>
+          <p>Graphical terminal emulators.</p>
+
+          <p>Examples: xterm, gnome-terminal, rxvt</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Text</dt>
+
+        <dd>
+          <p>Text oriented tools like dictionaries, OCR,
+          translation, text analysis software, etc.</p>
+
+          <p>Examples: kdrill, stardict, turkey</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>TV and Radio</dt>
+
+        <dd>
+          <p>TV-in, TV-out, FM radio, teletext browsers, etc.</p>
+
+          <p>Examples: gradio, gatos, alevt</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Viewers</dt>
+
+        <dd>
+          <p>Software for viewing images, documents and other
+          (non-video) media.</p>
+
+          <p>Examples: gqview, evince, gthumb</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Video</dt>
+
+        <dd>
+          <p>Video players, editors, and rippers/recorders.</p>
+
+          <p>Examples: istanbul, totem, kino</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Web Development</dt>
+
+        <dd>
+          <p>Software for web site editing, web programming, and
+          site administration.</p>
+
+          <p>Examples: bluefish, screem, gphpedit</p>
+        </dd>
+      </dl>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>Games</dt>
+
+    <dd>
+      <p>Games and recreations</p>
+
+      <dl>
+        <dt>Action</dt>
+
+        <dd>
+          <p>Games that involve a lot of action and require fast
+          reflexes.</p>
+
+          <p>Examples: xsoldier, supertux, xmoto</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Adventure</dt>
+
+        <dd>
+          <p>Role playing and adventure games, interactive movies
+          and stories, etc.</p>
+
+          <p>Examples: beneath-a-steel-sky, egoboo, kq</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Blocks</dt>
+
+        <dd>
+          <p>Tetris-like games involving falling blocks.</p>
+
+          <p>Examples: crack-attack, frozen-bubble, netris</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Board</dt>
+
+        <dd>
+          <p>Games played on a board.</p>
+
+          <p>Examples: phalanx, xshogi, xboard</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Card</dt>
+
+        <dd>
+          <p>Games involving a deck of cards.</p>
+
+          <p>Examples: pysol, ace-of-penguins, xpat2</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Puzzles</dt>
+
+        <dd>
+          <p>Tests of ingenuity and logic.</p>
+
+          <p>Examples: xmpuzzles, sgt-puzzles, enigma</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Simulation</dt>
+
+        <dd>
+          <p>Simulations of the real world in all detail and
+          complexity.</p>
+
+          <p>Examples: flightgear, torcs</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Strategy</dt>
+
+        <dd>
+          <p>Games involving long-term strategic thinking.</p>
+
+          <p>Examples: wesnoth, widelands, netpanzer</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Tools</dt>
+
+        <dd>
+          <p>Server browsers, configurators, editors, and other
+          game-related tools that are not games themselves.</p>
+
+          <p>Examples: xqf, crystalspace</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Toys</dt>
+
+        <dd>
+          <p>Amusements, eye-candy, entertaining demos, screen
+          hacks (screensavers), etc.</p>
+
+          <p>Examples: xdesktopwaves, xphoon, xpenguins</p>
+        </dd>
+      </dl>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>Help</dt>
+
+    <dd>
+      <p>programs that provide user documentation</p>
+
+      <p>Examples: debian-reference, apt-howto, dhelp</p>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>Screen</dt>
+
+    <dd>
+      <p>Programs that affect the whole screen.</p>
+
+      <dl>
+        <dt>Saving</dt>
+
+        <dd>
+          <p>Tools for blanking the screen. Entries of screen hacks
+          and configuration GUIs should go to other appropriate
+          sections.</p>
+
+          <p>Examples: xscreensaver, xlockmore</p>
+        </dd>
+      </dl>
+
+      <dl>
+        <dt>Locking</dt>
+
+        <dd>
+          <p>Tools for locking the screen.</p>
+
+          <p>Examples: xscreensaver, xlockmore</p>
+        </dd>
+      </dl>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>Window Managers</dt>
+
+    <dd>
+      <p>X window managers.</p>
+
+      <p>Examples: fluxbox, metacity, waimea</p>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>FVWM Modules</dt>
+
+    <dd>
+      <p>FVWM-based window manager modules. As only modules related
+      to the running window-manager are displayed, do not create
+      subsections for specific window-managers.</p>
+
+      <p>Examples: fvwm, fvwm-gnome, fvwm95</p>
+    </dd>
+  </dl>
+
+  <dl>
+    <dt>Window Maker</dt>
+
+    <dd>
+      <p>This section is reserved for wmaker as a special case.</p>
+
+      <p>All wmaker specific entries must go here.</p>
+    </dd>
+  </dl>
+</sections>

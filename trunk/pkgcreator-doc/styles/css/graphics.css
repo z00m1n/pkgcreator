@@ -1,0 +1,12 @@
+div.screenshot, div.caption {
+    text-align: center;
+}
+
+div.screenshot {
+    margin-top: 2em;
+}
+
+div.caption {
+    font-style: italic;
+    margin-bottom: 2em;
+}

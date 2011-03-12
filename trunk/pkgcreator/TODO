@@ -1,13 +1,31 @@
- * Require ROOT user to generate package (necessary)
- * Use 'lintian' to validate final package file.
- * Create documentation
+RELEASE 0.5: May/11
+
+Planned changes: Prototype 0.3
+==============================
+ * Assert ROOT user to generate package (necessary)
+ 
+Planned changes: Prototype 0.4
+==============================
  * Improve schema file 
-    * allow short_description OR long_description
-    * verify valid architectures
-    * verify valid sections
- * Add suport to prerm, preinst, postinst and postrm customized scripts
-   * create in general section the "tags" debian_scripts with dicts to the scripts
- * Add SVG support
- * Create support for other types of packages (RPM, tarballs, distutils, etc)
- * Create GUI for editing package.yaml description
- * Add simple markup support to console
+    - allow short_description OR long_description
+    - verify valid architectures
+    - verify valid sections
+    - etc...
+ * Find kwalify alternatives for better integration for reporting errors
+
+Planned changes: Release 0.5
+============================
+ * Update documentation
+
+Planned changes: Prototype 0.6
+==============================
+ * Add experimental RPM support
+ 
+Planned changes: Release 1.0
+============================
+ * Improve RPM support
+ * Output XML log (for better GUI integration)
+
+Planned changes: Prototype 1.1
+==============================
+ * Add pre-install, post-install, pre-remove and post-remove scripts support

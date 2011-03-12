@@ -1,39 +1,43 @@
-Planned changes
-===============
+RELEASE 0.5: May/11
 
-Treeview editor
- * TAB for navigating treeviews fields
- * Add "Move Up" and "Move Down" functionality to Treeviews.
+Planned changes: Prototype 0.3
+==============================
 
-Menu section
- * For the menu section entry, use treeview to show items and a select button
-   http://alioth.debian.org/docman/view.php/30046/2/menu-one-file.html#s3.5
+General
+ * Use a splash screen
+
+Menu
  * Icon previewer inside Icon selection dialog and inside Menu tab
 
--> later
+Planned changes: Prototype 0.4
+==============================
 
-Files
- * File selection dialogs for "source"
+Menu
+ * The menu section entry should list all standard Debian's sections
+   GUI should provide a treeview with a "choosable" item and a editable text entry
+   mapped to the item chosen (double-clicked?)
+   http://alioth.debian.org/docman/view.php/30046/2/menu-one-file.html#s3.5
+ * Support customized sections (by editing the text entry).
+
+Planned changes: Release 0.5
+============================
 
 General
  * Create icon for application.
  * Add icons in tabs and required fields
- * Support RPM files
- * Use a splash screen
 
+Files
+ * File selection dialogs for "source"
 
-[DONE USING A] * pkgcreator launcher user feedback:
-    OPTION A: process (as root) and get real time output
-    OPTION B: add for pkgcreator an option --with-gui for integration purposes
+Documentation
+ * Add GUI to quickstart
 
-[DONE] * Add command line argument for opening a project.
+Planned changes: Prototype 0.6
+==============================
+ * Add RPM support
 
-[DONE] * Eliminate generation of blank entries on the dictionnary
-
-[DONE] * Update title when file not saved (add *)
-
-[DONE] * Double-clicking in file selection dialogs
-         use RESPONSE_OK for buttons and setting CAN/HAS DEFAULT to TRUE
-
-[DONE] * Use expanders in Relationships section
-    control "expand" property in activate events is a little slow
+Planned changes: Release 1.0
+============================
+ * Performance benchmarking:
+    - possible translation to Genie
+ * Better integration with console app.

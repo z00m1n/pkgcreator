@@ -1,9 +1,11 @@
 import sys
 import os
 import subprocess
+import yaml
+import glib
+import gobject
 import gtk
 import vte
-import yaml
 import copy
 import resources
 from tabgeneral import TabGeneral
@@ -19,53 +21,119 @@ CONFIRM_MSG2 = 'Save changes before proceeding?'
 class GUI:
     def __init__(self):
         #Builder and main window
-        self.builder = gtk.Builder()
-        self.builder.add_from_file(resources.GUI_PATH)
-        self.builder.connect_signals(self)
-        self.window = self.builder.get_object("window1")
-        self.window.connect("destroy", gtk.main_quit)
-        #Tabs GUI content responsible
-        self.tabgeneral = TabGeneral(self.builder, self)
-        self.tabrelationships = TabRelationships(self.builder, self)
-        self.tabfiles = TabFiles(self.builder, self)
-        self.tabmenu = TabMenu(self.builder, self)
-        
-        #Dialogs
-        self.about = self.builder.get_object("aboutdialog1")
-        self.diagRunning = self.builder.get_object("dialogRunning")
-        self.msgdiagSaveChanges = self.builder.get_object("msgdiagSaveChanges")
-        self.msgdiagErrorFile = self.builder.get_object("msgdiagErrorFile")
-        #File dialogs related
-        self.fileDiagOpen = self.builder.get_object("filechooserOpen")
-        self.fileDiagSave = self.builder.get_object("filechooserSave")
-        self.buttonDiagSave = self.builder.get_object("buttonDiagSave")
-        self.buttonDiagOpen = self.builder.get_object("buttonDiagOpen")
-        #Other widgets
-        self.buttonRunningDiagClose = self.builder.get_object("buttonRunningDiagClose")
-        self.terminal = vte.Terminal()
-        self.terminal.connect("child-exited", self.pkgcreator_ended)
-        self.terminal.show()
-        self.diagRunning.get_content_area().pack_start(self.terminal)
-        #Other properties
+        glib.set_application_name("pkgcreator-gtk")
         self.filename = None
         self.dict = {}
-        self.__config_file_choosing()
-        self.tabgeneral.config()
-        self.__config_actions()
-        self.__update_title()
+        self.phase = 0
 
-    def show(self):
-        self.window.show_all()
+    def start(self, splash=False):
+        if splash:
+            self.splash_window = gtk.Window()
+            self.splash_window.set_default_size(200,200)
+            self.splash_window.set_position(gtk.WIN_POS_CENTER_ALWAYS)
+            self.splash_window.set_decorated(False)
+            self.splash_window.set_skip_taskbar_hint(True)
+            self.splash_window.set_skip_pager_hint(True)
+            self.splash_window.set_urgency_hint(True)
+            self.splash_window.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_SPLASHSCREEN)
+            
+            vbox = gtk.VBox(spacing=5)
+            label = gtk.Label('<b>Loading pkgcreator-gtk...</b>')
+            label.set_use_markup(True)
+            self.splash_label = gtk.Label('Building GUI...')
+            spinner = gtk.Spinner()
+            spinner.start()
+            vbox.pack_start(label, False)
+            vbox.pack_start(self.splash_label, False)
+            vbox.pack_start(spinner, True)
+            self.splash_window.add(vbox)
+            self.splash_window.show_all()
+            while gtk.events_pending():
+                gtk.main_iteration()
+            gobject.idle_add(self.__init_gradually)
+        else:
+            #Make all GUI preparation at once
+            self.__init_builder()
+            self.__init_tabs_handlers()
+            self.__init_widgets()
+            self.__init_vte()
+            self.__config()
+            self.__show()
         gtk.main()
 
-    def quit(self, widget, *event):
+    def quit(self, widget=None, *event):
         if(self.__warn_user()):
             gtk.main_quit()
 
     def show_about(self, widget, *event):
         self.about.run()
         self.about.hide()
+
+    #Initialization related
+
+    def __init_gradually(self):
+        if self.phase == 0:
+            self.__init_builder()
+            self.splash_label.set_text('Getting context handlers...')
+        elif self.phase == 1:
+            self.__init_tabs_handlers()
+            self.splash_label.set_text('Getting widgets...')
+        elif self.phase == 2:
+            self.__init_widgets()
+            self.splash_label.set_text('Initializing virtual terminal...')
+        elif self.phase == 3:
+            self.__init_vte()
+            self.splash_label.set_text('Configuring main widgets...')
+        elif self.phase == 4:
+            self.__config()
+        elif self.phase > 4:
+            self.splash_window.hide()
+            self.__show()
+            return False
+        sys.stdout.flush()
+        self.phase += 1
+        return True
+
+    def __init_builder(self):
+        self.builder = gtk.Builder()
+        self.builder.add_from_file(resources.GUI_PATH)
+
+    def __init_tabs_handlers(self):
+        self.tabgeneral = TabGeneral(self.builder, self)
+        self.tabrelationships = TabRelationships(self.builder, self)
+        self.tabfiles = TabFiles(self.builder, self)
+        self.tabmenu = TabMenu(self.builder, self)
     
+    def __init_widgets(self):
+        self.window = self.builder.get_object("window1")
+        self.about = self.builder.get_object("aboutdialog1")
+        self.diagRunning = self.builder.get_object("dialogRunning")
+        self.msgdiagSaveChanges = self.builder.get_object("msgdiagSaveChanges")
+        self.msgdiagErrorFile = self.builder.get_object("msgdiagErrorFile")
+        self.fileDiagOpen = self.builder.get_object("filechooserOpen")
+        self.fileDiagSave = self.builder.get_object("filechooserSave")
+        self.buttonDiagSave = self.builder.get_object("buttonDiagSave")
+        self.buttonDiagOpen = self.builder.get_object("buttonDiagOpen")
+        self.buttonRunningDiagClose = self.builder.get_object("buttonRunningDiagClose")
+    
+    def __init_vte(self):
+        self.terminal = vte.Terminal()
+        self.terminal.connect("child-exited", self.pkgcreator_ended)
+        self.terminal.show()
+        self.diagRunning.get_content_area().pack_start(self.terminal)
+
+    def __config(self):
+        self.__config_file_choosing()
+        self.tabgeneral.config()
+        self.__config_actions()
+        self.__update_title()
+        self.tabgeneral.clear_all()
+        self.builder.connect_signals(self)
+        self.window.connect("destroy", self.quit)
+
+    def __show(self):
+        self.window.show_all()
+
     #File related
 
     def new(self, widget, *event):

@@ -140,8 +140,12 @@ class TabGeneral:
         try:
             architectures = subprocess.check_output(["dpkg-architecture", "-L"]).split()
             architectures.sort()
+            #Detaching model temporarily...
+            model = self.architecture.get_model()
+            self.architecture.set_model(None)
             for a in architectures:
-                self.architecture.get_model().append((a,))
+                model.append((a,))
+            self.architecture.set_model(model)
         except:
             print "dpkg not installed..."
 

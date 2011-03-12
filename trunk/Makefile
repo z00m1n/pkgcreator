@@ -5,10 +5,10 @@ VERSION=$(RELEASE)$(SVNVERSION)
 all: pkgcreator_deb pkgcreator-gtk_deb
 
 doc:
-	cd pkgcreator-doc/ && ./generate_quickstart.sh
+	cd pkgcreator-doc/ && make
 
 man:
-	cd pkgcreator-doc/man && ./generate_man.sh
+	cd pkgcreator-doc/man && make man
 
 changelog:
 	svn2cl
@@ -29,7 +29,7 @@ install: pkgcreator_deb pkgcreator-gtk_deb
 	sudo dpkg -i build/pkgcreator-gtk-$(VERSION).deb
 
 upload:
-	./googlecode_upload.py -p pkgcreator -u leandro.mattioli -w `googlecodepasswd` -l Featured,Type-Package build/pkgcreator-$(VERSION).deb \
+	googlecode_upload.py -p pkgcreator -u leandro.mattioli -w `googlecodepasswd` -l Featured,Type-Package build/pkgcreator-$(VERSION).deb \
 	-s 'pkgcreator console application (Ubuntu 10.10 Installer)'
-	./googlecode_upload.py -p pkgcreator -u leandro.mattioli -w `googlecodepasswd` -l Featured,Type-Package build/pkgcreator-gtk-$(VERSION).deb \
+	googlecode_upload.py -p pkgcreator -u leandro.mattioli -w `googlecodepasswd` -l Featured,Type-Package build/pkgcreator-gtk-$(VERSION).deb \
 	-s 'GTK editor for pkgcreator (Ubuntu 10.10 Installer)'

@@ -1,0 +1,7 @@
+.caution, .warning {
+    border: 1px solid #f00;
+}
+
+.caution {
+    font-size: 1.2em;
+}

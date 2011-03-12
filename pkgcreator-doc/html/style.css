@@ -1,0 +1,24 @@
+.caution,.warning{border:1px solid red}
+.caution{font-size:1.2em}
+div.screenshot,div.caption{text-align:center}
+div.screenshot{margin-top:2em}
+div.caption{font-style:italic;margin-bottom:2em}
+body{font-family:luxi sans,sans-serif}
+div.article{border:1px solid gray;border-radius:15px;margin:10px;padding:0 0 10px}
+div.titlepage div.author,div.titlepage p.pubdate{background-color:#BBB;padding:0 2em;text-align:right}
+div.toc{padding:0 2em}
+div.titlepage h1{background-color:#BBB;border-top-left-radius:15px;border-top-right-radius:15px;margin:0;padding:20px 40px}
+div.titlepage hr{margin-bottom:15px}
+div.itemizedlist{margin-left:4em}
+div.itemizedlist p{margin:0}
+.screen{-moz-border-radius:2.5px;background-color:#eee;border:1px solid #bbb;border-radius:2.5px;color:#000;display:block;font-family:monospace;font-size:1em;margin:.5em 4em;overflow:auto;padding:10px}
+.programlisting{-moz-border-radius:2.5px;background-color:#ddd;border:1px solid #bbb;border-radius:2.5px;color:#000;display:block;font-family:monospace;font-size:1em;margin:.5em 4em;overflow:auto;padding:10px}
+.calloutlist table{margin:.5em 4em}
+.calloutlist table td{width:auto}
+.calloutlist table p{margin:.25em 0;padding-right:1em}
+div.titlepage h2{margin:2em 1em 1em}
+div.titlepage h3{margin:1.5em 1em 1em 1.5em}
+p{margin:.5em 3em;padding:0;text-align:justify}
+a{border-bottom:1px dotted #000;text-decoration:none}
+a:hover{background-color:#777;color:#fff}
+div.titlepage *,div.titlepage h3.author{margin:0;padding:0}

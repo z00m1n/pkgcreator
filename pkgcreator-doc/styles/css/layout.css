@@ -1,0 +1,42 @@
+body {
+    font-family: luxi sans,sans-serif;
+}
+
+div.article {
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 0 0 10px 0;
+}
+
+div.titlepage * {
+    margin: 0;
+    padding: 0;
+}
+
+div.titlepage div.author, div.titlepage p.pubdate {
+    text-align: right;
+    padding: 0 2em;
+    background-color: #BBB;
+}
+
+div.titlepage h3.author {
+    margin: 0;
+    padding: 0
+}
+
+div.toc {
+    padding: 0 2em;
+}
+
+div.titlepage h1 {
+    background-color: #BBB;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    margin: 0;
+    padding: 20px 40px;
+}
+
+div.titlepage hr {
+    margin-bottom: 15px;
+}

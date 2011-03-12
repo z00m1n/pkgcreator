@@ -157,7 +157,7 @@ class GUI:
             if response == gtk.RESPONSE_OK:
                 filename = self.fileDiagOpen.get_filename()
                 self.load_file(filename)
-            else:
+            elif response != gtk.RESPONSE_CANCEL:
                 self.msgdiagErrorFile.run()
                 self.msgdiagErrorFile.hide()
 
@@ -219,7 +219,7 @@ class GUI:
     def pkgcreator_ended(self, widget, *event):
         self.buttonRunningDiagClose.set_sensitive(True)
 
-    #Services for cmd
+    #Services
 
     def load_file(self, filename):
         if filename and filename.endswith(".yaml"):
@@ -243,6 +243,12 @@ class GUI:
         else:
             #@todo: Put a msg box here
             print "Invalid file..."
+
+    def get_base_path(self):
+        if not self.filename:
+            return None
+        else:
+            return os.path.dirname(self.filename)
 
     #Private methods
     

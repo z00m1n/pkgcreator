@@ -2,9 +2,10 @@ import os
 import gtk
 
 class EntryFileChooser:
-    def __init__(self, name, observer=None):
-        self.observer = observer
+    def __init__(self, name, observers=[]):
+        self.observers = observers
         self.entry = gtk.Entry()
+        self.entry.connect("changed", self.__notify_observers)
         #Button
         self.action = gtk.Action(
              "actionChooseFile" + name.title(), 
@@ -16,12 +17,8 @@ class EntryFileChooser:
         self.chooseButton.set_use_action_appearance(True)
         #HBox
         self.hbox = gtk.HBox()
-        self.hbox.pack_start(self.entry)
-        self.hbox.pack_start(self.chooseButton)
-        self.hbox.set_child_packing(
-            self.chooseButton, expand=False, fill=True,
-            padding=0, pack_type=gtk.PACK_START
-        )
+        self.hbox.pack_start(self.entry, True, True)
+        self.hbox.pack_start(self.chooseButton, False, True)
         #File chooser dialog
         self.dialog = gtk.FileChooserDialog(
             title = "Choose a file...",
@@ -35,6 +32,9 @@ class EntryFileChooser:
     
     def get_file_chooser_dialog(self):
         return self.dialog
+    
+    def get_entry(self):
+        return self.entry
 
     def get_value(self):
         return self.entry.get_text()
@@ -43,8 +43,7 @@ class EntryFileChooser:
         self.entry.set_text(text)
         if os.path.isabs(text) and os.path.exists(text):
             self.dialog.set_filename(text)
-        if self.observer:
-            self.observer.data_changed(self)
+        self.__notify_observers()
 
     def set_filter(self, filter):
         self.dialog.set_filter(filter)
@@ -53,8 +52,13 @@ class EntryFileChooser:
         response = self.dialog.run()
         if response == gtk.RESPONSE_OK:
             self.entry.set_text(self.dialog.get_filename())
-            self.observer.data_changed()
         self.dialog.hide()
+        self.__notify_observers()
+    
+    def __notify_observers(self, widget=None):
+        for i in self.observers:
+            i.data_changed(self)
+        
         
 if __name__ == "__main__":
     win = gtk.Window()

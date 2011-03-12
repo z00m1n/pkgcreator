@@ -1,3 +1,4 @@
+import os
 import subprocess
 import gtk
 from PkgCreator.constants import DEBIAN_SECTIONS
@@ -11,15 +12,23 @@ class TabMenu:
         self.table = g("tableMenu")
         self.command = g("entryCommand")
         self.sections = g("entryMenuSections")
-        self.entryfilechooser = EntryFileChooser("icon")
-        self.iconfilter = g("filefilterImages")
-        self.iconfilter.add_pixbuf_formats()
-        self.entryfilechooser.set_filter(self.iconfilter)
-        dialog = self.entryfilechooser.get_file_chooser_dialog()
-        dialog.get_content_area().pack_start(gtk.Label("Image files only."))
         self.openMultipleFiles = g("checkbuttonOpenMultipleFiles")
         self.requiresTerminal = g("checkbuttonRequiresTerminal")
         self.expectsURIs = g("checkbuttonExpectsURIs")
+        #Icon choosing
+        label = gtk.Label("Image files (*.png, *.jpg, *.gif, ...)")
+        self.preview = gtk.Image()
+        self.entryfilechooser = EntryFileChooser("icon", [self])
+        icon_diag = self.entryfilechooser.get_file_chooser_dialog()
+        icon_diag.set_preview_widget(self.preview)
+        icon_diag.set_extra_widget(label)
+        icon_diag.connect('update-preview', self.__icon_preview, self.preview) 
+        self.iconfilter = g("filefilterImages")
+        self.iconfilter.add_pixbuf_formats()
+        self.entryfilechooser.set_filter(self.iconfilter)
+        self.image = g('imageIcon')
+        dialog = self.entryfilechooser.get_file_chooser_dialog()
+        dialog.get_content_area().pack_start(gtk.Label("Image files only."))
         self.table.attach(self.entryfilechooser.get_main_widget(), 1, 2, 2, 3)
 
     def config(self):
@@ -67,4 +76,38 @@ class TabMenu:
         self.requiresTerminal.set_active(False)
         self.openMultipleFiles.set_active(False)
     
+    def __icon_preview(self, file_chooser, preview):
+        filename = file_chooser.get_preview_filename()
+        try:
+            pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(filename, 128, 128)
+            preview.set_from_pixbuf(pixbuf)
+            have_preview = True
+        except:
+            have_preview = False
+        file_chooser.set_preview_widget_active(have_preview)
+        return
+    
+    def data_changed(self, who):
+        missing_icon = lambda: self.image.set_from_icon_name('gtk-missing', 
+                                                             gtk.ICON_SIZE_LARGE_TOOLBAR)
+        if who == self.entryfilechooser:
+            text = self.entryfilechooser.get_entry().get_text()
+            if os.path.isabs(text):
+                filename = text
+            else:
+                filename = None
+                base_path = self.gui.get_base_path()
+                if base_path:
+                    filename = os.path.join(base_path, text)
+                    if not os.path.exists(filename):
+                        filename = None
+            #Setting new image
+            if filename is None:
+                missing_icon()
+            else:
+                try:
+                    pixbuf = gtk.gdk.pixbuf_new_from_file_at_size(filename, 128, 128)
+                    self.image.set_from_pixbuf(pixbuf)
+                except:
+                    missing_icon()
 

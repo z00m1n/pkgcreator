@@ -1,0 +1,45 @@
+About pkgcreator
+================
+
+pkgcreator is a command line tool for operating systems based on 
+Debian GNU/Linux with the goal of automating some of the tasks of 
+packaging binaries. The idea behind the tool is to be able to do all 
+the necessary steps of creating the package based on information 
+retrieved from a single markup file . This file uses the YAML as its 
+markup language, which provides good readability for human beings yet 
+being able to represent almost any structured information. By 
+processing this file, pkgcreator can generate menus entries, icons 
+and Debian specific files automatically.
+
+Installing
+==========
+
+== Pre-requisites ==
+
+The following packages must be installed before trying to install 
+pkgcreator:
+
+    python-imaging: used to generate icons
+    python-yaml: used to parse package markup files
+    dpkg: used to generate the final package
+    kwalify: used to verify if the package markup file is valid 
+			 (optional, but highly recommended)
+
+All these packages are available in recent versions of Ubuntu and 
+Debian.
+
+Also, if the Python package colorama is installed and the terminal 
+supports colors, pretty messages will be displayed. The colorama 
+package can be downloaded from the project's page
+(http://pypi.python.org/pypi/colorama).
+
+== Instalation procedure ==
+
+The easiest and recommended way to do this is to download the 
+Debian package from the project's page and double-click it.
+
+If you wish to use this tarball to install pkgcreator, just run
+
+python setup.py install
+
+with admin privileges.

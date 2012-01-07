@@ -17,9 +17,9 @@ general:
   authors:
   - {email: leandro.mattioli@gmail.com, name: Leandro Resende Mattioli}
   homepage: http://code.google.com/p/pkgcreator
-  long_description: "This tool features a .deb package generator that makes the creation\n\
-    of menus, icons, DEBIAN control file and others easier, by using one simple\n\
-    yaml file.\n\nIt's a work in progress and currently not all the options and rules\
+  long_description: "This tool features a .deb package generator that makes the creation \n\
+    of menus, icons, DEBIAN control file and others easier, by using one simple \n\
+    yaml file.\n\nIt's a work in progress and currently not all the options and rules \
     \ of the \nDebian package system are available.\n"
   maintainer: {email: leandro.mattioli@gmail.com, name: Leandro Resende Mattioli}
   name: PkgCreator

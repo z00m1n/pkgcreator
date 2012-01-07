@@ -9,7 +9,6 @@ class EditableTreeView:
         self.model = gtk.ListStore(*args)
         self.columns = []
         self.cells = []
-        self.__allow_cursor_changes = False
         index = 0
         for i in columns:
             cell = gtk.CellRendererText()
